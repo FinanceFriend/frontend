@@ -8,3 +8,7 @@
     --primary: 252 100% 31%;
     --primary-foreground: 252 100% 31%;
   }
+
+  body{
+    margin: 0;
+  }

@@ -1,0 +1,73 @@
+  .homePageTitle {
+      color: #FFF;
+      font-family: 'Londrina Solid', cursive;
+      /* Ensure the font is imported or available */
+      font-size: 6rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      -webkit-text-stroke: 5px var(--purple);
+  }
+
+  .homepageTitleContainer {
+      background: url(/bg/bg-homepage.png);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .registerButton,
+  .loginButton {
+      display: flex;
+      width: 12.5625rem;
+      height: 5.25rem;
+      padding: 0.5rem 0.875rem;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+
+      border: 0px;
+      border-radius: 1.125rem;
+
+      color: var(--White, #FFF);
+      font-family: Londrina Solid;
+      font-size: 2rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 1.25rem;
+      /* 62.5% */
+
+      box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+  }
+
+  .registerButton {
+      background: #00DA23;
+
+  }
+
+  .loginButton {
+      background: #0A007E;
+  }
+
+  .buttonContainer {
+      display: flex;
+      justify-content: space-evenly
+  }
+
+  .introContainer {
+      background: url(/bg/bg-intro.svg);
+      height: 10rem;
+      background-size: cover;
+      display: grid;
+      grid-template-columns: 55% 45%;
+  }
+
+  .text {
+      color: #FFF;
+      font-family: Barlow;
+      font-size: 1rem;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 1.25rem;
+  }
