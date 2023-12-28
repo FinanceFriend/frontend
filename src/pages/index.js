@@ -6,64 +6,64 @@ const friendsData = [
   {
     id: "1",
     side: "left",
-    image: "friends/mathematics.png",
+    image: "/friends/mathematics.png",
     name: "CAL",
-    subtitle: "THE CALCULATOR",
+    title: "THE CALCULATOR",
     field: "financial mathematics",
-    firstParaf:
+    firstText:
       "Hey there, little mathematicians! I'm Calc the Cheerful Calculator, and I'm super excited to take you on an amazing adventure in \"Numberland.\" We'll have loads of fun playing games with numbers, learning how to add up our pocket money, and even figure out the best ways to save for those awesome toys we've been dreaming about!",
-    second:
+    secondText:
       "For Parents: Calc's module introduces essential financial concepts to children, including basic budgeting, understanding value for money, and the fundamentals of saving. It's designed to build a strong foundation in financial literacy, encouraging skills that are vital for sound money management in the future.",
   },
   {
     id: "2",
     side: "left",
-    image: "friends/mathematics.png",
+    image: "friends/saving.png",
     name: "CAL",
-    subtitle: "THE CALCULATOR",
+    title: "THE CALCULATOR",
     field: "financial mathematics",
-    firstParaf: "",
-    second: "paraf",
+    firstText: "",
+    secondText: "paraf",
   },
   {
     id: "3",
     side: "left",
-    image: "friends/mathematics.png",
+    image: "friends/taxes.png",
     name: "CAL",
-    subtitle: "THE CALCULATOR",
+    title: "THE CALCULATOR",
     field: "financial mathematics",
-    firstParaf: "",
-    second: "paraf",
+    firstText: "",
+    secondText: "paraf",
   },
   {
     id: "4",
     side: "left",
-    image: "friends/mathematics.png",
+    image: "friends/investing.png",
     name: "CAL",
-    subtitle: "THE CALCULATOR",
+    title: "THE CALCULATOR",
     field: "financial mathematics",
-    firstParaf: "",
-    second: "paraf",
+    firstText: "",
+    secondText: "paraf",
   },
   {
     id: "5",
     side: "left",
-    image: "friends/mathematics.png",
+    image: "friends/loans.png",
     name: "CAL",
-    subtitle: "THE CALCULATOR",
+    title: "THE CALCULATOR",
     field: "financial mathematics",
-    firstParaf: "",
-    second: "paraf",
+    firstText: "",
+    secondText: "paraf",
   },
   {
     id: "6",
     side: "left",
-    image: "friends/mathematics.png",
+    image: "friends/freeform.png",
     name: "CAL",
-    subtitle: "THE CALCULATOR",
+    title: "THE CALCULATOR",
     field: "financial mathematics",
-    firstParaf: "",
-    second: "paraf",
+    firstText: "",
+    secondText: "paraf",
   },
 ];
 
@@ -83,7 +83,7 @@ function HomePage() {
       <div>
         <div className="introContainer">
           <div className="introTextContainer">
-            <p className="text">
+            <p className="homePageText">
               This revolutionary chatbot is designed to engage and educate
               children in the nuances of financial literacy. Utilizing
               sophisticated artificial intelligence, Finance Friends offers
