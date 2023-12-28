@@ -126,7 +126,7 @@ function HomePage() {
         ))}
       </div>
       <div className="buttonContainer">
-      <Link href="/lessons" passHref>
+      <Link href="/dashboard" passHref>
       <button className="loginButton">Let&apos;s Learn!</button>
     </Link>      </div>
     </div>

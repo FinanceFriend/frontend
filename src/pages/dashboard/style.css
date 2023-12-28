@@ -1,0 +1,13 @@
+.dashboardWrapper{
+    display: flex;
+margin-top: 5rem;
+margin-left: 5rem;}
+
+
+.dashboardContainer{
+    width: 60%;
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+}
