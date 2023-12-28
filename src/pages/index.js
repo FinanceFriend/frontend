@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Link from 'next/link';
 import "./style.css";
 import FriendsComponent from "../components/HomePage/FriendsComponent.jsx";
 
@@ -125,6 +125,10 @@ function HomePage() {
           <FriendsComponent key={friend.id} friend={friend} />
         ))}
       </div>
+      <div className="buttonContainer">
+      <Link href="/lessons" passHref>
+      <button className="loginButton">Let&apos;s Learn!</button>
+    </Link>      </div>
     </div>
   );
 }
