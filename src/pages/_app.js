@@ -1,9 +1,9 @@
 import Head from "next/head";
 
 import "../styles/global.css";
-import "react-chat-elements/dist/main.css"
+import "react-chat-elements/dist/main.css";
 
-
+import { LandDataProvider } from "@/context/LandDataProvider";
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -12,7 +12,9 @@ function MyApp({ Component, pageProps }) {
         <title>FinanceFriend</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Component {...pageProps} />
+      <LandDataProvider>
+        <Component {...pageProps} />
+      </LandDataProvider>
     </>
   );
 }

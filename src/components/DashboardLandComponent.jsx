@@ -4,14 +4,14 @@ import { LinearProgress } from "@mui/material";
 
 function DashboardLandComponent({ land }) {
   return (
-    <Link href="/lessons" passHref>
+    <Link href={`/lessons/${land.id}`} passHref>
       <div className="landContainer">
         <div style={{position: 'relative'}}>
         <img className="landImage" src={land.landImage} alt="logo" />
           <img className="landImageFreind" src={land.friendImage} alt="logo" />
         </div>
         <div className="landNameContainer">
-          <p class="landName">{land.name}</p>
+          <p class="landName">{land.landName}</p>
           <LinearProgress className="landProgress" color="success"
             variant="determinate"
             value={land.progress}

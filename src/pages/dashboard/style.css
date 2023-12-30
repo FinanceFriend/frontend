@@ -1,13 +1,13 @@
-.dashboardWrapper{
+.dashboardWrapper {
     display: flex;
-margin-top: 5rem;
-margin-left: 5rem;}
+    margin-top: 5rem;
+    margin-left: 5rem;
+}
 
 
-.dashboardContainer{
-    width: 60%;
-    display: flex;
-    flex: 1;
-    flex-wrap: wrap;
-    justify-content: center;
+.dashboardContainer {
+    width: 80%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    grid-gap: 5rem;
 }
