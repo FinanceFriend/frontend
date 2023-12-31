@@ -1,4 +1,31 @@
-.message{
-    scroll-snap-align: start;
+.messageContainer {
+    padding: 10px;
+    display: flex;
+}
 
+.userMessage {
+    justify-content: flex-end;
+}
+
+.aiMessage {
+    justify-content: flex-start;
+}
+
+.messageTextContainer {
+    margin: 0px 5px;
+    background-color: white;
+    border-radius: 0.75rem;
+    padding: 8px;
+}
+
+.messageText {
+    color: #000;
+    font-family: Barlow;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: justify;
+    margin: 0;
+    padding: 0;
 }

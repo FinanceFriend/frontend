@@ -66,12 +66,12 @@ function LessonsComponent() {
           >
             {chatData.map((msg, index) => (
               <div key={index}>
-                <MessageComponent key={index} msg={msg} />
+                <MessageComponent key={index} msg={msg} land={land} />
               </div>
             ))}
             {chatData.map((msg, index) => (
               <div key={index}>
-                <MessageComponent key={index} msg={msg} />
+                <MessageComponent key={index} msg={msg} land={land} />
               </div>
             ))}
           </div>

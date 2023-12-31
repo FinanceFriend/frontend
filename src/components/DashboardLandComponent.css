@@ -6,6 +6,7 @@
 
 .landContainer {
     max-width: 21rem;
+    overflow: hidden;
 }
 
 .landNameContainer {
