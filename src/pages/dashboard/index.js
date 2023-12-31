@@ -1,5 +1,5 @@
 import "./style.css";
-import DashboardLandComponent from "../../components/DashboardLandComponent.jsx";
+import DashboardLandComponent from "../../components/Dashboard/DashboardLandComponent.jsx";
 
 import React, { useContext } from 'react';
 import LandDataContext from '../../context/LandDataContext';

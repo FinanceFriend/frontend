@@ -60,22 +60,28 @@ function LessonsComponent() {
           <div className="chatHeader">
             <p className="chatHeaderText">Current location: {land?.landName}</p>
           </div>
-          <div
-            style={landBackgrundImage}
-            className="chatBody"
-          >
-            {chatData.map((msg, index) => (
-              <div key={index}>
-                <MessageComponent key={index} msg={msg} land={land} />
-              </div>
-            ))}
-            {chatData.map((msg, index) => (
-              <div key={index}>
-                <MessageComponent key={index} msg={msg} land={land} />
-              </div>
-            ))}
+          <div style={landBackgrundImage} className="chatBodyContainer">
+            <div className="chatBody">
+              {chatData.map((msg, index) => (
+                <div key={index}>
+                  <MessageComponent key={index} msg={msg} land={land} />
+                </div>
+              ))}
+              {chatData.map((msg, index) => (
+                <div key={index}>
+                  <MessageComponent key={index} msg={msg} land={land} />
+                </div>
+              ))}
+            </div>
+            <p className="chatButton nextButton">Next</p>
           </div>
-          <div className="chatSendMessage">MESSAGE</div>
+
+          <div className="chatSendMessage">
+            <div className="">
+              <input className="inputMessage" type="text" />
+              <p className="chatButton">Submit</p>
+            </div>
+          </div>
         </div>
         {error && <div className="error">{error}</div>}
       </div>
