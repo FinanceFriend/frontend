@@ -52,6 +52,12 @@
     height: 5rem;
     display: flex;
     align-items: center;
+    justify-content: center;
+}
+
+.chatSendMessageContainer {
+    position: absolute;
+    width: 68%;
 }
 
 .chatButton {
@@ -74,15 +80,21 @@
     margin: 0;
 }
 
-.nextButton{
+.nextButton {
     position: absolute;
     bottom: 10px;
     right: 20px;
 }
 
+.submitButton {
+    top: 3px;
+    right: 5px;
+    position: absolute;
+}
+
 .inputMessage {
-    width: 100%;
-    height: 1.5rem;
+    width: -webkit-fill-available;
+    height: 2.1rem;
     border-radius: 0.6875rem;
 }
 

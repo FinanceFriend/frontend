@@ -7,7 +7,7 @@ import MessageComponent from "@/components/Lessons/MessageComponent";
 import { fetchChatData, fetchLessons } from "@/api"; // Assuming these are in a separate file
 
 function LessonsComponent() {
-  const [chatData, setChatData] = useState([]);
+  let [chatData, setChatData] = useState([]);
   const [lessons, setLessons] = useState([]);
   const [miniLessonIndex, setMiniLessonIndex] = useState(1);
   const [error, setError] = useState(null);
@@ -17,14 +17,35 @@ function LessonsComponent() {
   const { slug } = router.query;
   const land = landData.find((item) => item.id === slug);
 
+  const user = {
+    username: "testuser123",
+    email: "testuser123@example.com",
+    password: "$2a$10$X9HSiIJ87b7Ty5qxSnr/BOKZR4GzChXWqciTdUFaPAP.i46Kn8OMy",
+    dateOfBirth: { $date: { $numberLong: "631152000000" } },
+    countryOfOrigin: "USA",
+    preferredLanguage: "English",
+  };
+
   useEffect(() => {
-    loadChatData("username", 0);
+    loadChatData("username1", 0);
     loadLessons();
   }, []);
 
   useEffect(() => {
     console.log(chatData); // Check the structure of the data
   }, [chatData]);
+
+  const reqMSG = {
+    land: land,
+    user: user,
+    progress: 0,
+    currentLesson: 0,
+    currentMinilesson: 0,
+    currentBlock: 0,
+  };
+
+  
+  console.log(reqMSG);
 
   const loadChatData = async (username, locationId) => {
     try {
@@ -77,9 +98,9 @@ function LessonsComponent() {
           </div>
 
           <div className="chatSendMessage">
-            <div className="">
+            <div className="chatSendMessageContainer">
               <input className="inputMessage" type="text" />
-              <p className="chatButton">Submit</p>
+              <p className="chatButton submitButton">Submit</p>
             </div>
           </div>
         </div>
