@@ -1,4 +1,3 @@
-// src/api/chatService.js
 import axios from "axios";
 
 export const fetchChatData = async (username, locationId) => {
@@ -8,7 +7,6 @@ export const fetchChatData = async (username, locationId) => {
   return response.data.messages;
 };
 
-// src/api/lessonService.js
 export const fetchLessons = async (miniLessonIndex) => {
   const response = await axios.get("http://localhost:3001/langchain/lessons", {
     params: { lesson_index: 0, mini_lesson_index: miniLessonIndex },

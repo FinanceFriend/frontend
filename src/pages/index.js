@@ -1,10 +1,9 @@
-import Link from 'next/link';
+import Link from "next/link";
 import "./style.css";
 import FriendsComponent from "../components/HomePage/FriendsComponent.jsx";
 
-import React, { useContext } from 'react';
-import LandDataContext from '../context/LandDataContext';
-
+import React, { useContext } from "react";
+import LandDataContext from "../context/LandDataContext";
 
 function HomePage() {
   const landData = useContext(LandDataContext);
@@ -67,9 +66,10 @@ function HomePage() {
         ))}
       </div>
       <div className="buttonContainer">
-      <Link href="/dashboard" passHref>
-      <button className="loginButton">Let&apos;s Learn!</button>
-    </Link>      </div>
+        <Link href="/dashboard" passHref>
+          <button className="loginButton">Let&apos;s Learn!</button>
+        </Link>
+      </div>
     </div>
   );
 }
