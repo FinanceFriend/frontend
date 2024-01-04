@@ -1,13 +1,13 @@
 import axios from "axios";
 
-export const fetchLeaderboard = async (username) => {
+export const getLeaderboard = async (username) => {
   const response = await axios.get(
     `http://localhost:3001/api/leaderboard/general`
   );
   return response.data.leaderboard;
 };
 
-export const fetchLeaderboardforUser = async (username) => {
+export const getLeaderboardforUser = async (username) => {
   const response = await axios.get(
     `http://localhost:3001/api/leaderboard/general/${username}`
   );

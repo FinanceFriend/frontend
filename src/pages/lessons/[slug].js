@@ -4,11 +4,12 @@ import "./style.css";
 import { useRouter } from "next/router";
 import LandDataContext from "../../context/LandDataContext";
 import MessageComponent from "@/components/Lessons/MessageComponent";
-import { fetchChatData, fetchLessons } from "@/api"; // Assuming these are in a separate file
+import { getChatData, getLessons, getLessonsNames } from "@/api"; // Assuming these are in a separate file
 
 function LessonsComponent() {
   let [chatData, setChatData] = useState([]);
   const [lessons, setLessons] = useState([]);
+  const [lessonNames, setLessonNames] = useState([]);
   const [miniLessonIndex, setMiniLessonIndex] = useState(1);
   const [error, setError] = useState(null);
 
@@ -27,13 +28,15 @@ function LessonsComponent() {
   };
 
   useEffect(() => {
-    loadChatData("username1", 0);
-    loadLessons();
+    loadChatData("testuser123", 0);
+    loadLessonNames("Numberland");
+
+    //loadLessons();
   }, []);
 
   useEffect(() => {
-    console.log(chatData); // Check the structure of the data
-  }, [chatData]);
+    console.log("AAAAA", lessonNames); // Check the structure of the data
+  }, [lessonNames]);
 
   const reqMSG = {
     land: land,
@@ -44,27 +47,37 @@ function LessonsComponent() {
     currentBlock: 0,
   };
 
-  
   console.log(reqMSG);
 
   const loadChatData = async (username, locationId) => {
     try {
-      const messages = await fetchChatData(username, locationId);
+      const messages = await getChatData(username, locationId);
       console.log(messages);
-      setChatData(messages[0]);
+      setChatData(messages);
     } catch (error) {
-      console.error("Error fetching chat data:", error);
+      console.error("Error geting chat data:", error);
+      setError("Failed to load chat data");
+    }
+  };
+
+  const loadLessonNames = async (landName) => {
+    try {
+      const lessonNames = await getLessonsNames(landName);
+      console.log("BLABLA", lessonNames);
+      setLessonNames(lessonNames);
+    } catch (error) {
+      console.error("Error geting chat data:", error);
       setError("Failed to load chat data");
     }
   };
 
   const loadLessons = async () => {
     try {
-      const newLesson = await fetchLessons(miniLessonIndex);
+      const newLesson = await getLessons(miniLessonIndex);
       setLessons((currentLessons) => [...currentLessons, newLesson]);
       setMiniLessonIndex((prevIndex) => prevIndex + 1);
     } catch (error) {
-      console.error("Error fetching lessons:", error);
+      console.error("Error geting lessons:", error);
       setError("Failed to load lessons");
     }
   };
@@ -73,9 +86,12 @@ function LessonsComponent() {
     background: `linear-gradient(0deg, rgba(22, 0, 160, 0.34) 0%, rgba(22, 0, 160, 0.34) 100%), url(${land.landImage}), lightgray 50% / cover no-repeat`,
   };
 
+  const landBackgrundImageLessonsList = {
+    background: `linear-gradient(0deg, rgba(255, 255, 255, 0.80) 0%, rgba(255, 255, 255, 0.80) 100%), url(${land.friendImage}), lightgray 50% / cover no-repeat`,
+  };
+
   return (
     <div className="lessonsWrapper">
-      {slug}
       <div className="lessonsContainer">
         <div className="chatContainer">
           <div className="chatHeader">
@@ -105,6 +121,29 @@ function LessonsComponent() {
           </div>
         </div>
         {error && <div className="error">{error}</div>}
+      </div>
+      <div className="lessonsListContainer">
+        <div className="chatContainer">
+          <div className="chatHeader">
+            <p className="chatHeaderText">Lessons list</p>
+          </div>
+          <div style={landBackgrundImageLessonsList} className="lessonsList">
+            {lessonNames.map((lesson, index) => (
+              <div key={index}>
+                <p>
+                  {index + 1}. {lesson.lessonName}
+                </p>
+                <div style={{paddingLeft: '10px'}}>
+                  {lesson.miniLessonsNames.map((miniLessonName, miniIndex) => (
+                    <div key={miniIndex}>
+                      {index + 1}.{miniIndex + 1} {miniLessonName}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

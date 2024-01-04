@@ -11,7 +11,7 @@ function DashboardLandComponent({ land }) {
           <img className="landImageFreind" src={land.friendImage} alt="logo" />
         </div>
         <div className="landNameContainer">
-          <p class="landName">{land.landName}</p>
+          <p className="landName">{land.landName}</p>
           <LinearProgress
             className="landProgress"
             color="success"

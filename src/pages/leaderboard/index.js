@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./style.css";
-import { fetchLeaderboard, fetchLeaderboardforUser } from "@/api"; // Assuming these are in a separate file
+import { getLeaderboard, getLeaderboardforUser } from "@/api"; // Assuming these are in a separate file
 import { yellow } from "@mui/material/colors";
 
 function LeaderboardComponent() {
@@ -18,15 +18,15 @@ function LeaderboardComponent() {
 
   const loadLeaderboardData = async (username) => {
     try {
-      const leaderboardData = await fetchLeaderboard();
+      const leaderboardData = await getLeaderboard();
       console.log(leaderboardData);
       setLeaderboardData(leaderboardData);
 
-      const leaderboardDataForUser = await fetchLeaderboardforUser(username);
+      const leaderboardDataForUser = await getLeaderboardforUser(username);
       console.log(leaderboardDataForUser);
       setLeaderboardDataForUser(leaderboardDataForUser);
     } catch (error) {
-      console.error("Error fetching leaderboard data:", error);
+      console.error("Error geting leaderboard data:", error);
       setError("Failed to load leaderboard data");
     }
   };
