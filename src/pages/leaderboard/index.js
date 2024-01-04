@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./style.css";
 import { fetchLeaderboard, fetchLeaderboardforUser } from "@/api"; // Assuming these are in a separate file
+import { yellow } from "@mui/material/colors";
 
-function LessonsComponent() {
+function LeaderboardComponent() {
   let [leaderboardData, setLeaderboardData] = useState([]);
   let [leaderboardDataForUser, setLeaderboardDataForUser] = useState([]);
 
@@ -33,27 +34,95 @@ function LessonsComponent() {
   return (
     <div className="lessonsWrapper">
       <div className="lessonsContainer">
-        <div className="chatContainer">
-          <div className="chatHeader">
-            <p className="chatHeaderText">Current location:</p>
+        <div className="leaderboardContainer">
+          <div className="leaderboardHeader">
+            <p className="leaderboardHeaderText"></p>
           </div>
-          <div className="chatBodyContainer">
-            <div className="chatBody">
-    
+          <div className="leaderboardBodyContainer">
+            <div className="leaderboardBody">
+              <div className="leaderboardGrid">
+                <div className="leaderboardHeaderText">RANK </div>
+                <div className="leaderboardHeaderText">USERNAME</div>
+                <div className="leaderboardHeaderText"> COUNTRY</div>
+                <div className="leaderboardHeaderText"> POINTS</div>
+              </div>
+              {leaderboardData.map((user, index) => (
+                <div key={index} className="leaderboardGrid">
+                  <div
+                    className="leaderboardText"
+                    style={{
+                      borderRadius: "50px",
+                      backgroundColor:
+                        user.username === leaderboardDataForUser.username
+                          ? "var(--yellow)"
+                          : "white",
+                    }}
+                  >
+                    #{user.rank}
+                  </div>
+                  <div
+                    className="leaderboardText"
+                    style={{
+                      backgroundColor:
+                        user.username === leaderboardDataForUser.username
+                          ? "var(--yellow)"
+                          : "white",
+                    }}
+                  >
+                    {user.username}
+                  </div>
+                  <div
+                    className="leaderboardText"
+                    style={{
+                      backgroundColor:
+                        user.username === leaderboardDataForUser.username
+                          ? "var(--yellow)"
+                          : "white",
+                    }}
+                  >
+                    {user.countryOfOrigin}
+                  </div>
+                  <div
+                    className="leaderboardText"
+                    style={{
+                      backgroundColor:
+                        user.username === leaderboardDataForUser.username
+                          ? "var(--yellow)"
+                          : "white",
+                    }}
+                  >
+                    {user.totalPoints}
+                  </div>
+                </div>
+              ))}
             </div>
-            <p className="chatButton nextButton">Next</p>
           </div>
 
-          <div className="chatSendMessage">
-            <div className="chatSendMessageContainer">
-              <input className="inputMessage" type="text" />
-              <p className="chatButton submitButton">Submit</p>
+          <div className="leaderboardDataForUserContainer">
+            <div className="leaderboardDataForUserGrid">
+              <div
+                className="leaderboardTextyellow"
+                style={{
+                  borderRadius: "50px",
+                }}
+              >
+                #{leaderboardDataForUser.rank}
+              </div>
+              <div className="leaderboardTextyellow">
+                {leaderboardDataForUser.username}
+              </div>
+              <div className="leaderboardTextyellow">
+                {leaderboardDataForUser.countryOfOrigin}
+              </div>
+              <div className="leaderboardTextyellow">
+                {leaderboardDataForUser.totalPoints}
+              </div>
             </div>
           </div>
         </div>
-        </div>
+      </div>
     </div>
   );
 }
 
-export default LessonsComponent;
+export default LeaderboardComponent;

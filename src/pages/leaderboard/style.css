@@ -12,18 +12,19 @@
     border-radius: 0.6875rem;
 }
 
-.chatContainer {
+.leaderboardContainer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
 }
 
-.chatHeader {
-    height: 7rem;
+.leaderboardHeader {
+    height: 3rem;
+    background-color: var(--yellow);
 }
 
-.chatHeaderText {
+.leaderboardHeaderText {
     color: var(--vajt, #FFF);
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     font-family: Londrina Solid;
@@ -33,72 +34,63 @@
     line-height: normal;
 }
 
-.chatBody {
+.leaderboardBody {
     height: 100%;
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.chatBodyContainer {
+.leaderboardBodyContainer, .leaderboardDataForUserWrapper {
     height: 100%;
     background-position: center;
     background-position-y: top;
     scroll-snap-type: y mandatory;
     overflow: hidden;
     position: relative;
-
 }
 
-.chatSendMessage {
-    height: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.chatSendMessageContainer {
-    position: absolute;
-    width: 68%;
-}
-
-.chatButton {
-    width: 5.9375rem;
-    height: 2rem;
-    flex-shrink: 0;
-    border-radius: 0.5rem;
-    background: var(--green);
-
-    color: #FFF;
+.leaderboardText, .leaderboardTextyellow {
+    color: var(--purple);
     font-family: Londrina Solid;
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     font-style: normal;
     font-weight: 400;
-    line-height: 1.25rem;
+    line-height: normal;
+    background-color: white;
+    text-align: center;
+    padding: 0.6rem;
+}
 
+.leaderboardTextyellow{
+    background-color: var(--yellow);
+}
+
+.leaderboardHeaderText {
+    color: var(--gold, #FFC700);
+    font-family: Londrina Solid;
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+}
+
+.leaderboardGrid, .leaderboardDataForUserGrid {
+    width: 80%;
+    display: grid;
+    grid-template-columns: 2.5rem auto 30% 15%;
+    grid-gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.leaderboardDataForUserGrid{
+    padding-top: 1rem;
+    border-top: 1px solid white
+}
+
+.leaderboardDataForUserContainer{
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-}
-
-.nextButton {
-    position: absolute;
-    bottom: 10px;
-    right: 20px;
-}
-
-.submitButton {
-    top: 3px;
-    right: 5px;
-    position: absolute;
-}
-
-.inputMessage {
-    width: -webkit-fill-available;
-    height: 2.1rem;
-    border-radius: 0.6875rem;
-}
-
-.inputMessageContainer {
-    height: 20%;
-    width: 95%
+    justify-content: center
 }

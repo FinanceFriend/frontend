@@ -11,5 +11,5 @@ export const fetchLeaderboardforUser = async (username) => {
   const response = await axios.get(
     `http://localhost:3001/api/leaderboard/general/${username}`
   );
-  return response.data.leaderboard;
+  return response.data.userData;
 };
