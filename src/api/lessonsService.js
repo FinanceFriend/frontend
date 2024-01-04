@@ -7,23 +7,36 @@ export const getChatData = async (username, locationId) => {
   return response.data.messages;
 };
 
-export const getLessons = async (miniLessonIndex) => {
-  const response = await axios.get("http://localhost:3001/langchain/lessons", {
-    params: { lesson_index: 0, mini_lesson_index: miniLessonIndex },
-  });
-  return {
-    position: "left",
-    type: "text",
-    title: "Olivia the owl",
-    text: response.data.result,
+export const getLessonMessage = async (
+  currentBlock,
+  currentLesson,
+  currentMinilesson,
+  land,
+  user
+) => {
+  const requestBody = {
+    currentBlock,
+    currentLesson,
+    currentMinilesson,
+    land,
+    user,
   };
+
+  console.log(requestBody)
+
+  const response = await axios.post(
+    "http://localhost:3001/api/langchain/lessonsLoremIpsum",
+    requestBody
+  );
+  return response.data;
 };
 
 export const getLessonsNames = async (locationName) => {
   const response = await axios.get(
-    "http://localhost:3001/api/langchain/lessonNames", {
+    "http://localhost:3001/api/langchain/lessonNames",
+    {
       params: { locationName: locationName },
     }
   );
- return response.data.message;
+  return response.data.message;
 };

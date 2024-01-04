@@ -105,21 +105,3 @@
 }
 
 
-/*---------- LESSONS LIST ----------*/
-
-.lessonsListContainer{
-        height: 90%;
-        width: 30%;
-        background-color: var(--yellow);
-        border-radius: 0.6875rem;
-}
-
-.lessonsList{
-    height: 100%;
-    margin: 10px;
-    background-color: white;
-    overflow-y: scroll;
-    padding: 10px;
-    font-family: Barlow;
-    font-size: 16px;
-}

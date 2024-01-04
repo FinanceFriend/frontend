@@ -4,7 +4,8 @@ import "./style.css";
 import { useRouter } from "next/router";
 import LandDataContext from "../../context/LandDataContext";
 import MessageComponent from "@/components/Lessons/MessageComponent";
-import { getChatData, getLessons, getLessonsNames } from "@/api"; // Assuming these are in a separate file
+import { getChatData, getLessonMessage, getLessonsNames } from "@/api"; // Assuming these are in a separate file
+import LessonsListComponent from "@/components/Lessons/LessonsListComponent";
 
 function LessonsComponent() {
   let [chatData, setChatData] = useState([]);
@@ -18,11 +19,15 @@ function LessonsComponent() {
   const { slug } = router.query;
   const land = landData.find((item) => item.id === slug);
 
+
+  let currentBlock = 0;
+  let currentLesson = 0;
+  let currentMinilesson = 0;
+
   const user = {
     username: "testuser123",
     email: "testuser123@example.com",
-    password: "$2a$10$X9HSiIJ87b7Ty5qxSnr/BOKZR4GzChXWqciTdUFaPAP.i46Kn8OMy",
-    dateOfBirth: { $date: { $numberLong: "631152000000" } },
+    dateOfBirth: "1990-01-01T00:00:00.000Z",
     countryOfOrigin: "USA",
     preferredLanguage: "English",
   };
@@ -33,10 +38,6 @@ function LessonsComponent() {
 
     //loadLessons();
   }, []);
-
-  useEffect(() => {
-    console.log("AAAAA", lessonNames); // Check the structure of the data
-  }, [lessonNames]);
 
   const reqMSG = {
     land: land,
@@ -60,9 +61,9 @@ function LessonsComponent() {
     }
   };
 
-  const loadLessonNames = async (landName) => {
+  const loadLessonNames = async (name) => {
     try {
-      const lessonNames = await getLessonsNames(landName);
+      const lessonNames = await getLessonsNames(name);
       console.log("BLABLA", lessonNames);
       setLessonNames(lessonNames);
     } catch (error) {
@@ -73,12 +74,10 @@ function LessonsComponent() {
 
   const loadLessons = async () => {
     try {
-      const newLesson = await getLessons(miniLessonIndex);
-      setLessons((currentLessons) => [...currentLessons, newLesson]);
-      setMiniLessonIndex((prevIndex) => prevIndex + 1);
+      const lessonMessage = await getLessonMessage(currentBlock, currentLesson, currentMinilesson, land, user);
+      console.log("LESSONMSG"-lessonMessage); // Process the response as needed
     } catch (error) {
-      console.error("Error geting lessons:", error);
-      setError("Failed to load lessons");
+      console.error("Error fetching lesson message:", error);
     }
   };
 
@@ -86,16 +85,12 @@ function LessonsComponent() {
     background: `linear-gradient(0deg, rgba(22, 0, 160, 0.34) 0%, rgba(22, 0, 160, 0.34) 100%), url(${land.landImage}), lightgray 50% / cover no-repeat`,
   };
 
-  const landBackgrundImageLessonsList = {
-    background: `linear-gradient(0deg, rgba(255, 255, 255, 0.80) 0%, rgba(255, 255, 255, 0.80) 100%), url(${land.friendImage}), lightgray 50% / cover no-repeat`,
-  };
-
   return (
     <div className="lessonsWrapper">
       <div className="lessonsContainer">
         <div className="chatContainer">
           <div className="chatHeader">
-            <p className="chatHeaderText">Current location: {land?.landName}</p>
+            <p className="chatHeaderText">Current location: {land?.name}</p>
           </div>
           <div style={landBackgrundImage} className="chatBodyContainer">
             <div className="chatBody">
@@ -104,13 +99,8 @@ function LessonsComponent() {
                   <MessageComponent key={index} msg={msg} land={land} />
                 </div>
               ))}
-              {chatData.map((msg, index) => (
-                <div key={index}>
-                  <MessageComponent key={index} msg={msg} land={land} />
-                </div>
-              ))}
             </div>
-            <p className="chatButton nextButton">Next</p>
+            <p className="chatButton nextButton" onClick={() => loadLessons()}>Next</p>
           </div>
 
           <div className="chatSendMessage">
@@ -122,29 +112,7 @@ function LessonsComponent() {
         </div>
         {error && <div className="error">{error}</div>}
       </div>
-      <div className="lessonsListContainer">
-        <div className="chatContainer">
-          <div className="chatHeader">
-            <p className="chatHeaderText">Lessons list</p>
-          </div>
-          <div style={landBackgrundImageLessonsList} className="lessonsList">
-            {lessonNames.map((lesson, index) => (
-              <div key={index}>
-                <p>
-                  {index + 1}. {lesson.lessonName}
-                </p>
-                <div style={{paddingLeft: '10px'}}>
-                  {lesson.miniLessonsNames.map((miniLessonName, miniIndex) => (
-                    <div key={miniIndex}>
-                      {index + 1}.{miniIndex + 1} {miniLessonName}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+      <LessonsListComponent lessonNames={lessonNames} land={land} />
     </div>
   );
 }

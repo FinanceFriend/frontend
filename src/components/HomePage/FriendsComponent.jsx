@@ -16,13 +16,13 @@ function FriendsComponent({ land }) {
             <div>
               <div style={{ display: "flex", alignItems: "baseline" }}>
                 <p className="friendName text">{land.friendName}</p>
-                <p className="friendTitle text">{land.type}</p>
+                <p className="friendTitle text">{land.friendType}</p>
               </div>
-              <p className="friendField">{land.field}</p>
+              <p className="friendmoduleName">{land.moduleName}</p>
             </div>
             <div>
-              <p className="text friendText">{land.firstText}</p>
-              <p className="text friendText">{land.secondText}</p>
+              <p className="text friendText">{land.moduleDecriptionKids}</p>
+              <p className="text friendText">{land.moduleDescriptionParents}</p>
             </div>
           </div>
           {land.side === 'right' && (
