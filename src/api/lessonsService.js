@@ -11,6 +11,7 @@ export const getLessonMessage = async (
   currentBlock,
   currentLesson,
   currentMinilesson,
+  progress,
   land,
   user
 ) => {
@@ -18,6 +19,7 @@ export const getLessonMessage = async (
     currentBlock,
     currentLesson,
     currentMinilesson,
+    progress,
     land,
     user,
   };

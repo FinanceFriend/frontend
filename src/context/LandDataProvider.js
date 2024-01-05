@@ -7,7 +7,7 @@ const landData = [
     id: "0",
     side: "left",
     friendName: "CAL",
-    friendfriendType: "THE CALCULATOR",
+    friendType: "THE CALCULATOR",
     moduleName: "financial mathematics",
     moduleDecriptionKids:
       "Hey there, little mathematicians! I'm Calc the Cheerful Calculator, and I'm super excited to take you on an amazing adventure in \"Numberland.\" We'll have loads of fun playing games with numbers, learning how to add up our pocket money, and even figure out the best ways to save for those awesome toys we've been dreaming about!",
@@ -22,7 +22,7 @@ const landData = [
     id: "1",
     side: "right",
     friendName: "OLIVIA",
-    friendfriendType: "THE OWL",
+    friendType: "THE OWL",
     moduleName: "saving",
     moduleDecriptionKids:
       "Hello, my savvy savers! I'm Hootie the Wise Saving Owl, and I can't wait to share the secrets of \"Savings Treehouse\" with you. We're going to learn all about saving money, finding fun ways to watch our piggy banks get fuller, and dreaming about all the cool things we can do with our savings!",

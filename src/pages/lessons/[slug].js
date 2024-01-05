@@ -19,10 +19,17 @@ function LessonsComponent() {
   const { slug } = router.query;
   const land = landData.find((item) => item.id === slug);
 
+  const [currentBlock, setCurrentBlock] = useState(0);
+  const [currentLesson, setCurrentLesson] = useState(0);
+  const [currentMinilesson, setCurrentMinilesson] = useState(0);
+  let progress = 0;
 
-  let currentBlock = 0;
-  let currentLesson = 0;
-  let currentMinilesson = 0;
+  const [loading, setLoading] = useState(false);
+
+  const loadingMessage = {
+    sender: "AI",
+    content: "typing...",
+  };
 
   const user = {
     username: "testuser123",
@@ -73,9 +80,44 @@ function LessonsComponent() {
   };
 
   const loadLessons = async () => {
+    setLoading(true)
+    let newCurrentBlock = currentBlock + 1;
+    let newCurrentMinilesson = currentMinilesson;
+
+    if (newCurrentBlock == 3) {
+      newCurrentBlock = 0;
+      newCurrentMinilesson += 1;
+      setCurrentMinilesson(newCurrentMinilesson);
+    }
+
+    setCurrentBlock(newCurrentBlock);
+
+    console.log(currentBlock);
+
     try {
-      const lessonMessage = await getLessonMessage(currentBlock, currentLesson, currentMinilesson, land, user);
-      console.log("LESSONMSG"-lessonMessage); // Process the response as needed
+      const lessonMessage = await getLessonMessage(
+        currentBlock,
+        currentLesson,
+        currentMinilesson,
+        progress,
+        land,
+        user
+      );
+
+      if (currentBlock == 2) {
+        //lessonMessage.message = JSON.parse(lessonMessage.message)
+      }
+
+      console.log("LESSONMSG", lessonMessage.message);
+
+      let newMessage = {
+        sender: "AI",
+        content: lessonMessage.message,
+      };
+
+      setChatData([...chatData, newMessage]);
+      setLoading(false)
+
     } catch (error) {
       console.error("Error fetching lesson message:", error);
     }
@@ -99,8 +141,16 @@ function LessonsComponent() {
                   <MessageComponent key={index} msg={msg} land={land} />
                 </div>
               ))}
+
+              {loading && (
+                <div>
+                  <MessageComponent msg={loadingMessage} land={land} />
+                </div>
+              )}
             </div>
-            <p className="chatButton nextButton" onClick={() => loadLessons()}>Next</p>
+            <p className="chatButton nextButton" onClick={() => loadLessons()}>
+              Next
+            </p>
           </div>
 
           <div className="chatSendMessage">
