@@ -1,16 +1,18 @@
 import "./MessageComponent.css";
 import Avatar from "@mui/material/Avatar";
+import QuizComponent from "./QuizComponent";
 
 function MessageComponent({ msg, land }) {
   const isAiMessage = msg.sender === "AI";
+  const isQuiz = msg.sender === "Quiz";
 
   return (
     <div
       className={`messageContainer ${
-        isAiMessage ? "aiMessage" : "userMessage"
+        (isAiMessage || isQuiz) ? "aiMessage" : "userMessage"
       }`}
     >
-      {isAiMessage && (
+      {(isAiMessage || isQuiz) && (
         <Avatar
           alt={land.friendName}
           src={land.friendImage}
@@ -18,9 +20,20 @@ function MessageComponent({ msg, land }) {
         />
       )}
       <div className="messageTextContainer">
-        <p className="messageText">{msg.content}</p>
+        {isQuiz ? (
+          <div className="messageText"> 
+          <QuizComponent quiz={msg.content}/>
+           </div>
+        ) : (
+          <p style={{ whiteSpace: "pre-wrap" }} className="messageText">
+            {msg.content
+              .replace(/\"\\n/g, "")
+              .replace(/\\n/g, "\n")
+              .replace(/"/g, "")}
+          </p>
+        )}
       </div>
-      {!isAiMessage && (
+      {(!isAiMessage && !isQuiz) && (
         <Avatar
           alt={land.friendName}
           style={{ backgroundColor: "var(--purple)" }}

@@ -112,8 +112,12 @@ function LessonsComponent() {
 
       let newMessage = {
         sender: "AI",
-        content: lessonMessage.message,
+        content: lessonMessage.message
       };
+
+      if (currentBlock == 2) {
+        newMessage.sender = "Quiz"
+      }
 
       setChatData([...chatData, newMessage]);
       setLoading(false)
