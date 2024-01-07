@@ -24,6 +24,8 @@ function LessonsComponent() {
   const [currentMinilesson, setCurrentMinilesson] = useState(0);
   let progress = 0;
 
+  const [landBackgroundImage, setLandBackgroundImage] = useState({});
+
   const [loading, setLoading] = useState(false);
 
   const loadingMessage = {
@@ -40,11 +42,19 @@ function LessonsComponent() {
   };
 
   useEffect(() => {
-    loadChatData("testuser123", 0);
-    loadLessonNames("Numberland");
+    if (router.isReady && slug) {
+      const land = landData.find((item) => item.id === slug);
+      if (land) {
+        setLandBackgroundImage({
+          background: `linear-gradient(0deg, rgba(22, 0, 160, 0.34) 0%, rgba(22, 0, 160, 0.34) 100%), url(${land.landImage}), lightgray 50% / cover no-repeat`,
+        });
+        loadChatData("testuser123", 0);
+        loadLessonNames(land.name);
+      }
+    }
+  }, [router.isReady, slug]); // Add router.isReady and slug as dependencies
 
-    //loadLessons();
-  }, []);
+  
 
   const reqMSG = {
     land: land,
@@ -59,8 +69,12 @@ function LessonsComponent() {
 
   const loadChatData = async (username, locationId) => {
     try {
-      const messages = await getChatData(username, locationId);
+      let messages = await getChatData(username, locationId);
       console.log(messages);
+
+      // reverse array so we can have auto-scroll to bottom when message is added (flex-direction: column-reverse)
+      messages = messages.reverse()
+
       setChatData(messages);
     } catch (error) {
       console.error("Error geting chat data:", error);
@@ -80,7 +94,7 @@ function LessonsComponent() {
   };
 
   const loadLessons = async () => {
-    setLoading(true)
+    setLoading(true);
     let newCurrentBlock = currentBlock + 1;
     let newCurrentMinilesson = currentMinilesson;
 
@@ -104,32 +118,25 @@ function LessonsComponent() {
         user
       );
 
-      if (currentBlock == 2) {
-        //lessonMessage.message = JSON.parse(lessonMessage.message)
-      }
-
       console.log("LESSONMSG", lessonMessage.message);
 
       let newMessage = {
         sender: "AI",
-        content: lessonMessage.message
+        content: lessonMessage.message,
       };
 
       if (currentBlock == 2) {
-        newMessage.sender = "Quiz"
+        newMessage.sender = "Quiz";
       }
 
-      setChatData([...chatData, newMessage]);
-      setLoading(false)
-
+      setChatData([newMessage, ...chatData,]);
+      setLoading(false);
     } catch (error) {
       console.error("Error fetching lesson message:", error);
     }
   };
 
-  const landBackgrundImage = {
-    background: `linear-gradient(0deg, rgba(22, 0, 160, 0.34) 0%, rgba(22, 0, 160, 0.34) 100%), url(${land.landImage}), lightgray 50% / cover no-repeat`,
-  };
+ 
 
   return (
     <div className="lessonsWrapper">
@@ -138,19 +145,19 @@ function LessonsComponent() {
           <div className="chatHeader">
             <p className="chatHeaderText">Current location: {land?.name}</p>
           </div>
-          <div style={landBackgrundImage} className="chatBodyContainer">
+          <div style={landBackgroundImage} className="chatBodyContainer">
             <div className="chatBody">
-              {chatData.map((msg, index) => (
-                <div key={index}>
-                  <MessageComponent key={index} msg={msg} land={land} />
-                </div>
-              ))}
-
               {loading && (
                 <div>
                   <MessageComponent msg={loadingMessage} land={land} />
                 </div>
               )}
+
+              {chatData.map((msg, index) => (
+                <div key={index}>
+                  <MessageComponent key={index} msg={msg} land={land} />
+                </div>
+              ))}
             </div>
             <p className="chatButton nextButton" onClick={() => loadLessons()}>
               Next

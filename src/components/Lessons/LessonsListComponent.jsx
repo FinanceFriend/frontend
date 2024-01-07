@@ -1,9 +1,15 @@
 import React from "react";
-import './LessonsListComponent.css'
+import "./LessonsListComponent.css";
 
 function LessonsListComponent({ lessonNames, land }) {
+  const backgroundImageUrl = land?.friendImage
+    ? `url(${land.friendImage})`
+    : "none";
+
   const landBackgrundImageLessonsList = {
-    background: `linear-gradient(0deg, rgba(255, 255, 255, 0.80) 0%, rgba(255, 255, 255, 0.80) 100%), url(${land.friendImage}), lightgray 50% / cover no-repeat`,
+    background: `linear-gradient(0deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%) center bottom no-repeat, ${backgroundImageUrl},  0% 0% / cover lightgray`,
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "bottom",
   };
 
   return (

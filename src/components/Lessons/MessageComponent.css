@@ -16,6 +16,7 @@
     background-color: white;
     border-radius: 0.75rem;
     padding: 8px;
+    max-width: 85%;
 }
 
 .messageText {
