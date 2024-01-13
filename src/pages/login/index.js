@@ -57,9 +57,6 @@ function  LoginPage() {
             />
           </div>
         </div>
-        <div className="forgot-password">
-          Forgot Password? <span>Click Here!</span>
-        </div>
         <div className="newUser-buttons">       
         <div className="new-user">
           Don't have an account?

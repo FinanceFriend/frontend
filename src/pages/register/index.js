@@ -10,7 +10,8 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider, } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import "../register/style.css"
-
+import CountrySelect from '@/components/Register/CountrySelect';
+import LanguageSelect from '@/components/Register/LanguageSelect';
 
 function RegisterPage() {
   const router = useRouter();
@@ -106,8 +107,7 @@ function RegisterPage() {
               
 
             <div className="input">
-              <input
-                type="text"
+              <CountrySelect
                 placeholder="Country of Origin"
                 name="countryOfOrigin"
                 value={registerData.countryOfOrigin}
@@ -115,8 +115,7 @@ function RegisterPage() {
               />
             </div>
             <div className="input">
-              <input
-                type="text"
+              <LanguageSelect
                 placeholder="Preferred Language"
                 name="preferredLanguage"
                 value={registerData.preferredLanguage}
