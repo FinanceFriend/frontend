@@ -43,11 +43,13 @@
 
   .registerButton {
       background: #00DA23;
+      text-decoration: none;
 
   }
 
   .loginButton {
       background: #0A007E;
+      text-decoration: none;
   }
 
   .buttonContainer {

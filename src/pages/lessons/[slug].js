@@ -6,6 +6,7 @@ import LandDataContext from "../../context/LandDataContext";
 import MessageComponent from "@/components/Lessons/MessageComponent";
 import { getChatData, getLessonMessage, getLessonsNames } from "@/api"; // Assuming these are in a separate file
 import LessonsListComponent from "@/components/Lessons/LessonsListComponent";
+import Navbar from "@/components/Navbar/Navbar";
 
 function LessonsComponent() {
   let [chatData, setChatData] = useState([]);

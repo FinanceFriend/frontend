@@ -15,8 +15,12 @@ function HomePage() {
         <div>
           <h1 className="homePageTitle">FinanceFriends</h1>
           <div className="buttonContainer">
-            <button className="registerButton">Register</button>
-            <button className="loginButton">Login</button>
+          <Link href="/register" legacyBehavior>
+            <a className="registerButton">Register</a>
+            </Link>
+            <Link href="/login" legacyBehavior>
+            <a className="loginButton">Login</a>
+            </Link>
           </div>
         </div>
       </div>

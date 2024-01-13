@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import "./style.css";
 import { getLeaderboard, getLeaderboardforUser } from "@/api"; // Assuming these are in a separate file
 import { yellow } from "@mui/material/colors";
-
+import Navbar from "@/components/Navbar/Navbar";
 function LeaderboardComponent() {
   let [leaderboardData, setLeaderboardData] = useState([]);
   let [leaderboardDataForUser, setLeaderboardDataForUser] = useState([]);
@@ -32,6 +32,8 @@ function LeaderboardComponent() {
   };
 
   return (
+    <div>
+      <Navbar/>
     <div className="lessonsWrapper">
       <div className="lessonsContainer">
         <div className="leaderboardContainer">
@@ -121,7 +123,7 @@ function LeaderboardComponent() {
           </div>
         </div>
       </div>
-    </div>
+    </div></div>
   );
 }
 
