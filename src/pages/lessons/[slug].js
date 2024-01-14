@@ -7,6 +7,8 @@ import MessageComponent from "@/components/Lessons/MessageComponent";
 import { getChatData, getLessonMessage, getLessonsNames } from "@/api"; // Assuming these are in a separate file
 import LessonsListComponent from "@/components/Lessons/LessonsListComponent";
 import Navbar from "@/components/Navbar/Navbar";
+import { useAuth  } from "@/context/AuthProvider";
+
 
 function LessonsComponent() {
   let [chatData, setChatData] = useState([]);
@@ -29,18 +31,13 @@ function LessonsComponent() {
 
   const [loading, setLoading] = useState(false);
 
+  const { currentUser } = useAuth();
+
   const loadingMessage = {
     sender: "AI",
     content: "typing...",
   };
 
-  const user = {
-    username: "testuser123",
-    email: "testuser123@example.com",
-    dateOfBirth: "1990-01-01T00:00:00.000Z",
-    countryOfOrigin: "USA",
-    preferredLanguage: "English",
-  };
 
   useEffect(() => {
     if (router.isReady && slug) {
@@ -49,24 +46,13 @@ function LessonsComponent() {
         setLandBackgroundImage({
           background: `linear-gradient(0deg, rgba(22, 0, 160, 0.34) 0%, rgba(22, 0, 160, 0.34) 100%), url(${land.landImage}), lightgray 50% / cover no-repeat`,
         });
-        loadChatData("testuser123", 0);
+        loadChatData(currentUser.username, 0);
         loadLessonNames(land.name);
       }
     }
-  }, [router.isReady, slug]); // Add router.isReady and slug as dependencies
+  }, [router.isReady, slug]); 
 
   
-
-  const reqMSG = {
-    land: land,
-    user: user,
-    progress: 0,
-    currentLesson: 0,
-    currentMinilesson: 0,
-    currentBlock: 0,
-  };
-
-  console.log(reqMSG);
 
   const loadChatData = async (username, locationId) => {
     try {
@@ -116,7 +102,7 @@ function LessonsComponent() {
         currentMinilesson,
         progress,
         land,
-        user
+        currentUser
       );
 
       console.log("LESSONMSG", lessonMessage.message);
@@ -137,9 +123,9 @@ function LessonsComponent() {
     }
   };
 
- 
-
   return (
+    <>
+    <Navbar/>
     <div className="lessonsWrapper">
       <div className="lessonsContainer">
         <div className="chatContainer">
@@ -176,6 +162,7 @@ function LessonsComponent() {
       </div>
       <LessonsListComponent lessonNames={lessonNames} land={land} />
     </div>
+    </>
   );
 }
 
