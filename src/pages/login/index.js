@@ -1,5 +1,5 @@
 import axios from "axios";
-import "../login/style.css";
+import "../login/styleLogin.css";
 import Link from 'next/link';
 import { login } from "@/api/user";
 
@@ -30,15 +30,16 @@ function  LoginPage() {
   };
 
   return (
+    <div className="loginContainer">
     <form onSubmit={handleLogin}>
-      <div className="backgroundContainer">
-      <div className="container">
+      <div className="backgroundContainerL">
+      <div className="containerL">
         <div className="header">
           <div className="text">Login</div>
           <div className="underline"></div>
         </div>
-        <div className="inputs">
-          <div className="input">
+        <div className="inputsL">
+          <div className="inputL">
             <input
               type="email"
               placeholder="E-mail"
@@ -47,7 +48,7 @@ function  LoginPage() {
               onChange={handleInputChange}  // Handle input change
             />
           </div>
-          <div className="input">
+          <div className="inputL">
             <input
               type="password"
               placeholder="Password"
@@ -61,19 +62,19 @@ function  LoginPage() {
         <div className="new-user">
           Don't have an account?
         </div>
-        <div className="submit-container">
+        <div className="submit-containerL">
         <button className="button-empty" onClick={handleLogin}>
-          <div className="loginButton">Login</div>
+          <div className="loginButtonL">Login</div>
           </button>
           <Link href="/register" passHref legacyBehavior>
-            <a className="registerButton noUnderline">Register</a>
+            <a className="registerButtonL">Register</a>
           </Link>
         </div> </div>     
 
       </div>
  
       </div>
-    </form>
+    </form></div>
   );
   
 

@@ -10,8 +10,8 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { LocalizationProvider, } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import "../register/style.css"
-import CountrySelect from '@/components/Register/CountrySelect';
-import LanguageSelect from '@/components/Register/LanguageSelect';
+import CountrySelect from '@/context/CountrySelect';
+import LanguageSelect from '@/context/LanguageSelect';
 
 function RegisterPage() {
   const router = useRouter();
@@ -54,9 +54,10 @@ function RegisterPage() {
     };
     
     return (
-    <form onSubmit={handleRegister}>
       <div className="Register-container">
-        {errorMessage && <p className="error-message">{errorMessage}</p>}
+        {errorMessage && <p className="error-message">{errorMessage}</p>}   
+    <form onSubmit={handleRegister}>
+
       <div className="backgroundContainer">
       
         <div className="container">
@@ -92,21 +93,22 @@ function RegisterPage() {
               />
             </div>
             
-            <div className="input">
+            <div className="input2">
             <LocalizationProvider dateAdapter={AdapterDayjs}>
-              <DatePicker
+              <DatePicker 
                 label="Date of Birth"
                 value={registerData.dateOfBirth}
                 onChange={(newValue) =>
                   setRegisterData({ ...registerData, dateOfBirth: newValue })
                 }
                 textField={(params) => <TextField {...params} />}
+                style={{ width: '100px', height: '40px' }}
               />
             </LocalizationProvider>
           </div>
               
 
-            <div className="input">
+            <div className="input2">
               <CountrySelect
                 placeholder="Country of Origin"
                 name="countryOfOrigin"
@@ -114,7 +116,7 @@ function RegisterPage() {
                 onChange={handleInputChange}
               />
             </div>
-            <div className="input">
+            <div className="input2">
               <LanguageSelect
                 placeholder="Preferred Language"
                 name="preferredLanguage"
@@ -122,10 +124,10 @@ function RegisterPage() {
                 onChange={handleInputChange}
               />
           </div>
-          <div className="oldUser-buttons">       
-        <div className="old-user">
-          Already have an account?
-        </div>
+        <div className="oldUser-buttons">       
+          <div className="old-user">
+            Already have an account?
+          </div>
           <div className="submit-container">
             <Link href="/login" passHref legacyBehavior>
               <a className="loginButton noUnderline">Login</a>
@@ -136,7 +138,7 @@ function RegisterPage() {
         </div>
         </div>
       </div>
-      </div></form>
+      </form></div>
     );
 };
 

@@ -7,7 +7,7 @@ export default function LanguageSelect() {
   return (
     <Autocomplete
       id="language-select-demo"
-      sx={{ width: 500 }}
+      sx={{ width: 247 }}
       options={languages}
       autoHighlight
       getOptionLabel={(option) => option.label}
