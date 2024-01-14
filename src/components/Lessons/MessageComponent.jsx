@@ -2,7 +2,7 @@ import "./MessageComponent.css";
 import Avatar from "@mui/material/Avatar";
 import QuizComponent from "./QuizComponent";
 
-function MessageComponent({ msg, land }) {
+function MessageComponent({ msg, land, user }) {
   const isAiMessage = msg.sender === "AI";
   const isQuiz = msg.sender === "Quiz";
 
@@ -22,7 +22,7 @@ function MessageComponent({ msg, land }) {
       <div className="messageTextContainer">
         {isQuiz ? (
           <div className="messageText"> 
-          <QuizComponent quiz={msg.content}/>
+          <QuizComponent quiz={msg.content} user={user}/>
            </div>
         ) : (
           <p style={{ whiteSpace: "pre-wrap" }} className="messageText">

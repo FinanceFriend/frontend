@@ -4,7 +4,12 @@ import "./style.css";
 import { useRouter } from "next/router";
 import LandDataContext from "../../context/LandDataContext";
 import MessageComponent from "@/components/Lessons/MessageComponent";
-import { getChatData, getLessonMessage, getLessonsNames } from "@/api"; // Assuming these are in a separate file
+import {
+  getChatData,
+  getLessonMessage,
+  getLessonsNames,
+  getUserMessage,
+} from "@/api"; 
 import LessonsListComponent from "@/components/Lessons/LessonsListComponent";
 import Navbar from "@/components/Navbar/Navbar";
 import { useAuth  } from "@/context/AuthProvider";
@@ -12,10 +17,10 @@ import { useAuth  } from "@/context/AuthProvider";
 
 function LessonsComponent() {
   let [chatData, setChatData] = useState([]);
-  const [lessons, setLessons] = useState([]);
   const [lessonNames, setLessonNames] = useState([]);
-  const [miniLessonIndex, setMiniLessonIndex] = useState(1);
   const [error, setError] = useState(null);
+
+  const [inputValue, setInputValue] = useState("");
 
   const landData = useContext(LandDataContext);
   const router = useRouter();
@@ -50,9 +55,18 @@ function LessonsComponent() {
         loadLessonNames(land.name);
       }
     }
-  }, [router.isReady, slug]); 
+  }, [router.isReady, slug]);
 
-  
+  const reqMSG = {
+    land: land,
+    user: user,
+    progress: 0,
+    currentLesson: 0,
+    currentMinilesson: 0,
+    currentBlock: 0,
+  };
+
+  console.log(reqMSG);
 
   const loadChatData = async (username, locationId) => {
     try {
@@ -60,7 +74,7 @@ function LessonsComponent() {
       console.log(messages);
 
       // reverse array so we can have auto-scroll to bottom when message is added (flex-direction: column-reverse)
-      messages = messages.reverse()
+      messages = messages.reverse();
 
       setChatData(messages);
     } catch (error) {
@@ -116,13 +130,53 @@ function LessonsComponent() {
         newMessage.sender = "Quiz";
       }
 
-      setChatData([newMessage, ...chatData,]);
+      setChatData([newMessage, ...chatData]);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching lesson message:", error);
     }
   };
 
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
+  const handleSearchClick = async () => {
+    try {
+      setLoading(true);
+  
+      // Add the user's message immediately
+      const newUserMessage = {
+        sender: "User",
+        content: inputValue,
+      };
+  
+      setChatData(currentChatData => [newUserMessage, ...currentChatData]);
+      setInputValue(""); // Reset the input field
+  
+      // Now make the API call
+      const response = await getUserMessage(
+        currentLesson,
+        currentMinilesson,
+        user,
+        land,
+        inputValue
+      );
+  
+      let newAIResponse = {
+        sender: "AI",
+        content: response.message,
+      };
+  
+      // Update the chat data again with the AI's response
+      setChatData(currentChatData => [newAIResponse, ...currentChatData]);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching user message:", error);
+      setLoading(false);
+    }
+  };
+  
   return (
     <>
     <Navbar/>
@@ -136,13 +190,13 @@ function LessonsComponent() {
             <div className="chatBody">
               {loading && (
                 <div>
-                  <MessageComponent msg={loadingMessage} land={land} />
+                  <MessageComponent msg={loadingMessage} land={land} user={user}/>
                 </div>
               )}
 
               {chatData.map((msg, index) => (
                 <div key={index}>
-                  <MessageComponent key={index} msg={msg} land={land} />
+                  <MessageComponent key={index} msg={msg} land={land} user={user}/>
                 </div>
               ))}
             </div>
@@ -153,8 +207,18 @@ function LessonsComponent() {
 
           <div className="chatSendMessage">
             <div className="chatSendMessageContainer">
-              <input className="inputMessage" type="text" />
-              <p className="chatButton submitButton">Submit</p>
+              <input
+                className="inputMessage"
+                type="text"
+                value={inputValue}
+                onChange={handleInputChange}
+              />
+              <p
+                className="chatButton submitButton"
+                onClick={handleSearchClick}
+              >
+                Submit
+              </p>
             </div>
           </div>
         </div>
