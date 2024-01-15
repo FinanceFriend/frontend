@@ -96,9 +96,9 @@ const UserProfileStats = ({ username }) => {
       </div>
       <div className="all-stats-bars">
         <div className="text-total-bar">
-          <div className="element">
+
             <h3>Game completion:</h3>
-          </div>
+
           <div className="element">
             <div id="prog-bar1">
               <div className="bar">
@@ -107,6 +107,7 @@ const UserProfileStats = ({ username }) => {
                   stroke="#00FF66"
                   strokeWidth={16}
                   background="#fff"
+                  diameter={210}
                 />
               </div>
               <div>
@@ -130,14 +131,14 @@ const UserProfileStats = ({ username }) => {
                     stroke="#FFC700"
                     strokeWidth={16}
                     background="#fff"
-                    diameter={150}
+                    diameter={160}
                   />
                 </div>
                 <div className="land-text">
                   <p>Numberland</p>
                 </div>
                 <div className="percentage">
-                  <p>{userStats.progress}</p>
+                  <p>{userStats.progress}%</p>
                 </div>
               </div>
             </li>
@@ -150,14 +151,14 @@ const UserProfileStats = ({ username }) => {
                     stroke="#FFC700"
                     strokeWidth={16}
                     background="#fff"
-                    diameter={150}
+                    diameter={160}
                   />
                 </div>
                 <div className="land-text">
                   <p>Savings Treehouse</p>
                 </div>
                 <div className="percentage">
-                  <p>{userStats.progress}</p>
+                  <p>{userStats.progress}%</p>
                 </div>
               </div>
             </li>
@@ -169,14 +170,14 @@ const UserProfileStats = ({ username }) => {
                     stroke="#FFC700"
                     strokeWidth={16}
                     background="#fff"
-                    diameter={150}
+                    diameter={160}
                   />
                 </div>
                 <div className="land-text">
                   <p>TaxTown</p>
                 </div>
                 <div className="percentage">
-                  <p>{userStats.progress}</p>
+                  <p>{userStats.progress}%</p>
                 </div>
               </div>
             </li>
@@ -188,14 +189,14 @@ const UserProfileStats = ({ username }) => {
                     stroke="#FFC700"
                     strokeWidth={16}
                     background="#fff"
-                    diameter={150}
+                    diameter={160}
                   />
                 </div>
                 <div className="land-text">
                   <p>Investment Woods</p>
                 </div>
                 <div className="percentage">
-                  <p>{userStats.progress}</p>
+                  <p>{userStats.progress}%</p>
                 </div>
               </div>
             </li>
@@ -207,14 +208,14 @@ const UserProfileStats = ({ username }) => {
                     stroke="#FFC700"
                     strokeWidth={16}
                     background="#fff"
-                    diameter={150}
+                    diameter={160}
                   />
                 </div>
                 <div className="land-text">
                   <p>Loan Lake</p>
                 </div>
                 <div className="percentage">
-                  <p>{userStats.progress}</p>
+                  <p>{userStats.progress}%</p>
                 </div>
               </div>
             </li>
@@ -262,16 +263,18 @@ const UserProfileStats = ({ username }) => {
             <p className="incorrect-answers-txt">incorrect answers</p>
           </div>
           <div id="prog-bar1">
+            <div className="bar">
             <SemiCircleProgressBar
               percentage={33}
               stroke="#00FF66"
               strokeWidth={16}
               background="#fff"
-            />
+              diameter={210}
+            /></div>
             <div className="progress-text">Percentage correct</div>
             <div className="percentage">40%</div>
           </div>
-          <div id="incorrect-answers">
+          <div id="correct-answers">
             <p className="correct-answers-num">353</p>
             <p className="correct-answers-txt">correct answers</p>
           </div>

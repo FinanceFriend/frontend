@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: center;
     padding: 0.625rem;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
  }
  .my-profile h3 {
     font-family: Londrina Solid;
@@ -25,6 +26,7 @@
 .profile-info-settings {
     display: flex;
     justify-content: space-around;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
     align-items: center;
     background-color: antiquewhite;
     height: 15.625rem;
@@ -108,6 +110,7 @@
 }
 
 .all-stats-bars {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
     display:flex;
     align-items: center;
     justify-content: space-around;
@@ -134,14 +137,58 @@
     padding: 0 0 0 11.25rem;
 }
 
+
 #prog-bar1 .bar {
-    padding: 5px;
-    margin-left: 5rem;
+    z-index: 1;
     border-radius: 15px;
     color: #FFC700;
 }
 
+.text-total-bar .element {
+    position: relative;
+    padding: 5px;
+    margin-left: 5rem;
+}
 
+.all-stats-bars .element .progress-text {
+    position: absolute;
+    z-index: 2;
+    padding-left: 4.5rem;
+    top:2.5rem;
+    width: 10rem;
+    text-align: center;
+    right: 0rem;
+}
+
+.all-stats-bars .element .percentage {
+    position: absolute;
+    z-index: 2;
+    padding-left: 4.5rem;
+    top:4rem;
+    width: 10rem;
+    text-align: center;
+    right: 0rem;  
+}
+
+ .percentage p {
+    font-family: Londrina Solid;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: center;
+    color:#fff;    
+}
+
+.progress-text p {
+    font-family: Londrina Solid;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: center;
+    color:#00FF66;
+}
 
 .each-land-bar {
    margin-top: 7rem;
@@ -151,6 +198,7 @@
 
 .each-land-bar ul {
     padding-left: 4rem;
+    margin-top: 2rem;
 }
  
 .each-land-bar ul {
@@ -162,7 +210,51 @@
 .each-land-bar li {
     list-style: none;
     width: 8.75rem;
+    position: relative;
 }
+
+.each-land-bar .bar {
+    z-index: 1;
+}
+
+.land-text {
+    position:absolute;
+    z-index: 2;
+    top: 2rem;
+    right: 0.3rem; 
+    text-align: center;
+    width: 7rem;
+}
+
+.land-text p {
+    font-family: Londrina Solid;
+    font-size: 13.5px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #FFC700;
+}
+
+#prog-bar2 .percentage {
+    position: absolute;
+    z-index: 2;
+    padding-left: 4.5rem;
+    top:3rem;
+    width: 10rem;
+    text-align: center;
+    right: -1.3rem;     
+}
+#prog-bar2 .percentage p {
+    font-family: Londrina Solid;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: center;
+
+}
+
 
 .point-count {
     display:flex;
@@ -170,7 +262,7 @@
     justify-content: space-around;
     height: 9.8125rem;
     background-color: #FFC700;
-    
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
 }
 
 .points-overall {
@@ -251,17 +343,20 @@
 .quizzes {
     display: flex;
     justify-content: space-around;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
     background: linear-gradient(90deg, #2000A0 13.47%, #FFC700 81.57%);
-
 }
 
-.group {
-    display: flex;
 
-}
+
+
 
 #quizzes-text {
-    
+    display: flex;
+    justify-content:flex-end;
+    width: 35rem;
+    padding-left: 0;
+    margin-left: 0;
 }
 
 #quizzes-text h3 {
@@ -271,40 +366,113 @@
     line-height: 39px;
     letter-spacing: 0em;
     text-align: left;
-
+    color:#FFC700;
 }
 
 .group {
     display: flex;
     justify-content: flex-start;
-    width: 40rem;
-    gap:60px;
-    margin: 0 0 0 210px;
+    width: 130rem;
+    gap:15rem;
+    margin-top: 3rem;
+    padding-left: 2rem;
+    margin-bottom: 2rem;
 }
 
-.incorrect-answers-num p {
-    margin: 0;
+#incorrect-answers {
+    margin-top: 3rem;
+}
+
+#incorrect-answers p {
+    margin: 0 0 5px 0;
+    padding: 0 0 0 0;
 }
 
 .incorrect-answers-num {
     font-family: Londrina Solid;
-
-font-family: Londrina Solid;
-font-size: 24px;
-font-weight: 400;
-line-height: 28px;
-letter-spacing: 0em;
-text-align: center;
-
+    font-family: Londrina Solid;
+    font-size: 3rem;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #FF0000;
 }
 
 .incorrect-answers-txt {
 
     font-family: Londrina Solid;
-    font-size: 15px;
+    font-size: 1.2rem;
     font-weight: 400;
     line-height: 18px;
     letter-spacing: 0em;
     text-align: center;
+    color: #FF0000;
+    width: 5rem;
+}
+#correct-answers {
+    margin-top: 3rem;
 }
 
+#correct-answers p {
+    margin: 0 0 5px 0;
+}
+
+.correct-answers-num {
+    font-family: Londrina Solid;
+    font-family: Londrina Solid;
+    font-size: 3rem;
+    font-weight: 400;
+    line-height: 28px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #00FF66;
+}
+
+.correct-answers-txt {
+
+    font-family: Londrina Solid;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #00FF66;
+    width: 5rem;
+}
+
+.group #prog-bar1 {
+    position: relative;
+}
+
+.group .prog-bar1 .bar {
+    z-index: 1;
+}
+
+.group .progress-text {
+    position: absolute;
+    z-index: 2;
+    top: 3.7rem;
+    left: 2.4rem;
+    font-family: Londrina Solid;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: center;
+    color:#00FF66;
+}
+
+.group .percentage {
+    position: absolute;
+    z-index: 2;
+    top: 5rem;
+    left: 5.5rem;
+    font-family: Londrina Solid;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0em;
+    text-align: center;
+    color:#fff;   
+}
