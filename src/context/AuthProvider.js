@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const localUser = window.localStorage.getItem("user");
+    console.log(user)
     if (localUser) {
       setUser(JSON.parse(localUser));
     }

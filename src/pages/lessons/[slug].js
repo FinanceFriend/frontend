@@ -57,17 +57,6 @@ function LessonsComponent() {
     }
   }, [router.isReady, slug]);
 
-  const reqMSG = {
-    land: land,
-    user: user,
-    progress: 0,
-    currentLesson: 0,
-    currentMinilesson: 0,
-    currentBlock: 0,
-  };
-
-  console.log(reqMSG);
-
   const loadChatData = async (username, locationId) => {
     try {
       let messages = await getChatData(username, locationId);
@@ -158,7 +147,7 @@ function LessonsComponent() {
       const response = await getUserMessage(
         currentLesson,
         currentMinilesson,
-        user,
+        currentUser,
         land,
         inputValue
       );
@@ -190,13 +179,13 @@ function LessonsComponent() {
             <div className="chatBody">
               {loading && (
                 <div>
-                  <MessageComponent msg={loadingMessage} land={land} user={user}/>
+                  <MessageComponent msg={loadingMessage} land={land} user={currentUser}/>
                 </div>
               )}
 
               {chatData.map((msg, index) => (
                 <div key={index}>
-                  <MessageComponent key={index} msg={msg} land={land} user={user}/>
+                  <MessageComponent key={index} msg={msg} land={land} user={currentUser}/>
                 </div>
               ))}
             </div>

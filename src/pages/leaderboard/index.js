@@ -1,25 +1,27 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./style.css";
 import { getLeaderboard, getLeaderboardforUser } from "@/api"; // Assuming these are in a separate file
-import { yellow } from "@mui/material/colors";
+import { useAuth  } from "@/context/AuthProvider";
 import Navbar from "@/components/Navbar/Navbar";
 function LeaderboardComponent() {
   let [leaderboardData, setLeaderboardData] = useState([]);
   let [leaderboardDataForUser, setLeaderboardDataForUser] = useState([]);
 
+  const { currentUser } = useAuth();
+
   useEffect(() => {
-    loadLeaderboardData("user123");
+    loadLeaderboardData(currentUser.username);
   }, []);
 
   useEffect(() => {
-    console.log(leaderboardData); // Check the structure of the data
-    console.log(leaderboardDataForUser); // Check the structure of the data
+    console.log(leaderboardData);
+    console.log(leaderboardDataForUser);
   }, [leaderboardData, leaderboardDataForUser]);
 
   const loadLeaderboardData = async (username) => {
     try {
       const leaderboardData = await getLeaderboard();
-      console.log(leaderboardData);
+      console.log("AAAAAAAAAA",leaderboardData);
       setLeaderboardData(leaderboardData);
 
       const leaderboardDataForUser = await getLeaderboardforUser(username);
@@ -27,7 +29,6 @@ function LeaderboardComponent() {
       setLeaderboardDataForUser(leaderboardDataForUser);
     } catch (error) {
       console.error("Error geting leaderboard data:", error);
-      setError("Failed to load leaderboard data");
     }
   };
 
@@ -108,13 +109,13 @@ function LeaderboardComponent() {
                   borderRadius: "50px",
                 }}
               >
-                #{leaderboardDataForUser.rank}
+                #{leaderboardDataForUser.generalRank}
               </div>
               <div className="leaderboardTextyellow">
                 {leaderboardDataForUser.username}
               </div>
               <div className="leaderboardTextyellow">
-                {leaderboardDataForUser.countryOfOrigin}
+                {leaderboardDataForUser.country}
               </div>
               <div className="leaderboardTextyellow">
                 {leaderboardDataForUser.totalPoints}
