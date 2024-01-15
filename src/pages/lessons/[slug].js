@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
 import "./style.css";
 import { useRouter } from "next/router";
 import LandDataContext from "../../context/LandDataContext";
@@ -9,11 +8,10 @@ import {
   getLessonMessage,
   getLessonsNames,
   getUserMessage,
-} from "@/api"; 
+} from "@/api";
 import LessonsListComponent from "@/components/Lessons/LessonsListComponent";
 import Navbar from "@/components/Navbar/Navbar";
-import { useAuth  } from "@/context/AuthProvider";
-
+import { useAuth } from "@/context/AuthProvider";
 
 function LessonsComponent() {
   let [chatData, setChatData] = useState([]);
@@ -23,6 +21,7 @@ function LessonsComponent() {
   const [inputValue, setInputValue] = useState("");
 
   const landData = useContext(LandDataContext);
+  
   const router = useRouter();
   const { slug } = router.query;
   const land = landData.find((item) => item.id === slug);
@@ -43,19 +42,26 @@ function LessonsComponent() {
     content: "typing...",
   };
 
-
   useEffect(() => {
-    if (router.isReady && slug) {
-      const land = landData.find((item) => item.id === slug);
-      if (land) {
-        setLandBackgroundImage({
-          background: `linear-gradient(0deg, rgba(22, 0, 160, 0.34) 0%, rgba(22, 0, 160, 0.34) 100%), url(${land.landImage}), lightgray 50% / cover no-repeat`,
-        });
-        loadChatData(currentUser.username, 0);
-        loadLessonNames(land.name);
+    if (currentUser === null) {
+      return;
+    }
+
+    if (currentUser === undefined) {
+      router.push("/login");
+    } else {
+      if (router.isReady && slug) {
+        const land = landData.find((item) => item.id === slug);
+        if (land) {
+          setLandBackgroundImage({
+            background: `linear-gradient(0deg, rgba(22, 0, 160, 0.34) 0%, rgba(22, 0, 160, 0.34) 100%), url(${land.landImage}), lightgray 50% / cover no-repeat`,
+          });
+          loadChatData(currentUser.username, 0);
+          loadLessonNames(land.name);
+        }
       }
     }
-  }, [router.isReady, slug]);
+  }, [currentUser, landData, router, slug]);
 
   const loadChatData = async (username, locationId) => {
     try {
@@ -133,16 +139,16 @@ function LessonsComponent() {
   const handleSearchClick = async () => {
     try {
       setLoading(true);
-  
+
       // Add the user's message immediately
       const newUserMessage = {
         sender: "User",
         content: inputValue,
       };
-  
-      setChatData(currentChatData => [newUserMessage, ...currentChatData]);
+
+      setChatData((currentChatData) => [newUserMessage, ...currentChatData]);
       setInputValue(""); // Reset the input field
-  
+
       // Now make the API call
       const response = await getUserMessage(
         currentLesson,
@@ -151,70 +157,82 @@ function LessonsComponent() {
         land,
         inputValue
       );
-  
+
       let newAIResponse = {
         sender: "AI",
         content: response.message,
       };
-  
+
       // Update the chat data again with the AI's response
-      setChatData(currentChatData => [newAIResponse, ...currentChatData]);
+      setChatData((currentChatData) => [newAIResponse, ...currentChatData]);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching user message:", error);
       setLoading(false);
     }
   };
-  
+
   return (
     <>
-    <Navbar/>
-    <div className="lessonsWrapper">
-      <div className="lessonsContainer">
-        <div className="chatContainer">
-          <div className="chatHeader">
-            <p className="chatHeaderText">Current location: {land?.name}</p>
-          </div>
-          <div style={landBackgroundImage} className="chatBodyContainer">
-            <div className="chatBody">
-              {loading && (
-                <div>
-                  <MessageComponent msg={loadingMessage} land={land} user={currentUser}/>
-                </div>
-              )}
-
-              {chatData.map((msg, index) => (
-                <div key={index}>
-                  <MessageComponent key={index} msg={msg} land={land} user={currentUser}/>
-                </div>
-              ))}
+      <Navbar />
+      <div className="lessonsWrapper">
+        <div className="lessonsContainer">
+          <div className="chatContainer">
+            <div className="chatHeader">
+              <p className="chatHeaderText">Current location: {land?.name}</p>
             </div>
-            <p className="chatButton nextButton" onClick={() => loadLessons()}>
-              Next
-            </p>
-          </div>
+            <div style={landBackgroundImage} className="chatBodyContainer">
+              <div className="chatBody">
+                {loading && (
+                  <div>
+                    <MessageComponent
+                      msg={loadingMessage}
+                      land={land}
+                      user={currentUser}
+                    />
+                  </div>
+                )}
 
-          <div className="chatSendMessage">
-            <div className="chatSendMessageContainer">
-              <input
-                className="inputMessage"
-                type="text"
-                value={inputValue}
-                onChange={handleInputChange}
-              />
+                {chatData.map((msg, index) => (
+                  <div key={index}>
+                    <MessageComponent
+                      key={index}
+                      msg={msg}
+                      land={land}
+                      user={currentUser}
+                    />
+                  </div>
+                ))}
+              </div>
               <p
-                className="chatButton submitButton"
-                onClick={handleSearchClick}
+                className="chatButton nextButton"
+                onClick={() => loadLessons()}
               >
-                Submit
+                Next
               </p>
             </div>
+
+            <div className="chatSendMessage">
+              <div className="chatSendMessageContainer">
+                <input
+                  className="inputMessage"
+                  type="text"
+                  value={inputValue}
+                  onChange={handleInputChange}
+                />
+                <p
+                  className="chatButton submitButton"
+                  onClick={handleSearchClick}
+                >
+                  Submit
+                </p>
+              </div>
+            </div>
           </div>
+          {error && <div className="error">{error}</div>}
         </div>
-        {error && <div className="error">{error}</div>}
+        <LessonsListComponent lessonNames={lessonNames} land={land} />
       </div>
-      <LessonsListComponent lessonNames={lessonNames} land={land} />
-    </div>
     </>
   );
 }

@@ -16,12 +16,12 @@ const UserProfileStats = ({ username }) => {
   const { currentUser } = useAuth();
 
   useEffect(() => {
-console.log(currentUser)
+    console.log(currentUser);
     if (currentUser === null) {
       return;
     }
 
-    if (currentUser===undefined) {
+    if (currentUser === undefined) {
       router.push("/login");
     } else {
       loadChatData(currentUser.username);
