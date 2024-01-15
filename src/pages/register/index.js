@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { register } from "../../api/user";
+import { register } from "../../api/userService";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";

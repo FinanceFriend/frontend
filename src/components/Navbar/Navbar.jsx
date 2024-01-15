@@ -1,7 +1,16 @@
 import Link from "next/link";
-import Head from "next/head";
-import "./Navbar.css"
+import { useAuth } from "@/context/AuthProvider";
+import "./Navbar.css";
+import { useRouter } from 'next/router';
+
 function Navbar() {
+  const { logout } = useAuth(); 
+  const router = useRouter();
+
+  const handleLogout = () => {
+    logout();
+    router.push('/'); 
+  };
   return (
     <>
       <nav>
@@ -28,9 +37,9 @@ function Navbar() {
               </Link>
             </li>
             <li id="logout">
-              <Link href="/" legacyBehavior>
+              <div onClick={handleLogout} >
                 <a>LOG OUT</a>
-              </Link>
+              </div>
             </li>
           </ul>
         </div>

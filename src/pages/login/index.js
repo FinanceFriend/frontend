@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useAuth } from '@/context/AuthProvider';
 import "../login/styleLogin.css";
 
-import { login as backendLogin } from "@/api/user"; 
+import { login as backendLogin } from "@/api/userService"; 
 
 function LoginPage() {
   const [loginData, setLoginData] = useState({

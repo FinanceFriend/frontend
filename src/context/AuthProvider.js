@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { fetchUserProfile } from "@/api/user";
+import { fetchUserProfile } from "@/api/userService";
+import { Router } from "next/router";
 
 export const AuthContext = createContext();
 
@@ -10,9 +11,11 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const localUser = window.localStorage.getItem("user");
-    console.log(user)
+    console.log("LOCAL USER___",localUser)
     if (localUser) {
       setUser(JSON.parse(localUser));
+    }else{
+      setUser(undefined)
     }
   }, []);
 
@@ -20,6 +23,8 @@ export const AuthProvider = ({ children }) => {
     try {
       const profile = await fetchUserProfile(user);
       window.localStorage.setItem("user", JSON.stringify(profile)); // Serialize to JSON string
+      const localUser = window.localStorage.getItem("user");
+      console.log("LOCAL USER___",localUser)
       setUser(profile);
     } catch (err) {
       console.error(err);
@@ -28,6 +33,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     window.localStorage.removeItem("user");
+    R
     setUser(null);
   };
 
