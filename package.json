@@ -18,7 +18,9 @@
     "next": "14.0.4",
     "react": "^18",
     "react-chat-elements": "^12.0.11",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-progressbar": "^15.4.1",
+    "react-progressbar-semicircle": "^1.2.1"
   },
   "devDependencies": {
     "eslint": "^8",

@@ -10,7 +10,7 @@ function Navbar() {
           <h3>FinanceFriends</h3>
         </div>
 
-        <div>
+        <div id="color">
           <ul id="navbar">
             <li>
               <Link href="/dashboard" legacyBehavior>
