@@ -1,31 +1,36 @@
-import axios from "axios";
-import "../login/styleLogin.css";
-import Link from 'next/link';
-import { login } from "@/api/user";
-
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { useAuth } from '@/context/AuthProvider';
+import "../login/styleLogin.css";
 
+import { login as backendLogin } from "@/api/user"; 
 
-function  LoginPage() {
+function LoginPage() {
   const [loginData, setLoginData] = useState({
-    email: '',
+    login: '',
     password: ''
   });
+
+  const { login } = useAuth(); 
+  const router = useRouter();
 
   const handleInputChange = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
   const handleLogin = async (e) => {
+    e.preventDefault();
     try {
-      e.preventDefault();
-      const response = await login(loginData);
-      console.log('Login successful:', response);
-      
+      const response = await backendLogin(loginData); 
+      console.log(response)
+      if (response.success) {
+        login(loginData.login); 
+        console.log('Login successful');
+        router.push('/dashboard'); 
+      }
     } catch (error) {
       console.error('Error during login:', error);
-      
     }
   };
 
@@ -41,10 +46,10 @@ function  LoginPage() {
         <div className="inputsL">
           <div className="inputL">
             <input
-              type="email"
+              type="login"
               placeholder="E-mail"
-              name="email"  
-              value={loginData.email}  
+              name="login"  
+              value={loginData.login}  
               onChange={handleInputChange}  // Handle input change
             />
           </div>
@@ -60,7 +65,7 @@ function  LoginPage() {
         </div>
         <div className="newUser-buttons">       
         <div className="new-user">
-          Don't have an account?
+          Don&apos;t have an account?
         </div>
         <div className="submit-containerL">
         <button className="button-empty" onClick={handleLogin}>

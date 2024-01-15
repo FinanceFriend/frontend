@@ -26,3 +26,19 @@ export const register = async (registerData) => {
     throw error;
   }
 };
+
+export const fetchUserProfile = async (username) => {
+  try {
+    const response = await axios.get(`http://localhost:3001/api/user/${username}`);
+    console.log(response)
+    if (response.data.success) {
+      return response.data.user; 
+    } else {
+      throw new Error('User profile fetch was unsuccessful');
+    }
+  } catch (error) {
+    console.error('Error fetching user profile:', error);
+    throw error; 
+  }
+};
+

@@ -24,10 +24,10 @@ export const getLessonMessage = async (
     user,
   };
 
-  console.log(requestBody)
+  console.log(requestBody);
 
   const response = await axios.post(
-    "http://localhost:3001/api/langchain/lessonMessage",
+    "http://localhost:3001/api/langchain/lessonMessageLoremIpsum",
     requestBody
   );
   return response.data;
@@ -41,4 +41,47 @@ export const getLessonsNames = async (locationName) => {
     }
   );
   return response.data.message;
+};
+
+export const getUserMessage = async (
+  currentLesson,
+  currentMinilesson,
+  user,
+  land,
+  message
+) => {
+  const requestBody = {
+    currentLesson,
+    currentMinilesson,
+    user,
+    land,
+    message,
+  };
+
+  console.log(requestBody);
+
+  const response = await axios.post(
+    "http://localhost:3001/api/langchain/userMessage",
+    requestBody
+  );
+  return response.data;
+};
+
+export const evaluateQuestion = async (question, userAnswer, user) => {
+  try {
+    const response = await axios.post(
+      "http://localhost:3001/api/langchain/evaluateQuestion",
+      {
+        user,
+        question: question.question,
+        userAnswer,
+        correctAnswerExample: question.correct_answer,
+      }
+    );
+    console.log(response)
+    return response.data;
+  } catch (error) {
+    console.error("Error evaluating answer:", error);
+    return { success: false };
+  }
 };
