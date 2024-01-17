@@ -2,14 +2,25 @@ import React, { useEffect, useState, Component } from "react";
 import ".//Profile.css";
 import { LinearProgress } from "@mui/material";
 import SemiCircleProgressBar from "react-progressbar-semicircle";
-import GreenSemiCircleProgressBar from "./GreenProgressBar";
 import { useAuth } from "@/context/AuthProvider";
 import { fetchUserStats } from "@/api/userService";
 import { useRouter } from "next/router";
+import ChangePasswordModal from "./ChangePasswordModal";
+import ChangeUsernameModal from "./ChangeUsernameModal";
 
 const UserProfileStats = ({ username }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const [isChangePasswordModalOpen, setChangePasswordModalOpen] = useState(false);
+
+  const openChangePasswordModal = () => {
+    setChangePasswordModalOpen(true);
+  };
+
+  const closeChangePasswordModal = () => {
+    setChangePasswordModalOpen(false);
+  };  
 
   const router = useRouter();
 
@@ -83,8 +94,9 @@ const UserProfileStats = ({ username }) => {
           <h3>Settings:</h3>
           <div className="settings-list">
             <ul>
-              <li>Change username</li>
-              <li>Change password</li>
+              <li><ChangeUsernameModal/></li>
+              <li><ChangePasswordModal/>
+               </li>
               <li>Reset progress</li>
               <li>Contact us</li>
             </ul>

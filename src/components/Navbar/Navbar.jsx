@@ -3,6 +3,7 @@ import { useAuth } from "@/context/AuthProvider";
 import "./Navbar.css";
 import { useRouter } from 'next/router';
 
+
 function Navbar() {
   const { logout } = useAuth(); 
   const router = useRouter();
@@ -14,11 +15,12 @@ function Navbar() {
   return (
     <>
       <nav>
-        <div id="logo">
-          <img src="/favicon.ico" alt="Icon" />
-          <h3>FinanceFriends</h3>
+      
+        <div id="logo"> 
+          <Link href="/dashboard" passHref legacyBehavior><img src="/favicon.ico" alt="Icon" /></Link>
+          <Link href="/dashboard" passHref legacyBehavior><h3>FinanceFriends</h3></Link>          
         </div>
-
+       
         <div id="color">
           <ul id="navbar">
             <li>
