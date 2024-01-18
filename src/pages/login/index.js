@@ -1,31 +1,36 @@
-import axios from "axios";
-import "../login/styleLogin.css";
-import Link from 'next/link';
-import { login } from "@/api/user";
-
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { useAuth } from '@/context/AuthProvider';
+import "./style.css";
 
+import { login as backendLogin } from "@/api/userService"; 
 
-function  LoginPage() {
+function LoginPage() {
   const [loginData, setLoginData] = useState({
     login: '',
     password: ''
   });
+
+  const { login } = useAuth(); 
+  const router = useRouter();
 
   const handleInputChange = (e) => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
 
   const handleLogin = async (e) => {
+    e.preventDefault();
     try {
-      e.preventDefault();
-      const response = await login(loginData);
-      console.log('Login successful:', response);
-      
+      const response = await backendLogin(loginData); 
+      console.log(response)
+      if (response.success) {
+        login(loginData.login); 
+        console.log('Login successful');
+        router.push('/dashboard'); 
+      }
     } catch (error) {
       console.error('Error during login:', error);
-      
     }
   };
 
@@ -42,7 +47,7 @@ function  LoginPage() {
           <div className="inputL">
             <input
               type="login"
-              placeholder="Username/E-mail"
+              placeholder="E-mail"
               name="login"  
               value={loginData.login}  
               onChange={handleInputChange}  // Handle input change

@@ -27,7 +27,7 @@ export const getLessonMessage = async (
   console.log(requestBody);
 
   const response = await axios.post(
-    "http://localhost:3001/api/langchain/lessonMessageLoremIpsum",
+    "http://localhost:3001/api/langchain/lessonMessage",
     requestBody
   );
   return response.data;
