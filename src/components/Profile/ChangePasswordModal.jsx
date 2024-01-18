@@ -11,13 +11,13 @@ export default function ChangePasswordModal() {
         setModal(!modal);
       };
     
-      if(modal) {
-        document.body.classList.add('active-modal')
-      } else {
-        document.body.classList.remove('active-modal')
-      }
-
-
+      useEffect(() => {
+        if(modal) {
+            document.body.classList.add('active-modal')
+        } else {
+            document.body.classList.remove('active-modal')
+        }
+    }, [modal]); 
 
     return (
         <>

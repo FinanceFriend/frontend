@@ -4,7 +4,7 @@ body.active-modal {
 
 .btn-modal {
     cursor: pointer;
-    color: #fff; /* Change the color to match your text color */ /* Add underline to mimic a link */
+    color: #fff;
     font-family: Londrina Solid;
     font-weight: 300;
     font-size: 1.25rem;

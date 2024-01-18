@@ -12,14 +12,13 @@ export default function ChangeUsernameModal() {
         setModal(!modal);
       };
     
-      if(modal) {
-        document.body.classList.add('active-modal')
-      } else {
-        document.body.classList.remove('active-modal')
-      }
-
-
-
+      useEffect(() => {
+        if(modal) {
+            document.body.classList.add('active-modal')
+        } else {
+            document.body.classList.remove('active-modal')
+        }
+    }, [modal]); 
     return (
         <>
           <button onClick={toggleModal} className="btn-modal">
