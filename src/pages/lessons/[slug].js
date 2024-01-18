@@ -56,7 +56,7 @@ function LessonsComponent() {
           setLandBackgroundImage({
             background: `linear-gradient(0deg, rgba(22, 0, 160, 0.34) 0%, rgba(22, 0, 160, 0.34) 100%), url(${land.landImage}), lightgray 50% / cover no-repeat`,
           });
-          loadChatData(currentUser.username, 0);
+          loadChatData(currentUser.username, slug);
           loadLessonNames(land.name);
         }
       }
@@ -74,7 +74,6 @@ function LessonsComponent() {
       setChatData(messages);
     } catch (error) {
       console.error("Error geting chat data:", error);
-      setError("Failed to load chat data");
     }
   };
 
@@ -85,7 +84,6 @@ function LessonsComponent() {
       setLessonNames(lessonNames);
     } catch (error) {
       console.error("Error geting chat data:", error);
-      setError("Failed to load chat data");
     }
   };
 
@@ -114,7 +112,7 @@ function LessonsComponent() {
         currentUser
       );
 
-      console.log("LESSONMSG", lessonMessage.message);
+      console.log("LESSONMSG", lessonMessage);
 
       let newMessage = {
         sender: "AI",

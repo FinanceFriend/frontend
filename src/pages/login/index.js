@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useAuth } from '@/context/AuthProvider';
-import "../login/styleLogin.css";
+import "style.css";
 
 import { login as backendLogin } from "@/api/userService"; 
 
