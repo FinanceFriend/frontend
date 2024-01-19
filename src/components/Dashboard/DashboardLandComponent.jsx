@@ -2,7 +2,7 @@ import Link from "next/link";
 import "./DashboardLandComponent.css";
 import { LinearProgress } from "@mui/material";
 
-function DashboardLandComponent({ land }) {
+function DashboardLandComponent({ land, user }) {
   return (
     <Link href={`/lessons/${land.id}`} passHref>
       <div className="landContainer">
@@ -16,7 +16,7 @@ function DashboardLandComponent({ land }) {
             className="landProgress"
             color="success"
             variant="determinate"
-            value={land.progress}
+            value={user?.stats.completionPercentages[land.id]}
           ></LinearProgress>
         </div>
       </div>

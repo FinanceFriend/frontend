@@ -1,7 +1,8 @@
 .dashboardWrapper {
     display: flex;
-    margin-top: 5rem;
-    margin-left: 5rem;
+    margin: 2rem 0rem;
+    justify-content: center;
+    align-items: center;
 }
 
 

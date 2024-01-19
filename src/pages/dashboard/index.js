@@ -25,7 +25,7 @@ function Dashboard() {
       <div className="dashboardWrapper">
         <div className="dashboardContainer">
           {landData.map((land) => (
-            <DashboardLandComponent key={land.id} land={land} />
+            <DashboardLandComponent key={land.id} land={land} user={currentUser} />
           ))}
         </div>
       </div>

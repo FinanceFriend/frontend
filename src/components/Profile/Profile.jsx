@@ -191,7 +191,7 @@ const UserProfileStats = ({ username }) => {
               />
             </div>
             <div className="progress-text">Percentage correct</div>
-            <div className="percentage">{Math.round(userStats?.correctAnswersPercentage)}</div>
+            <div className="percentage">{Math.round(userStats?.correctAnswersPercentage)}%</div>
           </div>
           <div id="correct-answers">
             <p className="correct-answers-num">{userStats?.correctAnswers}</p>
