@@ -54,7 +54,7 @@ export const fetchUserStats = async (username) => {
     );
     console.log(response);
     if (response.data.success) {
-      return response.data.user;
+      return response.data.statsResponse;
     } else {
       throw new Error("User profile fetch was unsuccessful");
     }

@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { fetchUserProfile } from "@/api/userService";
-import { Router } from "next/router";
+import { fetchUserProfile, fetchUserStats } from "@/api/userService";
 
 export const AuthContext = createContext();
 
@@ -19,12 +18,15 @@ export const AuthProvider = ({ children }) => {
     }
   }, []);
 
-  const login = async (user) => {
+  const login = async (username) => {
     try {
-      const profile = await fetchUserProfile(user);
-      window.localStorage.setItem("user", JSON.stringify(profile)); // Serialize to JSON string
-      const localUser = window.localStorage.getItem("user");
-      console.log("LOCAL USER___",localUser)
+      const profile = await fetchUserProfile(username);
+      if(profile){
+        const profileStats = await fetchUserStats(username);
+        profile.stats=profileStats
+        console.log(profile)
+      }
+      window.localStorage.setItem("user", JSON.stringify(profile));
       setUser(profile);
     } catch (err) {
       console.error(err);

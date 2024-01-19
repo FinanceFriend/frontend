@@ -8,8 +8,8 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import "../register/style.css";
-import CountrySelect from "@/context/CountrySelect";
-import LanguageSelect from "@/context/LanguageSelect";
+import CountrySelect from "@/components/Register/CountrySelect";
+import LanguageSelect from "@/components/Register/LanguageSelect";
 
 function RegisterPage() {
   const router = useRouter();

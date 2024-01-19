@@ -300,14 +300,16 @@
 
 .points-overall #overall-numb {
     font-size: 3rem;
+    text-align: center;
 }
 
 .points-overall #overall-txt {
     font-size: 1.5rem;
-    margin-left: 1.35rem;
+    text-align: center;
 }
 
 .land-points {
+    margin-top: 20px;
     display: flex;
     justify-content: space-evenly;
     gap:105px;
