@@ -29,7 +29,8 @@ function MessageComponent({ msg, land, user }) {
             {msg.content
               .replace(/\"\\n/g, "")
               .replace(/\\n/g, "\n")
-              .replace(/"/g, "")}
+              .replace(/"/g, "")
+              .trim()}
           </p>
         )}
       </div>

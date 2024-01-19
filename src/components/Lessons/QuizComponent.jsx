@@ -5,7 +5,7 @@ import { evaluateQuestion } from "@/api";
 
 function QuizComponent({ quiz, user }) {
   var jsonString = quiz.replace(/\`\`\`json|\`\`\`/g, "").trim();
-  var questionsArray = JSON.parse(JSON.parse(jsonString));
+  var questionsArray = JSON.parse(jsonString);
 
   const [selectedOptions, setSelectedOptions] = useState({});
   const [quizCompleted, setQuizCompleted] = useState(false);
@@ -44,6 +44,8 @@ function QuizComponent({ quiz, user }) {
     });
 
     const evaluations = await Promise.all(evaluationPromises);
+
+    console.log(evaluations)
 
     let newEvaluationResults = {};
     let fillInTheBlankScore = 0;
