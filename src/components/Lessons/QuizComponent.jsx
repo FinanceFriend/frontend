@@ -45,8 +45,6 @@ function QuizComponent({ quiz, user }) {
 
     const evaluations = await Promise.all(evaluationPromises);
 
-    console.log(evaluations)
-
     let newEvaluationResults = {};
     let fillInTheBlankScore = 0;
     evaluations.forEach((evaluation, index) => {
