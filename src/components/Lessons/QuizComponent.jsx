@@ -34,7 +34,7 @@ function QuizComponent({ quiz, user }) {
     questionsArray.forEach((question, index) => {
       const userAnswer = selectedOptions[index] || "";
 
-      if (question.type === "Fill-in-the-Blank") {
+      if (question.type === "Fill-in-the-Blank" && userAnswer !== "") {
         evaluationPromises.push(evaluateQuestion(question, userAnswer, user));
       } else {
         if (userAnswer === question.correct_answer) {
