@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const getChatData = async (username, locationId) => {
-  const response = await axios.get(`http://localhost:3001/api/chat`, {
+  const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/chat`, {
     params: { username, location_id: locationId },
   });
   return response.data.messages;
@@ -27,7 +27,7 @@ export const getLessonMessage = async (
   console.log(requestBody);
 
   const response = await axios.post(
-    "http://localhost:3001/api/langchain/lessonMessage",
+    `${process.env.NEXT_PUBLIC_API_URL}/langchain/lessonMessage`,
     requestBody
   );
   return response.data;
@@ -35,7 +35,7 @@ export const getLessonMessage = async (
 
 export const getLessonsNames = async (locationName) => {
   const response = await axios.get(
-    "http://localhost:3001/api/langchain/lessonNames",
+    `${process.env.NEXT_PUBLIC_API_URL}/langchain/lessonNames`,
     {
       params: { locationName: locationName },
     }
@@ -61,7 +61,7 @@ export const getUserMessage = async (
   console.log(requestBody);
 
   const response = await axios.post(
-    "http://localhost:3001/api/langchain/userMessage",
+    `${process.env.NEXT_PUBLIC_API_URL}/langchain/userMessage`,
     requestBody
   );
   return response.data;
@@ -70,7 +70,7 @@ export const getUserMessage = async (
 export const evaluateQuestion = async (question, userAnswer, user) => {
   try {
     const response = await axios.post(
-      "http://localhost:3001/api/langchain/evaluateQuestion",
+      `${process.env.NEXT_PUBLIC_API_URL}/langchain/evaluateQuestion`,
       {
         user,
         question: question.question,

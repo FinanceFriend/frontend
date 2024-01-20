@@ -1,11 +1,9 @@
 import axios from "axios";
 
-const backendURL = "http://localhost:3001";
-
 export const login = async (loginData) => {
   try {
     console.log("Before axios.post");
-    const response = await axios.post(`${backendURL}/api/login`, loginData);
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/login`, loginData);
     console.log("After axios.post", response);
 
     return response.data;
@@ -19,7 +17,7 @@ export const register = async (registerData) => {
   try {
     console.log("Before axios.post");
     const response = await axios.post(
-      `${backendURL}/api/register`,
+      `${process.env.NEXT_PUBLIC_API_URL}/register`,
       registerData
     );
     console.log("After axios.post", response);
@@ -33,7 +31,7 @@ export const register = async (registerData) => {
 export const fetchUserProfile = async (username) => {
   try {
     const response = await axios.get(
-      `http://localhost:3001/api/user/${username}`
+      `${process.env.NEXT_PUBLIC_API_URL}/user/${username}`
     );
     console.log(response);
     if (response.data.success) {
@@ -50,7 +48,7 @@ export const fetchUserProfile = async (username) => {
 export const fetchUserStats = async (username) => {
   try {
     const response = await axios.get(
-      `http://localhost:3001/api/stats/${username}`
+      `${process.env.NEXT_PUBLIC_API_URL}/stats/${username}`
     );
     console.log(response);
     if (response.data.success) {

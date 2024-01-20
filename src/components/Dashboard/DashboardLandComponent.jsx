@@ -16,7 +16,9 @@ function DashboardLandComponent({ land, user }) {
             className="landProgress"
             color="success"
             variant="determinate"
-            value={user?.stats.completionPercentages[land.id]}
+            value={
+              land.id != 5 ? user?.stats.completionPercentages[land.id] : 100
+            }
           ></LinearProgress>
         </div>
       </div>

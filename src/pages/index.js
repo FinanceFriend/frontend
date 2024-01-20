@@ -8,6 +8,7 @@ import LandDataContext from "../context/LandDataContext";
 function HomePage() {
   const landData = useContext(LandDataContext);
 
+    console.log(process.env.NEXT_PUBLIC_API_URL)
   return (
     <div>
       <div className="homepageTitleContainer">
