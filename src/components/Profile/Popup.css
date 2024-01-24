@@ -82,3 +82,24 @@ body.active-modal {
     color:#FFC700;
     font-weight:400;
   }
+
+  .btn-yes-no {
+    display: flex;
+    justify-content: center;
+    gap:3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .yesbtn {
+    background-color:#00FF66;
+    width: 2.5rem;
+  }
+
+  .nobtn {
+    background-color:red;
+    width: 2.5rem;
+  }
+
+  .reset-txt {
+    color:black;
+  }

@@ -49,6 +49,7 @@
     height: 100%;
     display: grid;
     grid-template-columns: 50% 50%;
+    gap:10rem;
 }
 
 .text {
@@ -59,7 +60,7 @@
 }
 
 .friendName {
-    font-size: 8rem;
+    font-size: 5rem;
     font-weight: 400;
 }
 

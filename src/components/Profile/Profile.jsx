@@ -7,7 +7,7 @@ import LandDataContext from "@/context/LandDataContext";
 import { useRouter } from "next/router";
 import ChangePasswordModal from "./ChangePasswordModal";
 import ChangeUsernameModal from "./ChangeUsernameModal";
-
+import ResetProgressModal from "./ResetProgressModal"
 const UserProfileStats = ({ username }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -89,7 +89,7 @@ const UserProfileStats = ({ username }) => {
               <li>
                 <ChangePasswordModal />
               </li>
-              <li>Reset progress</li>
+              <li><ResetProgressModal/></li>
               <li>Contact us</li>
             </ul>
           </div>
