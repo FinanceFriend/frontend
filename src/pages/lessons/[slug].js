@@ -21,7 +21,7 @@ function LessonsComponent() {
   const [inputValue, setInputValue] = useState("");
 
   const landData = useContext(LandDataContext);
-  
+
   const router = useRouter();
   const { slug } = router.query;
   const land = landData.find((item) => item.id === slug);
@@ -35,7 +35,7 @@ function LessonsComponent() {
 
   const [loading, setLoading] = useState(false);
 
-  const { currentUser } = useAuth();
+  const { currentUser, currentUserStats } = useAuth();
 
   const loadingMessage = {
     sender: "AI",
@@ -53,6 +53,11 @@ function LessonsComponent() {
       if (router.isReady && slug) {
         const land = landData.find((item) => item.id === slug);
         if (land) {
+          console.log(currentUserStats);
+          setCurrentLesson(currentUserStats.progress[land.id].lessonId);
+          setCurrentMinilesson(currentUserStats.progress[land.id].minilessonId);
+          setCurrentBlock(currentUserStats.progress[land.id].blockId);
+
           setLandBackgroundImage({
             background: `linear-gradient(0deg, rgba(22, 0, 160, 0.34) 0%, rgba(22, 0, 160, 0.34) 100%), url(${land.landImage}), lightgray 50% / cover no-repeat`,
           });
@@ -89,19 +94,6 @@ function LessonsComponent() {
 
   const loadLessons = async () => {
     setLoading(true);
-    let newCurrentBlock = currentBlock + 1;
-    let newCurrentMinilesson = currentMinilesson;
-
-    if (newCurrentBlock == 3) {
-      newCurrentBlock = 0;
-      newCurrentMinilesson += 1;
-      setCurrentMinilesson(newCurrentMinilesson);
-    }
-
-    setCurrentBlock(newCurrentBlock);
-
-    console.log(currentBlock);
-
     try {
       const lessonMessage = await getLessonMessage(
         currentBlock,
@@ -113,6 +105,10 @@ function LessonsComponent() {
       );
 
       console.log("LESSONMSG", lessonMessage);
+
+      setCurrentLesson(lessonMessage.nextIds.lessonId);
+      setCurrentMinilesson(lessonMessage.nextIds.minilessonId);
+      setCurrentBlock(lessonMessage.nextIds.blockId);
 
       let newMessage = {
         sender: "AI",
@@ -229,7 +225,12 @@ function LessonsComponent() {
           </div>
           {error && <div className="error">{error}</div>}
         </div>
-        <LessonsListComponent lessonNames={lessonNames} land={land} />
+        <LessonsListComponent
+          lessonNames={lessonNames}
+          land={land}
+          currentLesson={currentLesson}
+          currentMinilesson={currentMinilesson}
+        />
       </div>
     </>
   );

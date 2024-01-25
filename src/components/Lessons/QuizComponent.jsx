@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./QuizComponent.css";
 
-import { evaluateQuestion } from "@/api";
+import { evaluateQuestion, updateUserStats } from "@/api";
 
-function QuizComponent({ quiz, user }) {
+function QuizComponent({ quiz, user, land }) {
   var jsonString = quiz.replace(/\`\`\`json|\`\`\`/g, "").trim();
   var questionsArray = JSON.parse(jsonString);
 
@@ -34,7 +34,11 @@ function QuizComponent({ quiz, user }) {
     questionsArray.forEach((question, index) => {
       const userAnswer = selectedOptions[index] || "";
 
-      if (question.type === "Fill-in-the-Blank" && userAnswer !== "") {
+      if (
+        (question.type === "Fill-in-the-Blank" ||
+          question.type === "Open-ended") &&
+        userAnswer !== ""
+      ) {
         evaluationPromises.push(evaluateQuestion(question, userAnswer, user));
       } else {
         if (userAnswer === question.correct_answer) {
@@ -52,7 +56,7 @@ function QuizComponent({ quiz, user }) {
         const evaluationData = JSON.parse(evaluation.message);
         newEvaluationResults[index] = evaluationData.correct;
         if (evaluationData.correct) {
-          fillInTheBlankScore += 1; 
+          fillInTheBlankScore += 1;
         }
       } catch (error) {
         console.error("Error parsing evaluation data:", error);
@@ -62,8 +66,16 @@ function QuizComponent({ quiz, user }) {
 
     setEvaluationResults(newEvaluationResults);
 
-    setScore(localScore + fillInTheBlankScore); 
+    let finalScore = localScore + fillInTheBlankScore;
+    setScore(finalScore);
     setQuizCompleted(true);
+
+    updateUserStats(user.username, {
+      newPoints: finalScore * 50,
+      locationId: land.id,
+      correctAnswers: finalScore,
+      incorrectAnswers: 5 - finalScore,
+    });
   };
 
   const getButtonStyle = (questionIndex, option) => {
@@ -84,15 +96,21 @@ function QuizComponent({ quiz, user }) {
   };
 
   const getInputStyle = (questionIndex) => {
-    if (quizCompleted && questionsArray[questionIndex].type === "Fill-in-the-Blank") {
-      const fillInTheBlankCount = questionsArray.slice(0, questionIndex + 1)
-        .filter((q, i) => q.type === "Fill-in-the-Blank").length;
-        const isCorrect = evaluationResults[fillInTheBlankCount - 1];
+    if (
+      quizCompleted &&
+      (questionsArray[questionIndex].type === "Fill-in-the-Blank" ||
+        questionsArray[questionIndex].type === "Open-ended")
+    ) {
+      const fillInTheBlankCount = questionsArray
+        .slice(0, questionIndex + 1)
+        .filter(
+          (q, i) => q.type === "Fill-in-the-Blank" || q.type === "Open-ended"
+        ).length;
+      const isCorrect = evaluationResults[fillInTheBlankCount - 1];
       return isCorrect ? "inputMessage correct" : "inputMessage incorrect";
     }
     return "inputMessage";
   };
-  
 
   return (
     <div>
@@ -138,7 +156,8 @@ function QuizComponent({ quiz, user }) {
               </div>
             </div>
           )}
-          {question.type === "Fill-in-the-Blank" && (
+          {(question.type === "Fill-in-the-Blank" ||
+            question.type === "Open-ended") && (
             <div>
               <p>{question.question}</p>
               <div className="fillBlankInput">

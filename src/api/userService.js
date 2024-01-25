@@ -61,3 +61,22 @@ export const fetchUserStats = async (username) => {
     throw error;
   }
 };
+
+export const updateUserStats = async (username, statsUpdates) => {
+  try {
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/stats/${username}`;
+
+    const response = await axios.put(url, statsUpdates);
+
+    console.log(response);
+    
+    if (response.data.success) {
+      return response.data.updatedStats;
+    } else {
+      throw new Error("User stats update was unsuccessful");
+    }
+  } catch (error) {
+    console.error("Error updating user stats:", error);
+    throw error;
+  }
+};

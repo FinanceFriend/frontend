@@ -1,31 +1,33 @@
-import "./style.css";
-import DashboardLandComponent from "../../components/Dashboard/DashboardLandComponent.jsx";
-import Navbar from "@/components/Navbar/Navbar";
 import React, { useContext, useEffect } from "react";
-import LandDataContext from "../../context/LandDataContext";
-import { useAuth  } from "@/context/AuthProvider";
 import { useRouter } from "next/router";
+import Navbar from "@/components/Navbar/Navbar";
+import DashboardLandComponent from "../../components/Dashboard/DashboardLandComponent.jsx";
+import LandDataContext from "../../context/LandDataContext";
+import { useAuth } from "@/context/AuthProvider";
+import "./style.css";
 
 function Dashboard() {
   const landData = useContext(LandDataContext);
-  const { currentUser } = useAuth();
-
   const router = useRouter();
+  
+  const { currentUser, currentUserStats, refreshProfileStats } = useAuth();
 
   useEffect(() => {
     if (currentUser === undefined) {
       router.push("/login");
+    } else {
+      console.log("RESFRESH STATS CALL");
+      refreshProfileStats();
     }
-  }, [currentUser, router]);
+  }, [currentUser, router]); 
 
   return (
     <div>
       <Navbar />
-    A-{currentUser?.username}
       <div className="dashboardWrapper">
         <div className="dashboardContainer">
           {landData.map((land) => (
-            <DashboardLandComponent key={land.id} land={land} user={currentUser} />
+            <DashboardLandComponent key={land.id} land={land} userStats={currentUserStats} />
           ))}
         </div>
       </div>

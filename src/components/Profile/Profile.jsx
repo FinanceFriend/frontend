@@ -7,7 +7,7 @@ import LandDataContext from "@/context/LandDataContext";
 import { useRouter } from "next/router";
 import ChangePasswordModal from "./ChangePasswordModal";
 import ChangeUsernameModal from "./ChangeUsernameModal";
-import ResetProgressModal from "./ResetProgressModal"
+import ResetProgressModal from "./ResetProgressModal";
 const UserProfileStats = ({ username }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -27,8 +27,7 @@ const UserProfileStats = ({ username }) => {
 
   const router = useRouter();
 
-  const { currentUser } = useAuth();
-  const [userStats, setUserStats] = useState(null);
+  const { currentUser, currentUserStats, refreshProfileStats } = useAuth();
 
   useEffect(() => {
     console.log(currentUser);
@@ -39,7 +38,7 @@ const UserProfileStats = ({ username }) => {
     if (currentUser === undefined) {
       router.push("/login");
     } else {
-      setUserStats(currentUser.stats);
+      refreshProfileStats();
       loadChatData(currentUser.username);
     }
   }, [currentUser, router]);
@@ -89,7 +88,9 @@ const UserProfileStats = ({ username }) => {
               <li>
                 <ChangePasswordModal />
               </li>
-              <li><ResetProgressModal/></li>
+              <li>
+                <ResetProgressModal />
+              </li>
               <li>Contact us</li>
             </ul>
           </div>
@@ -106,7 +107,7 @@ const UserProfileStats = ({ username }) => {
             <div id="prog-bar1">
               <div className="bar">
                 <SemiCircleProgressBar
-                  percentage={Math.round(userStats?.totalCompletion)}
+                  percentage={Math.round(currentUserStats?.totalCompletion)}
                   stroke="#00FF66"
                   strokeWidth={16}
                   background="#fff"
@@ -118,7 +119,7 @@ const UserProfileStats = ({ username }) => {
                   <p>Overall completion</p>
                 </div>
                 <div className="percentage">
-                  <p>{Math.round(userStats?.totalCompletion)}%</p>
+                  <p>{Math.round(currentUserStats?.totalCompletion)}%</p>
                 </div>
               </div>
             </div>
@@ -132,7 +133,7 @@ const UserProfileStats = ({ username }) => {
                   <div className="bar2">
                     <SemiCircleProgressBar
                       percentage={Math.round(
-                        userStats?.completionPercentages[index]
+                        currentUserStats?.completionPercentages[index]
                       )}
                       stroke="#FFC700"
                       strokeWidth={16}
@@ -145,7 +146,10 @@ const UserProfileStats = ({ username }) => {
                   </div>
                   <div className="percentage">
                     <p>
-                      {Math.round(userStats?.completionPercentages[index])}%
+                      {Math.round(
+                        currentUserStats?.completionPercentages[index]
+                      )}
+                      %
                     </p>
                   </div>
                 </div>
@@ -158,14 +162,16 @@ const UserProfileStats = ({ username }) => {
         <div className="points-overall">
           <h3>Points:</h3>
           <div className="element">
-            <p id="overall-numb">{userStats?.totalPoints}</p>
+            <p id="overall-numb">{currentUserStats?.totalPoints}</p>
             <p id="overall-txt">overall</p>
           </div>
         </div>
         <div className="land-points">
           {landData.slice(0, -1).map((land, index) => (
             <div key={index} className="element">
-              <p className="each-land-points">{userStats?.points[index]}</p>
+              <p className="each-land-points">
+                {currentUserStats?.points[index]}
+              </p>
               <p className="each-land-txt">{land.name}</p>
             </div>
           ))}
@@ -177,13 +183,17 @@ const UserProfileStats = ({ username }) => {
         </div>
         <div className="group">
           <div id="incorrect-answers">
-            <p className="incorrect-answers-num">{userStats?.incorrectAnswers}</p>
+            <p className="incorrect-answers-num">
+              {currentUserStats?.incorrectAnswers}
+            </p>
             <p className="incorrect-answers-txt">incorrect answers</p>
           </div>
           <div id="prog-bar1">
             <div className="bar">
               <SemiCircleProgressBar
-                percentage={Math.round(userStats?.correctAnswersPercentage)}
+                percentage={Math.round(
+                  currentUserStats?.correctAnswersPercentage
+                )}
                 stroke="#00FF66"
                 strokeWidth={16}
                 background="#fff"
@@ -191,10 +201,14 @@ const UserProfileStats = ({ username }) => {
               />
             </div>
             <div className="progress-text">Percentage correct</div>
-            <div className="percentage">{Math.round(userStats?.correctAnswersPercentage)}%</div>
+            <div className="percentage">
+              {Math.round(currentUserStats?.correctAnswersPercentage)}%
+            </div>
           </div>
           <div id="correct-answers">
-            <p className="correct-answers-num">{userStats?.correctAnswers}</p>
+            <p className="correct-answers-num">
+              {currentUserStats?.correctAnswers}
+            </p>
             <p className="correct-answers-txt">correct answers</p>
           </div>
         </div>

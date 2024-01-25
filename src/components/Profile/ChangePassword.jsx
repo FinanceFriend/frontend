@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import "./Popup.css"
+import React, { useState } from "react";
+import axios from "axios";
+import "./Popup.css";
 
 const ChangePassword = ({ currentUser }) => {
-    const [currentPassword, setCurrentPassword] = useState('');
-    const [newPassword, setNewPassword] = useState('');
-    const [error, setError] = useState('');
-  
-    const handleUpdatePassword = async () => {
-      // Add your logic for updating the password
-    };
-    return (
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const handleUpdatePassword = async () => {
+    // Add your logic for updating the password
+  };
+  return (
     <div className="container">
       <input
         className="inputField"
@@ -31,7 +31,7 @@ const ChangePassword = ({ currentUser }) => {
       </button>
       {error && <p className="errorMsg">{error}</p>}
     </div>
-    );
+  );
 };
 
 export default ChangePassword;

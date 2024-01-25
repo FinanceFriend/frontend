@@ -9,7 +9,7 @@ function MessageComponent({ msg, land, user }) {
   return (
     <div
       className={`messageContainer ${
-        (isAiMessage || isQuiz) ? "aiMessage" : "userMessage"
+        isAiMessage || isQuiz ? "aiMessage" : "userMessage"
       }`}
     >
       {(isAiMessage || isQuiz) && (
@@ -21,9 +21,9 @@ function MessageComponent({ msg, land, user }) {
       )}
       <div className="messageTextContainer">
         {isQuiz ? (
-          <div className="messageText"> 
-          <QuizComponent quiz={msg.content} user={user}/>
-           </div>
+          <div className="messageText">
+            <QuizComponent quiz={msg.content} user={user} land={land} />
+          </div>
         ) : (
           <p style={{ whiteSpace: "pre-wrap" }} className="messageText">
             {msg.content
@@ -34,7 +34,7 @@ function MessageComponent({ msg, land, user }) {
           </p>
         )}
       </div>
-      {(!isAiMessage && !isQuiz) && (
+      {!isAiMessage && !isQuiz && (
         <Avatar
           alt={land.friendName}
           style={{ backgroundColor: "var(--purple)" }}
