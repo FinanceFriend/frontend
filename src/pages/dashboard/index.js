@@ -9,7 +9,7 @@ import "./style.css";
 function Dashboard() {
   const landData = useContext(LandDataContext);
   const router = useRouter();
-  
+
   const { currentUser, currentUserStats, refreshProfileStats } = useAuth();
 
   useEffect(() => {
@@ -19,15 +19,23 @@ function Dashboard() {
       console.log("RESFRESH STATS CALL");
       refreshProfileStats();
     }
-  }, [currentUser, router]); 
+  }, [currentUser, router]);
 
   return (
     <div>
       <Navbar />
       <div className="dashboardWrapper">
+        <div className="welcomeBackcontainer">
+          <p className="welcomeBackText"> Welocme Back, {currentUser?.username}!</p>
+          <p className="welcomeBackSubText"> Pick your next adventure</p>
+        </div>
         <div className="dashboardContainer">
           {landData.map((land) => (
-            <DashboardLandComponent key={land.id} land={land} userStats={currentUserStats} />
+            <DashboardLandComponent
+              key={land.id}
+              land={land}
+              userStats={currentUserStats}
+            />
           ))}
         </div>
       </div>

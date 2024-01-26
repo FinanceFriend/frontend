@@ -8,6 +8,7 @@ import {
   getLessonMessage,
   getLessonsNames,
   getUserMessage,
+  getWelcomeMessage,
 } from "@/api";
 import LessonsListComponent from "@/components/Lessons/LessonsListComponent";
 import Navbar from "@/components/Navbar/Navbar";
@@ -33,7 +34,7 @@ function LessonsComponent() {
 
   const [landBackgroundImage, setLandBackgroundImage] = useState({});
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setTyping] = useState(false);
 
   const { currentUser, currentUserStats } = useAuth();
 
@@ -54,15 +55,20 @@ function LessonsComponent() {
         const land = landData.find((item) => item.id === slug);
         if (land) {
           console.log(currentUserStats);
-          setCurrentLesson(currentUserStats.progress[land.id].lessonId);
-          setCurrentMinilesson(currentUserStats.progress[land.id].minilessonId);
-          setCurrentBlock(currentUserStats.progress[land.id].blockId);
+          setCurrentLesson(currentUserStats.progress[land.id]?.lessonId);
+          setCurrentMinilesson(
+            currentUserStats.progress[land.id]?.minilessonId
+          );
+          setCurrentBlock(currentUserStats.progress[land.id]?.blockId);
 
           setLandBackgroundImage({
             background: `linear-gradient(0deg, rgba(22, 0, 160, 0.34) 0%, rgba(22, 0, 160, 0.34) 100%), url(${land.landImage}), lightgray 50% / cover no-repeat`,
           });
           loadChatData(currentUser.username, slug);
-          loadLessonNames(land.name);
+          if (land.id != 5) {
+            loadLessonNames(land.name);
+            loadWelcomeMessage();
+          }
         }
       }
     }
@@ -92,8 +98,8 @@ function LessonsComponent() {
     }
   };
 
-  const loadLessons = async () => {
-    setLoading(true);
+  const loadLessonMessage = async () => {
+    setTyping(true);
     try {
       const lessonMessage = await getLessonMessage(
         currentBlock,
@@ -120,7 +126,34 @@ function LessonsComponent() {
       }
 
       setChatData([newMessage, ...chatData]);
-      setLoading(false);
+      setTyping(false);
+    } catch (error) {
+      console.error("Error fetching lesson message:", error);
+    }
+  };
+
+  const loadWelcomeMessage = async () => {
+    setTyping(true);
+    try {
+      const welcomeMessage = await getWelcomeMessage(
+        currentBlock,
+        currentLesson,
+        currentMinilesson,
+        progress,
+        land,
+        currentUser
+      );
+
+      console.log("LESSONMSG", welcomeMessage);
+
+      let newMessage = {
+        sender: "AI",
+        content: welcomeMessage.message,
+      };
+
+      console.log(chatData);
+      setChatData((prevChatData) => [newMessage, ...prevChatData]); // Use functional update form of setState
+      setTyping(false);
     } catch (error) {
       console.error("Error fetching lesson message:", error);
     }
@@ -132,7 +165,7 @@ function LessonsComponent() {
 
   const handleSearchClick = async () => {
     try {
-      setLoading(true);
+      setTyping(true);
 
       // Add the user's message immediately
       const newUserMessage = {
@@ -159,10 +192,10 @@ function LessonsComponent() {
 
       // Update the chat data again with the AI's response
       setChatData((currentChatData) => [newAIResponse, ...currentChatData]);
-      setLoading(false);
+      setTyping(false);
     } catch (error) {
       console.error("Error fetching user message:", error);
-      setLoading(false);
+      setTyping(false);
     }
   };
 
@@ -200,7 +233,7 @@ function LessonsComponent() {
               </div>
               <p
                 className="chatButton nextButton"
-                onClick={() => loadLessons()}
+                onClick={() => loadLessonMessage()}
               >
                 Next
               </p>

@@ -33,6 +33,32 @@ export const getLessonMessage = async (
   return response.data;
 };
 
+export const getWelcomeMessage = async (
+  currentBlock,
+  currentLesson,
+  currentMinilesson,
+  progress,
+  land,
+  user
+) => {
+  const requestBody = {
+    currentBlock,
+    currentLesson,
+    currentMinilesson,
+    progress,
+    land,
+    user,
+  };
+
+  console.log(requestBody);
+
+  const response = await axios.post(
+    `${process.env.NEXT_PUBLIC_API_URL}/langchain/welcome`,
+    requestBody
+  );
+  return response.data;
+};
+
 export const getLessonsNames = async (locationName) => {
   const response = await axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/langchain/lessonNames`,

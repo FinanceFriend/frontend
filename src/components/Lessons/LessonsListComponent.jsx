@@ -11,11 +11,10 @@ function LessonsListComponent({
     ? `url(${land.friendImage})`
     : "none";
 
-  const landBackgrundImageLessonsList = {
-    background: `linear-gradient(0deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%) center bottom no-repeat, ${backgroundImageUrl} 0% 0% / cover lightgray`,
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "bottom",
-  };
+    const landBackgrundImageLessonsList = {
+      backgroundImage: `linear-gradient(0deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%), ${backgroundImageUrl}`, // background images
+    };
+  
 
   return (
     <div className="lessonsListContainer">
