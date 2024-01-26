@@ -14,6 +14,9 @@ import {
 import LessonsListComponent from "@/components/Lessons/LessonsListComponent";
 import Navbar from "@/components/Navbar/Navbar";
 import { useAuth } from "@/context/AuthProvider";
+import Select, { SelectChangeEvent } from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import InputLabel from "@mui/material/InputLabel";
 
 function LessonsComponent() {
   let [chatData, setChatData] = useState([]);
@@ -80,7 +83,6 @@ function LessonsComponent() {
       let messages = await getChatData(username, locationId);
       console.log(messages);
 
-      // reverse array so we can have auto-scroll to bottom when message is added (flex-direction: column-reverse)
       messages = messages.reverse();
 
       setChatData(messages);
@@ -160,6 +162,12 @@ function LessonsComponent() {
     }
   };
 
+  const [type, setType] = useState("text");
+
+  const handleTypeChange = (event) => {
+    setType(event.target.value);
+  };
+
   const handleInputChange = (event) => {
     setInputValue(event.target.value);
   };
@@ -177,7 +185,6 @@ function LessonsComponent() {
       setInputValue(""); // Reset the input field
 
       let response = "";
-      let type = "image";
       if (land.id != 5) {
         response = await getUserMessage(
           currentLesson,
@@ -217,6 +224,15 @@ function LessonsComponent() {
           <div className="chatContainer">
             <div className="chatHeader">
               <p className="chatHeaderText">Current location: {land?.name}</p>
+              {(land.id == 5) && (
+                <div className="selectContainer">
+                  <InputLabel>Response Format</InputLabel>
+                  <Select value={type} label="Type" onChange={handleTypeChange}>
+                    <MenuItem value={"text"}>Text</MenuItem>
+                    <MenuItem value={"image"}>Image</MenuItem>
+                  </Select>
+                </div>
+              )}
             </div>
             <div style={landBackgroundImage} className="chatBodyContainer">
               <div className="chatBody">
@@ -268,12 +284,15 @@ function LessonsComponent() {
           </div>
           {error && <div className="error">{error}</div>}
         </div>
+        {(land.id != 5) && (
+
         <LessonsListComponent
           lessonNames={lessonNames}
           land={land}
           currentLesson={currentLesson}
           currentMinilesson={currentMinilesson}
         />
+        )}
       </div>
     </>
   );
