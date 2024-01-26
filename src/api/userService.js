@@ -100,7 +100,13 @@ export const resetUserStats = async (username) => {
     }
   } catch (error) {
     console.error("Error resetting user stats:", error);
-    throw error;
   }
 };
 
+export const pingServer = async () => {
+  try {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}`);
+  } catch (error) {
+    console.error("Error resetting user stats:", error);
+  }
+};

@@ -2,11 +2,16 @@ import Link from "next/link";
 import "./style.css";
 import FriendsComponent from "../components/HomePage/FriendsComponent.jsx";
 
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import LandDataContext from "../context/LandDataContext";
+import { pingServer } from "@/api";
 
 function HomePage() {
   const landData = useContext(LandDataContext);
+
+  useEffect(() => {
+    pingServer();
+  }, []);
 
   return (
     <div>
