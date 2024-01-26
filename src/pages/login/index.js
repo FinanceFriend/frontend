@@ -24,8 +24,11 @@ function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
+      setErrorMessage("Loading...")
       const response = await backendLogin(loginData); 
       console.log(response)
+      setErrorMessage("")
+
       if (response.success) {
         console.log(response)
         login(response.user.username); 

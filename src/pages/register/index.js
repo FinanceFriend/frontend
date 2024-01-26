@@ -67,7 +67,10 @@ function RegisterPage() {
     registerData.preferredLanguage = registerData.preferredLanguage.label;
 
     try {
+      setErrorMessage("Loading...")
+
       const response = await register(registerData);
+      setErrorMessage("")
 
       console.log("Registration successful:", response);
       if (response.success) {
