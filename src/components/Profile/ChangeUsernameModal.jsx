@@ -1,4 +1,3 @@
-// ChangeUsernameModal.js
 import React, { useState, useEffect } from "react";
 import "./Popup.css";
 import ChangeUsername from "./ChangeUsername";

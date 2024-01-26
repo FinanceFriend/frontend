@@ -9,9 +9,9 @@ export default function CountrySelect({ value, onChange }) {
       id="country-select-demo"
       sx={{ width: 247 }}
       options={countries}
-      value={value} // Control the value
+      value={value}
       onChange={(event, newValue) => {
-        onChange({ name: "countryOfOrigin", value: newValue }); // Update parent state
+        onChange({ name: "countryOfOrigin", value: newValue }); 
       }}
       autoHighlight
       getOptionLabel={(option) => option.label}
@@ -37,7 +37,7 @@ export default function CountrySelect({ value, onChange }) {
           label="Country of Origin"
           inputProps={{
             ...params.inputProps,
-            autoComplete: "new-password", // disable autocomplete and autofill
+            autoComplete: "new-password", 
           }}
         />
       )}

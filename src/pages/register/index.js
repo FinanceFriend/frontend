@@ -100,8 +100,8 @@ function RegisterPage() {
                   required
                   type="text"
                   placeholder="Username"
-                  name="username" // Add name attribute for email
-                  value={registerData.username} // Use state value for email
+                  name="username" 
+                  value={registerData.username} 
                   onChange={handleInputChange}
                 />
               </div>
@@ -120,9 +120,9 @@ function RegisterPage() {
                   required
                   type="password"
                   placeholder="Password"
-                  name="password" // Add name attribute for password
-                  value={registerData.password} // Use state value for password
-                  onChange={handleInputChange} // Handle input change
+                  name="password" 
+                  value={registerData.password} 
+                  onChange={handleInputChange}
                 />
               </div>
 

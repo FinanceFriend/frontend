@@ -51,16 +51,16 @@ function LoginPage() {
               placeholder="E-mail"
               name="login"  
               value={loginData.login}  
-              onChange={handleInputChange}  // Handle input change
+              onChange={handleInputChange}  
             />
           </div>
           <div className="inputL">
             <input
               type="password"
               placeholder="Password"
-              name="password"  // Add name attribute for password
-              value={loginData.password}  // Use state value for password
-              onChange={handleInputChange}  // Handle input change
+              name="password"
+              value={loginData.password}  
+              onChange={handleInputChange}
             />
           </div>
         </div>

@@ -155,7 +155,7 @@ function LessonsComponent() {
       };
 
       console.log(chatData);
-      setChatData((prevChatData) => [newMessage, ...prevChatData]); // Use functional update form of setState
+      setChatData((prevChatData) => [newMessage, ...prevChatData]); 
       setTyping(false);
     } catch (error) {
       console.error("Error fetching lesson message:", error);
@@ -182,7 +182,7 @@ function LessonsComponent() {
       };
 
       setChatData((currentChatData) => [newUserMessage, ...currentChatData]);
-      setInputValue(""); // Reset the input field
+      setInputValue(""); 
 
       let response = "";
       if (land?.id != 5) {

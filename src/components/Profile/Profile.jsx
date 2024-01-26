@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from "react";
 import ".//Profile.css";
 import SemiCircleProgressBar from "react-progressbar-semicircle";
 import { useAuth } from "@/context/AuthProvider";
-import { fetchUserStats } from "@/api/userService";
 import LandDataContext from "@/context/LandDataContext";
 import { useRouter } from "next/router";
 import ChangePasswordModal from "./ChangePasswordModal";

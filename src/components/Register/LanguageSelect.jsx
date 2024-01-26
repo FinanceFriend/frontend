@@ -193,7 +193,7 @@ export default function LanguageSelect({ value, onChange }) {
       options={languages}
       value={value} 
       onChange={(event, newValue) => {
-        onChange({ name: 'preferredLanguage', value: newValue }); // Update parent state
+        onChange({ name: 'preferredLanguage', value: newValue }); 
       }}
       autoHighlight
       getOptionLabel={(option) => option.label}
@@ -209,7 +209,7 @@ export default function LanguageSelect({ value, onChange }) {
           label="Preferred Language"
           inputProps={{
             ...params.inputProps,
-            autoComplete: "new-password", // disable autocomplete and autofill
+            autoComplete: "new-password",
           }}
         />
       )}

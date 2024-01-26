@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-import { getLeaderboard, getLeaderboardforUser } from "@/api"; // Assuming these are in a separate file
+import { getLeaderboard, getLeaderboardforUser } from "@/api"; 
 import { useAuth } from "@/context/AuthProvider";
 import Navbar from "@/components/Navbar/Navbar";
 import { useRouter } from "next/router";
 import CountrySelect from "@/components/Register/CountrySelect";
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button"; // Import the Button component
 
 function LeaderboardComponent() {
   let [leaderboardData, setLeaderboardData] = useState([]);

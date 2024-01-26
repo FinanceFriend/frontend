@@ -7,7 +7,7 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [userStats, setUserStats] = useState(null); // New state for user stats
+  const [userStats, setUserStats] = useState(null); 
 
   useEffect(() => {
     const localUser = window.localStorage.getItem("user");
@@ -58,7 +58,7 @@ export const AuthProvider = ({ children }) => {
         const updatedStats = await fetchUserStats(userToFetch);
         setUserStats(updatedStats);
         console.log(userStats)
-        window.localStorage.setItem("userStats", JSON.stringify(updatedStats)); // Optionally save stats in localStorage
+        window.localStorage.setItem("userStats", JSON.stringify(updatedStats)); 
       } catch (err) {
         console.error("Error refreshing profile stats:", err);
       }
