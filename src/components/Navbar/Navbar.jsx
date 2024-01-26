@@ -16,7 +16,7 @@ function Navbar() {
     <>
       <nav>
       
-        <div id="logo"> 
+        <div id="logo" style={{cursor: "pointer"}}> 
           <Link href="/dashboard" passHref legacyBehavior><img src="/favicon.ico" alt="Icon" /></Link>
           <Link href="/dashboard" passHref legacyBehavior><h3>FinanceFriends</h3></Link>          
         </div>
@@ -39,7 +39,7 @@ function Navbar() {
               </Link>
             </li>
             <li id="logout">
-              <div onClick={handleLogout} >
+              <div onClick={handleLogout} style={{cursor: "pointer"}}>
                 <a>LOG OUT</a>
               </div>
             </li>

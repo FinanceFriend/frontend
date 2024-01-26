@@ -72,7 +72,7 @@ function HomePage() {
       </div>
       <div className="buttonContainer" style={{ marginBottom: "2rem" }}>
         <Link href="/dashboard" passHref>
-          <button className="loginButton">Let&apos;s Learn!</button>
+          <button className="loginButton" style={{cursor: "pointer"}}>Let&apos;s Learn!</button>
         </Link>
       </div>
     </div>

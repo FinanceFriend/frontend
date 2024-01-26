@@ -1,14 +1,34 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Popup.css";
-
-const ChangePassword = ({ currentUser }) => {
+import { updateUserInfo } from "@/api/userService";
+import { useAuth } from "@/context/AuthProvider";
+const ChangePassword = ({ currentUsername }) => {
   const [currentPassword, setCurrentPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
+  const [password, setNewPassword] = useState("");
   const [error, setError] = useState("");
+  const { login } = useAuth();
 
   const handleUpdatePassword = async () => {
-    // Add your logic for updating the password
+    try {
+      if (!password) {
+        setError("New username cannot be empty");
+        return;
+      }
+
+      const userData = {
+        password,
+      };
+
+      const response = await updateUserInfo(currentUsername, userData);
+
+      console.log("Registration successful:", response);
+      if (response.success) {
+        setError("Password successfully changed");
+      }
+    } catch (error) {
+      setError(error + "! Please try again.");
+    }
   };
   return (
     <div className="container">
@@ -22,7 +42,7 @@ const ChangePassword = ({ currentUser }) => {
       <input
         className="inputField"
         type="password"
-        value={newPassword}
+        value={password}
         onChange={(e) => setNewPassword(e.target.value)}
         placeholder="Enter new password"
       />

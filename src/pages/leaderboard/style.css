@@ -110,3 +110,18 @@
     line-height: normal;
     margin: 0 5px;
 }
+
+.filterButton {
+    text-align: center;
+    height: 23px;
+    width: 60px;
+    color: white;
+    background-color: var(--purple);
+    font-family: "Londrina Solid";
+    font-size: 1.125rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border-radius: 0.4875rem;
+    cursor: pointer;
+}

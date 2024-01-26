@@ -5,12 +5,17 @@ import { useAuth } from "@/context/AuthProvider";
 import Navbar from "@/components/Navbar/Navbar";
 import { useRouter } from "next/router";
 import CountrySelect from "@/components/Register/CountrySelect";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button"; // Import the Button component
 
 function LeaderboardComponent() {
   let [leaderboardData, setLeaderboardData] = useState([]);
   let [leaderboardDataForUser, setLeaderboardDataForUser] = useState([]);
 
   let [countrySelect, setCountrySelect] = useState();
+  let [ageInput, setAgeInput] = useState("");
+
+  let [userMatchesFilters, setUserMatchesFilters] = useState([]);
 
   const { currentUser } = useAuth();
 
@@ -25,20 +30,45 @@ function LeaderboardComponent() {
     if (currentUser) {
       loadLeaderboardData(currentUser.username);
     }
-  }, [currentUser]); 
+  }, [currentUser]);
 
   const handleInputChange = (e) => {
-    console.log(e)
-    setCountrySelect(e.value)
+    console.log(e);
+    setCountrySelect(e.value);
   };
-  
+
+  const handleAgeInputChange = (e) => {
+    setAgeInput(e.target.value);
+  };
+
+  const filter = () => {
+    if (currentUser) {
+      loadLeaderboardData(currentUser.username);
+    }
+  };
+
   const loadLeaderboardData = async (username) => {
     try {
-      const leaderboardData = await getLeaderboard();
+      console.log(countrySelect, ageInput);
+      const leaderboardData = await getLeaderboard(
+        ageInput,
+        countrySelect?.label
+      );
       console.log("AAAAAAAAAA", leaderboardData);
-      setLeaderboardData(leaderboardData);
 
       const leaderboardDataForUser = await getLeaderboardforUser(username);
+
+      if(countrySelect || ageInput){
+        setUserMatchesFilters(
+          leaderboardDataForUser.country === countrySelect?.label &&
+            leaderboardDataForUser.age === parseInt(ageInput, 10)
+        );
+      }else{
+        setUserMatchesFilters(true)
+      }
+   
+      setLeaderboardData(leaderboardData);
+
       console.log(leaderboardDataForUser);
       setLeaderboardDataForUser(leaderboardDataForUser);
     } catch (error) {
@@ -53,13 +83,24 @@ function LeaderboardComponent() {
         <div className="lessonsContainer">
           <div className="leaderboardContainer">
             <div className="leaderboardHeader">
-            <p className="filtersText">Filters:</p>
-            <CountrySelect
-                  placeholder="Country of Origin"
-                  name="countryOfOrigin"
-                  value={countrySelect}
-                  onChange={handleInputChange}
-                />
+              <p className="filtersText">Filters:</p>
+              <CountrySelect
+                style={{ marginRight: "5px" }}
+                placeholder="Country of Origin"
+                name="countryOfOrigin"
+                value={countrySelect}
+                onChange={handleInputChange}
+              />
+              <TextField
+                label="Age"
+                variant="outlined"
+                style={{ margin: "0px 5px" }}
+                value={ageInput}
+                onChange={handleAgeInputChange}
+              />
+              <div className="filterButton" onClick={filter}>
+                Filter!
+              </div>
             </div>
             <div className="leaderboardBodyContainer">
               <div className="leaderboardBody">
@@ -121,27 +162,29 @@ function LeaderboardComponent() {
               </div>
             </div>
 
-            <div className="leaderboardDataForUserContainer">
-              <div className="leaderboardDataForUserGrid">
-                <div
-                  className="leaderboardTextyellow"
-                  style={{
-                    borderRadius: "50px",
-                  }}
-                >
-                  #{leaderboardDataForUser.generalRank}
-                </div>
-                <div className="leaderboardTextyellow">
-                  {leaderboardDataForUser.username}
-                </div>
-                <div className="leaderboardTextyellow">
-                  {leaderboardDataForUser.country}
-                </div>
-                <div className="leaderboardTextyellow">
-                  {leaderboardDataForUser.totalPoints}
+            {userMatchesFilters && (
+              <div className="leaderboardDataForUserContainer">
+                <div className="leaderboardDataForUserGrid">
+                  <div
+                    className="leaderboardTextyellow"
+                    style={{
+                      borderRadius: "50px",
+                    }}
+                  >
+                    #{leaderboardDataForUser.generalRank}
+                  </div>
+                  <div className="leaderboardTextyellow">
+                    {leaderboardDataForUser.username}
+                  </div>
+                  <div className="leaderboardTextyellow">
+                    {leaderboardDataForUser.country}
+                  </div>
+                  <div className="leaderboardTextyellow">
+                    {leaderboardDataForUser.totalPoints}
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
