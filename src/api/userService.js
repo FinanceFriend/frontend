@@ -87,3 +87,20 @@ export const updateUserInfo = async (username, userData) => {
     throw new Error(error.response.data.message);
   }
 };
+
+export const resetUserStats = async (username) => {
+  try {
+    const response = await axios.put(
+      `${process.env.NEXT_PUBLIC_API_URL}/stats/reset/${username}`
+    );
+    if (response.data.success) {
+      return response.data.data;
+    } else {
+      throw new Error(response.data.message || "Stats reset was unsuccessful");
+    }
+  } catch (error) {
+    console.error("Error resetting user stats:", error);
+    throw error;
+  }
+};
+

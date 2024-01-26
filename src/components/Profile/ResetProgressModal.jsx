@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from "react";
 import "./Popup.css";
 import { useAuth } from "@/context/AuthProvider";
+import { resetUserStats } from "@/api";
 
 export default function ChangeUsernameModal() {
   const [modal, setModal] = useState(false);
-  const { currentUser } = useAuth();
+  const { currentUser, refreshProfileStats } = useAuth();
 
   const toggleModal = () => {
     setModal(!modal);
+  };
+
+  const handleYesClick = async () => {
+    await resetUserStats(currentUser.username)
+    refreshProfileStats();
+    toggleModal()
   };
 
   useEffect(() => {
@@ -17,6 +24,7 @@ export default function ChangeUsernameModal() {
       document.body.classList.remove("active-modal");
     }
   }, [modal]);
+  
   return (
     <>
       <button onClick={toggleModal} className="btn-modal">
@@ -31,8 +39,9 @@ export default function ChangeUsernameModal() {
               Are you sure you want to reset your progress?
             </p>
             <div className="btn-yes-no">
-              <button className="yesbtn btn-modal">YES</button>
-              <button className="nobtn btn-modal">NO</button>
+              {/* Add handleYesClick to the onClick event of the yes button */}
+              <button className="yesbtn btn-modal" onClick={handleYesClick}>YES</button>
+              <button className="nobtn btn-modal" onClick={toggleModal}>NO</button>
             </div>
             <button className="close-modal" onClick={toggleModal}>
               CLOSE
