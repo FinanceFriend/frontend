@@ -92,7 +92,7 @@ html {
   /* calc(100% / 2 - 20px) converted to rem */
 }
 
-.registerinput registerinput {
+.registerinput input {
   width: 15.4375rem;
   /* 247px converted to rem */
   height: 3.3125rem;
