@@ -104,10 +104,27 @@ export const evaluateQuestion = async (question, userAnswer, user) => {
         correctAnswerExample: question.correct_answer,
       }
     );
-    console.log(response)
+    console.log(response);
     return response.data;
   } catch (error) {
     console.error("Error evaluating answer:", error);
     return { success: false };
   }
+};
+
+export const getFreeFormUserMessage = async (user, landId, message, type) => {
+  const requestBody = {
+    user,
+    landId,
+    message,
+    type,
+  };
+
+  console.log(requestBody);
+
+  const response = await axios.post(
+    `${process.env.NEXT_PUBLIC_API_URL}/langchain/freeformUserMessage`,
+    requestBody
+  );
+  return response.data;
 };

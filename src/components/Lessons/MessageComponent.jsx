@@ -3,16 +3,18 @@ import Avatar from "@mui/material/Avatar";
 import QuizComponent from "./QuizComponent";
 
 function MessageComponent({ msg, land, user }) {
-  const isAiMessage = msg.sender === "AI";
+  const isUserMessage = msg.sender === "User";
   const isQuiz = msg.sender === "Quiz";
+
+  const isImage = msg.content.includes("https://oaidalleapiprodscus.blob.core.windows.net/private/org");
 
   return (
     <div
       className={`messageContainer ${
-        isAiMessage || isQuiz ? "aiMessage" : "userMessage"
+        !isUserMessage ? "aiMessage" : "userMessage"
       }`}
     >
-      {(isAiMessage || isQuiz) && (
+      {!isUserMessage && (
         <Avatar
           alt={land.friendName}
           src={land.friendImage}
@@ -24,6 +26,14 @@ function MessageComponent({ msg, land, user }) {
           <div className="messageText">
             <QuizComponent quiz={msg.content} user={user} land={land} />
           </div>
+        ) : isImage ? (
+          <img height={400}
+            src={msg.content
+              .replace(/\"\\n/g, "")
+              .replace(/\\n/g, "\n")
+              .replace(/"/g, "")
+              .trim()}
+          ></img>
         ) : (
           <p style={{ whiteSpace: "pre-wrap" }} className="messageText">
             {msg.content
@@ -34,7 +44,7 @@ function MessageComponent({ msg, land, user }) {
           </p>
         )}
       </div>
-      {!isAiMessage && !isQuiz && (
+      {isUserMessage && (
         <Avatar
           alt={land.friendName}
           style={{ backgroundColor: "var(--purple)" }}

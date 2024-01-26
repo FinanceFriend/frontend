@@ -5,6 +5,7 @@ import LandDataContext from "../../context/LandDataContext";
 import MessageComponent from "@/components/Lessons/MessageComponent";
 import {
   getChatData,
+  getFreeFormUserMessage,
   getLessonMessage,
   getLessonsNames,
   getUserMessage,
@@ -167,7 +168,6 @@ function LessonsComponent() {
     try {
       setTyping(true);
 
-      // Add the user's message immediately
       const newUserMessage = {
         sender: "User",
         content: inputValue,
@@ -176,21 +176,31 @@ function LessonsComponent() {
       setChatData((currentChatData) => [newUserMessage, ...currentChatData]);
       setInputValue(""); // Reset the input field
 
-      // Now make the API call
-      const response = await getUserMessage(
-        currentLesson,
-        currentMinilesson,
-        currentUser,
-        land,
-        inputValue
-      );
+      let response = "";
+      let type = "image";
+      if (land.id != 5) {
+        response = await getUserMessage(
+          currentLesson,
+          currentMinilesson,
+          currentUser,
+          land,
+          inputValue
+        );
+      } else {
+        let landId = land.id;
+        response = await getFreeFormUserMessage(
+          currentUser,
+          landId,
+          inputValue,
+          type
+        );
+      }
 
       let newAIResponse = {
         sender: "AI",
         content: response.message,
       };
 
-      // Update the chat data again with the AI's response
       setChatData((currentChatData) => [newAIResponse, ...currentChatData]);
       setTyping(false);
     } catch (error) {
