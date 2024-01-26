@@ -2,7 +2,14 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, install necessary npm dependancies:
+Set Up Environment Variables:
+   - Rename the `.env.example` file to `.env` in the root of your project.
+   - Add your backend API URI and other necessary environment variables. Example:
+     ```
+     NEXT_PUBLIC_API_URL=your_api_uri
+     ```
+
+Install necessary npm dependancies:
 
 ```bash
 npm install --force
