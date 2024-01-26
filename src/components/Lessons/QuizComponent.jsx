@@ -35,8 +35,8 @@ function QuizComponent({ quiz, user, land }) {
       const userAnswer = selectedOptions[index] || "";
 
       if (
-        (question.type === "Fill-in-the-Blank" ||
-          question.type === "Open-ended") &&
+        question.type !== "Multiple Choice" &&
+        question.type !== "True/False" &&
         userAnswer !== ""
       ) {
         evaluationPromises.push(evaluateQuestion(question, userAnswer, user));
@@ -54,8 +54,8 @@ function QuizComponent({ quiz, user, land }) {
     evaluations.forEach((evaluation, index) => {
       try {
         const evaluationData = JSON.parse(evaluation.message);
-        newEvaluationResults[index] = evaluationData.correct;
-        if (evaluationData.correct) {
+        newEvaluationResults[index] = evaluationData.evaluation;
+        if (evaluationData.evaluation) {
           fillInTheBlankScore += 1;
         }
       } catch (error) {
@@ -98,13 +98,13 @@ function QuizComponent({ quiz, user, land }) {
   const getInputStyle = (questionIndex) => {
     if (
       quizCompleted &&
-      (questionsArray[questionIndex].type === "Fill-in-the-Blank" ||
-        questionsArray[questionIndex].type === "Open-ended")
+      questionsArray[questionIndex].type !== "Multiple Choice" &&
+      questionsArray[questionIndex].type !== "True/False"
     ) {
       const fillInTheBlankCount = questionsArray
         .slice(0, questionIndex + 1)
         .filter(
-          (q, i) => q.type === "Fill-in-the-Blank" || q.type === "Open-ended"
+          (q, i) => q.type !== "Multiple Choice" && q.type !== "True/False"
         ).length;
       const isCorrect = evaluationResults[fillInTheBlankCount - 1];
       return isCorrect ? "inputMessage correct" : "inputMessage incorrect";
@@ -156,20 +156,20 @@ function QuizComponent({ quiz, user, land }) {
               </div>
             </div>
           )}
-          {(question.type === "Fill-in-the-Blank" ||
-            question.type === "Open-ended") && (
-            <div>
-              <p>{question.question}</p>
-              <div className="fillBlankInput">
-                <input
-                  className={getInputStyle(index)}
-                  type="text"
-                  value={selectedOptions[index] || ""}
-                  onChange={(event) => handleInputChange(index, event)}
-                />
+          {question.type !== "Multiple Choice" &&
+            question.type !== "True/False" && (
+              <div>
+                <p>{question.question}</p>
+                <div className="fillBlankInput">
+                  <input
+                    className={getInputStyle(index)}
+                    type="text"
+                    value={selectedOptions[index] || ""}
+                    onChange={(event) => handleInputChange(index, event)}
+                  />
+                </div>
               </div>
-            </div>
-          )}
+            )}
         </div>
       ))}
 

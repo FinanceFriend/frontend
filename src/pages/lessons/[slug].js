@@ -137,7 +137,7 @@ function LessonsComponent() {
         currentBlock,
         currentLesson,
         currentMinilesson,
-        progress,
+        currentUserStats?.completionPercentages[land?.id],
         land,
         currentUser
       );
