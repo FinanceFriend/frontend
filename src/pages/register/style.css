@@ -70,13 +70,13 @@
     gap: 1.875rem; /* 15px converted to rem */
   }
   
-  .inputs .input,
+  .inputs .registerinput,
   .inputs .input2 {
     height: 2.8125rem; /* 45px converted to rem */
     width: calc(50% - 1.25rem); /* calc(100% / 2 - 20px) converted to rem */
   }
   
-  .input input {
+  .registerinput registerinput {
     width: 15.4375rem; /* 247px converted to rem */
     height: 3.3125rem; /* 53px converted to rem */
     border-radius: 0.25rem; /* 4px converted to rem */

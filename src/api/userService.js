@@ -3,7 +3,10 @@ import axios from "axios";
 export const login = async (loginData) => {
   try {
     console.log("Before axios.post");
-    const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/login`, loginData);
+    const response = await axios.post(
+      `${process.env.NEXT_PUBLIC_API_URL}/login`,
+      loginData
+    );
     console.log("After axios.post", response);
 
     return response.data;
@@ -69,7 +72,7 @@ export const updateUserStats = async (username, statsUpdates) => {
     const response = await axios.put(url, statsUpdates);
 
     console.log(response);
-    
+
     if (response.data.success) {
       return response.data.updatedStats;
     } else {
@@ -78,5 +81,17 @@ export const updateUserStats = async (username, statsUpdates) => {
   } catch (error) {
     console.error("Error updating user stats:", error);
     throw error;
+  }
+};
+
+export const updateUserInfo = async (username, userData) => {
+  try {
+    const response = await axios.put(
+      `${process.env.NEXT_PUBLIC_API_URL}/user/${username}`,
+      userData
+    );
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data.message);
   }
 };

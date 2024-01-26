@@ -24,6 +24,7 @@ const UserProfileStats = ({ username }) => {
   const closeChangePasswordModal = () => {
     setChangePasswordModalOpen(false);
   };
+  const [formattedDate, setFormattedDate] = useState(null);
 
   const router = useRouter();
 
@@ -39,18 +40,17 @@ const UserProfileStats = ({ username }) => {
       router.push("/login");
     } else {
       refreshProfileStats();
-      loadChatData(currentUser.username);
+      const dateString = currentUser.dateOfBirth;
+
+      const date = new Date(dateString);
+
+      const day = date.getDate(); 
+      const month = date.getMonth() + 1; 
+      const year = date.getFullYear(); 
+
+      setFormattedDate(`${day}.${month}.${year}.`);
     }
   }, [currentUser, router]);
-
-  const loadChatData = async (username) => {
-    try {
-      const response = await fetchUserStats(username);
-      console.log("PROFILE", response.statsResponse);
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
   return (
     <div>
@@ -69,7 +69,7 @@ const UserProfileStats = ({ username }) => {
                   <b>e-mail:</b> {currentUser?.email}
                 </li>
                 <li>
-                  <b>date of birth:</b> {currentUser?.dateOfBirth}
+                  <b>date of birth:</b> {formattedDate}
                 </li>
                 <li>
                   <b>country:</b> {currentUser?.countryOfOrigin}

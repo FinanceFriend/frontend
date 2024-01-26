@@ -31,8 +31,7 @@ export const AuthProvider = ({ children }) => {
     try {
       const profile = await fetchUserProfile(username);
       if (profile) {
-        await refreshProfileStats(username);
-        console.log(profile);
+        await refreshProfileStats(profile);
       }
       window.localStorage.setItem("user", JSON.stringify(profile));
       setUser(profile);

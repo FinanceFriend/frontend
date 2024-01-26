@@ -4,10 +4,13 @@ import { getLeaderboard, getLeaderboardforUser } from "@/api"; // Assuming these
 import { useAuth } from "@/context/AuthProvider";
 import Navbar from "@/components/Navbar/Navbar";
 import { useRouter } from "next/router";
+import CountrySelect from "@/components/Register/CountrySelect";
 
 function LeaderboardComponent() {
   let [leaderboardData, setLeaderboardData] = useState([]);
   let [leaderboardDataForUser, setLeaderboardDataForUser] = useState([]);
+
+  let [countrySelect, setCountrySelect] = useState();
 
   const { currentUser } = useAuth();
 
@@ -23,6 +26,11 @@ function LeaderboardComponent() {
       loadLeaderboardData(currentUser.username);
     }
   }, [currentUser]); 
+
+  const handleInputChange = (e) => {
+    console.log(e)
+    setCountrySelect(e.value)
+  };
   
   const loadLeaderboardData = async (username) => {
     try {
@@ -45,7 +53,13 @@ function LeaderboardComponent() {
         <div className="lessonsContainer">
           <div className="leaderboardContainer">
             <div className="leaderboardHeader">
-              <p className="leaderboardHeaderText"></p>
+            <p className="filtersText">Filters:</p>
+            <CountrySelect
+                  placeholder="Country of Origin"
+                  name="countryOfOrigin"
+                  value={countrySelect}
+                  onChange={handleInputChange}
+                />
             </div>
             <div className="leaderboardBodyContainer">
               <div className="leaderboardBody">

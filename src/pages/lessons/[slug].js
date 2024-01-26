@@ -59,17 +59,17 @@ function LessonsComponent() {
         const land = landData.find((item) => item.id === slug);
         if (land) {
           console.log(currentUserStats);
-          setCurrentLesson(currentUserStats.progress[land.id]?.lessonId);
+          setCurrentLesson(currentUserStats.progress[land?.id]?.lessonId);
           setCurrentMinilesson(
-            currentUserStats.progress[land.id]?.minilessonId
+            currentUserStats.progress[land?.id]?.minilessonId
           );
-          setCurrentBlock(currentUserStats.progress[land.id]?.blockId);
+          setCurrentBlock(currentUserStats.progress[land?.id]?.blockId);
 
           setLandBackgroundImage({
             background: `linear-gradient(0deg, rgba(22, 0, 160, 0.34) 0%, rgba(22, 0, 160, 0.34) 100%), url(${land.landImage}), lightgray 50% / cover no-repeat`,
           });
           loadChatData(currentUser.username, slug);
-          if (land.id != 5) {
+          if (land?.id != 5) {
             loadLessonNames(land.name);
             loadWelcomeMessage();
           }
@@ -185,7 +185,7 @@ function LessonsComponent() {
       setInputValue(""); // Reset the input field
 
       let response = "";
-      if (land.id != 5) {
+      if (land?.id != 5) {
         response = await getUserMessage(
           currentLesson,
           currentMinilesson,
@@ -194,7 +194,7 @@ function LessonsComponent() {
           inputValue
         );
       } else {
-        let landId = land.id;
+        let landId = land?.id;
         response = await getFreeFormUserMessage(
           currentUser,
           landId,
@@ -224,7 +224,7 @@ function LessonsComponent() {
           <div className="chatContainer">
             <div className="chatHeader">
               <p className="chatHeaderText">Current location: {land?.name}</p>
-              {(land.id == 5) && (
+              {(land?.id == 5) && (
                 <div className="selectContainer">
                   <InputLabel>Response Format</InputLabel>
                   <Select value={type} label="Type" onChange={handleTypeChange}>
@@ -284,7 +284,7 @@ function LessonsComponent() {
           </div>
           {error && <div className="error">{error}</div>}
         </div>
-        {(land.id != 5) && (
+        {(land?.id != 5) && (
 
         <LessonsListComponent
           lessonNames={lessonNames}

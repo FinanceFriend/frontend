@@ -25,7 +25,8 @@ function LoginPage() {
       const response = await backendLogin(loginData); 
       console.log(response)
       if (response.success) {
-        login(loginData.login); 
+        console.log(response)
+        login(response.user.username); 
         console.log('Login successful');
         router.push('/dashboard'); 
       }
@@ -39,8 +40,8 @@ function LoginPage() {
     <form onSubmit={handleLogin}>
       <div className="backgroundContainerL">
       <div className="containerL">
-        <div className="header">
-          <div className="text">Login</div>
+        <div className="loginheader">
+          <div className="logintext">Login</div>
           <div className="underline"></div>
         </div>
         <div className="inputsL">

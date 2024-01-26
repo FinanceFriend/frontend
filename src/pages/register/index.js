@@ -10,6 +10,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import "../register/style.css";
 import CountrySelect from "@/components/Register/CountrySelect";
 import LanguageSelect from "@/components/Register/LanguageSelect";
+import { useAuth } from '@/context/AuthProvider';
 
 function RegisterPage() {
   const router = useRouter();
@@ -48,6 +49,8 @@ function RegisterPage() {
     }
   };
 
+  const { login } = useAuth();
+
   const handleRegister = async (e) => {
     e.preventDefault();
 
@@ -62,11 +65,17 @@ function RegisterPage() {
 
     registerData.countryOfOrigin = registerData.countryOfOrigin.label;
     registerData.preferredLanguage = registerData.preferredLanguage.label;
-    
+
     try {
       const response = await register(registerData);
-  
+
       console.log("Registration successful:", response);
+      if (response.success) {
+        console.log(response);
+        login(response.user.username);
+        console.log("Login successful");
+        router.push("/dashboard");
+      }
     } catch (error) {
       registerData.countryOfOrigin = { label: "" };
       registerData.preferredLanguage = { label: "" };
@@ -86,7 +95,7 @@ function RegisterPage() {
               <div className="underline"></div>
             </div>
             <div className="inputs">
-              <div className="input">
+              <div className="registerinput">
                 <input
                   required
                   type="text"
@@ -96,7 +105,7 @@ function RegisterPage() {
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="input">
+              <div className="registerinput">
                 <input
                   required
                   type="email"
@@ -106,7 +115,7 @@ function RegisterPage() {
                   onChange={handleInputChange}
                 />
               </div>
-              <div className="input">
+              <div className="registerinput">
                 <input
                   required
                   type="password"

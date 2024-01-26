@@ -8,7 +8,7 @@ import LandDataContext from "../context/LandDataContext";
 function HomePage() {
   const landData = useContext(LandDataContext);
 
-    console.log(process.env.NEXT_PUBLIC_API_URL)
+  console.log(process.env.NEXT_PUBLIC_API_URL);
   return (
     <div>
       <div className="homepageTitleContainer">
@@ -16,11 +16,11 @@ function HomePage() {
         <div>
           <h1 className="homePageTitle">FinanceFriends</h1>
           <div className="buttonContainer">
-          <Link href="/register" legacyBehavior>
-            <a className="registerButton">Register</a>
+            <Link href="/register" legacyBehavior>
+              <a className="registerButton">Register</a>
             </Link>
             <Link href="/login" legacyBehavior>
-            <a className="loginButton">Login</a>
+              <a className="loginButton">Login</a>
             </Link>
           </div>
         </div>
@@ -70,7 +70,7 @@ function HomePage() {
           <FriendsComponent key={land.id} land={land} />
         ))}
       </div>
-      <div className="buttonContainer">
+      <div className="buttonContainer" style={{ marginBottom: "2rem" }}>
         <Link href="/dashboard" passHref>
           <button className="loginButton">Let&apos;s Learn!</button>
         </Link>

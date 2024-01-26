@@ -1,32 +1,27 @@
-import React, { useState } from 'react';
-import axios from 'axios';
-import "./Popup.css"
+import React, { useState } from "react";
+import "./Popup.css";
+import { updateUserInfo } from "@/api/userService";
 
 const ChangeUsername = ({ currentUsername }) => {
-  const [newUsername, setNewUsername] = useState('');
-  const [error, setError] = useState('');
-  
+  const [newUsername, setNewUsername] = useState("");
+  const [error, setError] = useState("");
 
   const handleUpdateUsername = async () => {
     try {
       if (!newUsername) {
-        setError('New username cannot be empty');
+        setError("New username cannot be empty");
         return;
       }
 
-      const response = await axios.put(`/api/user/${encodeURIComponent(currentUsername)}`, {
+      const userData = {
         newUsername,
-      });
+      };
 
-      const data = response.data;
+      const response = await updateUserInfo(currentUsername, userData);
 
-      if (data.success) {
-        console.log('Username updated successfully');
-      } else {
-        setError(`Error updating username: ${data.message}`);
-      }
+      console.log("Registration successful:", response);
     } catch (error) {
-      setError(`Error updating username: ${error.message}`);
+      setError(error + "! Please try again.");
     }
   };
 
