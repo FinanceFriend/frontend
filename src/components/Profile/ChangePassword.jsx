@@ -1,19 +1,35 @@
 import React, { useState } from "react";
-import axios from "axios";
 import "./Popup.css";
 import { updateUserInfo } from "@/api/userService";
-import { useAuth } from "@/context/AuthProvider";
+import { login as backendLogin } from "@/api/userService";
+
 const ChangePassword = ({ currentUsername }) => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [password, setNewPassword] = useState("");
   const [error, setError] = useState("");
-  const { login } = useAuth();
 
   const handleUpdatePassword = async () => {
+    setError("")
     try {
       if (!password) {
         setError("New username cannot be empty");
         return;
+      }
+
+      try {
+        const loginData = {
+          login: currentUsername,
+          password: currentPassword,
+        };
+        const response = await backendLogin(loginData);
+
+        if (!response.success) {
+          setError("Wrong current password! Please try again.");
+          return
+        }
+      } catch (error) {
+        setError("Wrong current password! Please try again.");
+        return
       }
 
       const userData = {
