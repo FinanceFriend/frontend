@@ -7,6 +7,8 @@ import "./style.css";
 import { login as backendLogin } from "@/api/userService"; 
 
 function LoginPage() {
+  const [errorMessage, setErrorMessage] = useState("");
+
   const [loginData, setLoginData] = useState({
     login: '',
     password: ''
@@ -31,7 +33,7 @@ function LoginPage() {
         router.push('/dashboard'); 
       }
     } catch (error) {
-      console.error('Error during login:', error);
+      setErrorMessage('Error during login: ' + error.response.data.message);
     }
   };
 
@@ -64,6 +66,7 @@ function LoginPage() {
             />
           </div>
         </div>
+        <p>{errorMessage}</p>
         <div className="newUser-buttons">       
         <div className="new-user">
           Don&apos;t have an account?
