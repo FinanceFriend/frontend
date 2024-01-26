@@ -11,10 +11,9 @@ function LessonsListComponent({
     ? `url(${land.friendImage})`
     : "none";
 
-    const landBackgrundImageLessonsList = {
-      backgroundImage: `linear-gradient(0deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%), ${backgroundImageUrl}`, // background images
-    };
-  
+  const landBackgrundImageLessonsList = {
+    backgroundImage: `linear-gradient(0deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.8) 100%), ${backgroundImageUrl}`,
+  };
 
   return (
     <div className="lessonsListContainer">
@@ -42,8 +41,19 @@ function LessonsListComponent({
                       const miniLessonClass = isBeforeOrCurrentMiniLesson
                         ? "boldText"
                         : "";
+
+                      const miniLessonStyle =
+                        lessonIndex == currentLesson &&
+                        miniLessonIndex == currentMinilesson
+                          ? { color: "red" }
+                          : {};
+
                       return (
-                        <div key={miniLessonIndex} className={miniLessonClass}>
+                        <div
+                          key={miniLessonIndex}
+                          className={miniLessonClass}
+                          style={miniLessonStyle}
+                        >
                           {lessonIndex + 1}.{miniLessonIndex + 1}{" "}
                           {miniLessonName}
                         </div>
