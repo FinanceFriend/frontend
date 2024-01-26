@@ -40,7 +40,7 @@ function LessonsComponent() {
 
   const [loading, setTyping] = useState(false);
 
-  const { currentUser, currentUserStats } = useAuth();
+  const { currentUser, currentUserStats, refreshProfileStats } = useAuth();
 
   const loadingMessage = {
     sender: "AI",
@@ -48,34 +48,32 @@ function LessonsComponent() {
   };
 
   useEffect(() => {
-    if (currentUser === null) {
-      return;
-    }
-
     if (currentUser === undefined) {
       router.push("/login");
-    } else {
-      if (router.isReady && slug) {
-        const land = landData.find((item) => item.id === slug);
-        if (land) {
-          setCurrentLesson(currentUserStats.progress[land?.id]?.lessonId);
-          setCurrentMinilesson(
-            currentUserStats.progress[land?.id]?.minilessonId
-          );
-          setCurrentBlock(currentUserStats.progress[land?.id]?.blockId);
+    } else if (currentUser !== null) {
+      refreshProfileStats();
+    }
+  }, [currentUser, router]); 
 
-          setLandBackgroundImage({
-            background: `linear-gradient(0deg, rgba(22, 0, 160, 0.34) 0%, rgba(22, 0, 160, 0.34) 100%), url(${land.landImage}), lightgray 50% / cover no-repeat`,
-          });
-          loadChatData(currentUser.username, slug);
-          if (land?.id != 5) {
-            loadLessonNames(land.name);
-            loadWelcomeMessage();
-          }
+  useEffect(() => {
+    if (currentUser && router.isReady && slug) {
+      const land = landData.find((item) => item.id === slug);
+      if (land) {
+        setCurrentLesson(currentUserStats.progress[land?.id]?.lessonId);
+        setCurrentMinilesson(currentUserStats.progress[land?.id]?.minilessonId);
+        setCurrentBlock(currentUserStats.progress[land?.id]?.blockId);
+
+        setLandBackgroundImage({
+          background: `linear-gradient(0deg, rgba(22, 0, 160, 0.34) 0%, rgba(22, 0, 160, 0.34) 100%), url(${land.landImage}), lightgray 50% / cover no-repeat`,
+        });
+        loadChatData(currentUser.username, slug);
+        if (land?.id != 5) {
+          loadLessonNames(land.name);
+          loadWelcomeMessage();
         }
       }
     }
-  }, [currentUser, landData, router, slug]);
+  }, [currentUser, currentUserStats, landData, router, slug]);
 
   const loadChatData = async (username, locationId) => {
     try {
