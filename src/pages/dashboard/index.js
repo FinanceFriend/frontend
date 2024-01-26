@@ -16,7 +16,6 @@ function Dashboard() {
     if (currentUser === undefined) {
       router.push("/login");
     } else {
-      console.log("RESFRESH STATS CALL");
       refreshProfileStats();
     }
   }, [currentUser, router]);
@@ -26,7 +25,10 @@ function Dashboard() {
       <Navbar />
       <div className="dashboardWrapper">
         <div className="welcomeBackcontainer">
-          <p className="welcomeBackText"> Welocme Back, {currentUser?.username}!</p>
+          <p className="welcomeBackText">
+            {" "}
+            Welocme Back, {currentUser?.username}!
+          </p>
           <p className="welcomeBackSubText"> Pick your next adventure</p>
         </div>
         <div className="dashboardContainer">

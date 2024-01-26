@@ -5,10 +5,14 @@ function FriendsComponent({ land }) {
     <div className={`friendsContainer ${land.side}`}>
       <div className="friendsWrapper">
         <div className="friendsGrid">
-          {land.side === 'left' && (
+          {land.side === "left" && (
             <div className="friendsFlex">
               <div className={`friendsFlex2 ${land.side}`}>
-                <img className="friendImage" src={land.friendImage} alt={land.friendName} />
+                <img
+                  className="friendImage"
+                  src={land.friendImage}
+                  alt={land.friendName}
+                />
               </div>
             </div>
           )}
@@ -25,10 +29,14 @@ function FriendsComponent({ land }) {
               <p className="text friendText">{land.moduleDescriptionParents}</p>
             </div>
           </div>
-          {land.side === 'right' && (
+          {land.side === "right" && (
             <div className="friendsFlex">
               <div className={`friendsFlex2 ${land.side}`}>
-                <img className="friendImage" src={land.friendImage} alt={land.friendName} />
+                <img
+                  className="friendImage"
+                  src={land.friendImage}
+                  alt={land.friendName}
+                />
               </div>
             </div>
           )}

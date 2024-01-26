@@ -30,7 +30,6 @@ const UserProfileStats = ({ username }) => {
   const { currentUser, currentUserStats, refreshProfileStats } = useAuth();
 
   useEffect(() => {
-    console.log(currentUser);
     if (currentUser === null) {
       return;
     }
@@ -43,9 +42,9 @@ const UserProfileStats = ({ username }) => {
 
       const date = new Date(dateString);
 
-      const day = date.getDate(); 
-      const month = date.getMonth() + 1; 
-      const year = date.getFullYear(); 
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
 
       setFormattedDate(`${day}.${month}.${year}.`);
     }

@@ -10,7 +10,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import "../register/style.css";
 import CountrySelect from "@/components/Register/CountrySelect";
 import LanguageSelect from "@/components/Register/LanguageSelect";
-import { useAuth } from '@/context/AuthProvider';
+import { useAuth } from "@/context/AuthProvider";
 
 function RegisterPage() {
   const router = useRouter();
@@ -67,23 +67,19 @@ function RegisterPage() {
     registerData.preferredLanguage = registerData.preferredLanguage.label;
 
     try {
-      setErrorMessage("Loading...")
+      setErrorMessage("Loading...");
 
       const response = await register(registerData);
-      setErrorMessage("")
+      setErrorMessage("");
 
-      console.log("Registration successful:", response);
       if (response.success) {
-        console.log(response);
         login(response.user.username);
-        console.log("Login successful");
         router.push("/dashboard");
       }
     } catch (error) {
       registerData.countryOfOrigin = { label: "" };
       registerData.preferredLanguage = { label: "" };
 
-      console.log(error.response.data.message);
       setErrorMessage(error.response.data.message + "! Please try again.");
     }
   };
@@ -103,8 +99,8 @@ function RegisterPage() {
                   required
                   type="text"
                   placeholder="Username"
-                  name="username" 
-                  value={registerData.username} 
+                  name="username"
+                  value={registerData.username}
                   onChange={handleInputChange}
                 />
               </div>
@@ -123,8 +119,8 @@ function RegisterPage() {
                   required
                   type="password"
                   placeholder="Password"
-                  name="password" 
-                  value={registerData.password} 
+                  name="password"
+                  value={registerData.password}
                   onChange={handleInputChange}
                 />
               </div>

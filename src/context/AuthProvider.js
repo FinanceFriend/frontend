@@ -7,17 +7,16 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [userStats, setUserStats] = useState(null); 
+  const [userStats, setUserStats] = useState(null);
 
   useEffect(() => {
     const localUser = window.localStorage.getItem("user");
-    const localUserStats = window.localStorage.getItem("userStats"); 
-  
-    console.log("localUserStatslocalUserStats",localUserStats)
+    const localUserStats = window.localStorage.getItem("userStats");
+
     if (localUserStats) {
-      setUserStats(JSON.parse(localUserStats)); 
+      setUserStats(JSON.parse(localUserStats));
     }
-  
+
     if (localUser) {
       setUser(JSON.parse(localUser));
       refreshProfileStats(JSON.parse(localUser).username);
@@ -25,7 +24,6 @@ export const AuthProvider = ({ children }) => {
       setUser(undefined);
     }
   }, []);
-  
 
   const login = async (username) => {
     try {
@@ -43,7 +41,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     window.localStorage.removeItem("user");
     setUser(null);
-    setUserStats(null); 
+    setUserStats(null);
   };
 
   const isLoggedIn = () => !!user;
@@ -51,14 +49,11 @@ export const AuthProvider = ({ children }) => {
 
   const refreshProfileStats = async (username) => {
     const userToFetch = username || (user && user.username);
-    console.log("refreshProfileStats!!!!!!!!!")
     if (userToFetch) {
-      console.log("AAAAAAAAAAArefreshProfileStats!!!!!!!!!")
       try {
         const updatedStats = await fetchUserStats(userToFetch);
         setUserStats(updatedStats);
-        console.log(userStats)
-        window.localStorage.setItem("userStats", JSON.stringify(updatedStats)); 
+        window.localStorage.setItem("userStats", JSON.stringify(updatedStats));
       } catch (err) {
         console.error("Error refreshing profile stats:", err);
       }

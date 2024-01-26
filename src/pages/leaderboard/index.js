@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./style.css";
-import { getLeaderboard, getLeaderboardforUser } from "@/api"; 
+import { getLeaderboard, getLeaderboardforUser } from "@/api";
 import { useAuth } from "@/context/AuthProvider";
 import Navbar from "@/components/Navbar/Navbar";
 import { useRouter } from "next/router";
@@ -32,7 +32,6 @@ function LeaderboardComponent() {
   }, [currentUser]);
 
   const handleInputChange = (e) => {
-    console.log(e);
     setCountrySelect(e.value);
   };
 
@@ -48,27 +47,24 @@ function LeaderboardComponent() {
 
   const loadLeaderboardData = async (username) => {
     try {
-      console.log(countrySelect, ageInput);
       const leaderboardData = await getLeaderboard(
         ageInput,
         countrySelect?.label
       );
-      console.log("AAAAAAAAAA", leaderboardData);
 
       const leaderboardDataForUser = await getLeaderboardforUser(username);
 
-      if(countrySelect || ageInput){
+      if (countrySelect || ageInput) {
         setUserMatchesFilters(
           leaderboardDataForUser.country === countrySelect?.label &&
             leaderboardDataForUser.age === parseInt(ageInput, 10)
         );
-      }else{
-        setUserMatchesFilters(true)
+      } else {
+        setUserMatchesFilters(true);
       }
-   
+
       setLeaderboardData(leaderboardData);
 
-      console.log(leaderboardDataForUser);
       setLeaderboardDataForUser(leaderboardDataForUser);
     } catch (error) {
       console.error("Error geting leaderboard data:", error);

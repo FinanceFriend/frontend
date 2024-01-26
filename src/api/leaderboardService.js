@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const getLeaderboard = async (age, country) => {
   try {
@@ -14,15 +14,13 @@ export const getLeaderboard = async (age, country) => {
 
     return response.data.leaderboard;
   } catch (error) {
-    throw error; 
+    throw error;
   }
 };
-
 
 export const getLeaderboardforUser = async (username) => {
   const response = await axios.get(
     `${process.env.NEXT_PUBLIC_API_URL}/leaderboard/${username}`
   );
-  console.log(response)
   return response.data.userData;
 };

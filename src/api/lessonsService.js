@@ -24,8 +24,6 @@ export const getLessonMessage = async (
     user,
   };
 
-  console.log(requestBody);
-
   const response = await axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/langchain/lessonMessage`,
     requestBody
@@ -49,8 +47,6 @@ export const getWelcomeMessage = async (
     land,
     user,
   };
-
-  console.log(requestBody);
 
   const response = await axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/langchain/welcome`,
@@ -84,8 +80,6 @@ export const getUserMessage = async (
     message,
   };
 
-  console.log(requestBody);
-
   const response = await axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/langchain/userMessage`,
     requestBody
@@ -104,7 +98,6 @@ export const evaluateQuestion = async (question, userAnswer, user) => {
         correctAnswerExample: question.correct_answer,
       }
     );
-    console.log(response);
     return response.data;
   } catch (error) {
     console.error("Error evaluating answer:", error);
@@ -119,8 +112,6 @@ export const getFreeFormUserMessage = async (user, landId, message, type) => {
     message,
     type,
   };
-
-  console.log(requestBody);
 
   const response = await axios.post(
     `${process.env.NEXT_PUBLIC_API_URL}/langchain/freeformUserMessage`,

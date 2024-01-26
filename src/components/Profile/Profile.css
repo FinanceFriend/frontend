@@ -1,21 +1,21 @@
-
- .my-profile {
-    height:3rem;
+.my-profile {
+    height: 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0.625rem;
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
- }
- .my-profile h3 {
+}
+
+.my-profile h3 {
     font-family: Londrina Solid;
     font-size: 2.0625rem;
     font-weight: 400;
     line-height: 39px;
     letter-spacing: 0em;
     text-align: left;
-    color:#2000A0;
- }
+    color: #2000A0;
+}
 
 .user-info-details img {
     width: 8.875rem;
@@ -38,7 +38,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
+
 }
 
 .h3-title {
@@ -48,7 +48,7 @@
     line-height: 39px;
     letter-spacing: 0em;
     text-align: left;
-    color:#2000A0;
+    color: #2000A0;
     margin: 0 0 20px 0;
 }
 
@@ -56,11 +56,13 @@
     display: flex;
     align-items: center;
 }
+
 #user-info-text-details ul {
     margin: 0;
 }
+
 #user-info-text-details li {
-    list-style:none;
+    list-style: none;
     font-family: Londrina Solid;
     font-weight: 300;
 }
@@ -83,7 +85,7 @@
     align-items: center;
     width: 22.8125rem;
     height: 12.5625rem;
-    margin:0;
+    margin: 0;
 }
 
 .settings h3 {
@@ -93,16 +95,18 @@
     line-height: 39px;
     letter-spacing: 0em;
     text-align: center;
-    color:#FFC700;
-    margin: 0 0 30px 25px;    
+    color: #FFC700;
+    margin: 0 0 30px 25px;
 }
+
 .settings ul {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .settings li {
-    list-style:none;
+    list-style: none;
     font-family: Londrina Solid;
     font-weight: 300;
     font-size: 1.25rem;
@@ -111,7 +115,7 @@
 
 .all-stats-bars {
     box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: space-around;
     background-color: #2000A0;
@@ -125,8 +129,8 @@
     line-height: 39px;
     letter-spacing: 0em;
     text-align: left;
-    color:#FFC700;
-      
+    color: #FFC700;
+
 }
 
 .text-total-bar {
@@ -154,7 +158,7 @@
     position: absolute;
     z-index: 2;
     padding-left: 4.5rem;
-    top:2.5rem;
+    top: 2.5rem;
     width: 10rem;
     text-align: center;
     right: 0rem;
@@ -164,20 +168,20 @@
     position: absolute;
     z-index: 2;
     padding-left: 4.5rem;
-    top:4rem;
+    top: 4rem;
     width: 10rem;
     text-align: center;
-    right: 0rem;  
+    right: 0rem;
 }
 
- .percentage p {
+.percentage p {
     font-family: Londrina Solid;
     font-size: 18px;
     font-weight: 400;
     line-height: 18px;
     letter-spacing: 0em;
     text-align: center;
-    color:#fff;    
+    color: #fff;
 }
 
 .progress-text p {
@@ -187,20 +191,20 @@
     line-height: 18px;
     letter-spacing: 0em;
     text-align: center;
-    color:#00FF66;
+    color: #00FF66;
 }
 
 .each-land-bar {
-   margin-top: 7rem;
+    margin-top: 7rem;
 
-   margin-right: 10rem;
+    margin-right: 10rem;
 }
 
 .each-land-bar ul {
     padding-left: 4rem;
     margin-top: 2rem;
 }
- 
+
 .each-land-bar ul {
     display: flex;
     align-items: center;
@@ -218,10 +222,10 @@
 }
 
 .land-text {
-    position:absolute;
+    position: absolute;
     z-index: 2;
     top: 2rem;
-    right: 0.3rem; 
+    right: 0.3rem;
     text-align: center;
     width: 7rem;
 }
@@ -240,11 +244,12 @@
     position: absolute;
     z-index: 2;
     padding-left: 4.5rem;
-    top:3rem;
+    top: 3rem;
     width: 10rem;
     text-align: center;
-    right: -1.3rem;     
+    right: -1.3rem;
 }
+
 #prog-bar2 .percentage p {
     font-family: Londrina Solid;
     font-size: 14px;
@@ -257,7 +262,7 @@
 
 
 .point-count {
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: space-around;
     height: 9.8125rem;
@@ -280,7 +285,7 @@
     line-height: 39px;
     letter-spacing: 0em;
     text-align: left;
-    color:#2000A0;    
+    color: #2000A0;
     margin: 0;
 }
 
@@ -312,7 +317,7 @@
     margin-top: 20px;
     display: flex;
     justify-content: space-evenly;
-    gap:105px;
+    gap: 105px;
     margin-right: 190px;
     padding-left: 6rem;
 }
@@ -329,7 +334,7 @@
 
 .land-points p {
     margin: 0.5rem 0 0 0;
-    color:#2000A0;
+    color: #2000A0;
 }
 
 .each-land-txt {
@@ -339,7 +344,7 @@
     line-height: 18px;
     letter-spacing: 0em;
     text-align: center;
-    
+
 }
 
 .quizzes {
@@ -355,7 +360,7 @@
 
 #quizzes-text {
     display: flex;
-    justify-content:flex-end;
+    justify-content: flex-end;
     width: 35rem;
     padding-left: 0;
     margin-left: 0;
@@ -368,14 +373,14 @@
     line-height: 39px;
     letter-spacing: 0em;
     text-align: left;
-    color:#FFC700;
+    color: #FFC700;
 }
 
 .group {
     display: flex;
     justify-content: flex-start;
     width: 130rem;
-    gap:15rem;
+    gap: 15rem;
     margin-top: 3rem;
     padding-left: 2rem;
     margin-bottom: 2rem;
@@ -412,6 +417,7 @@
     color: #FF0000;
     width: 5rem;
 }
+
 #correct-answers {
     margin-top: 3rem;
 }
@@ -461,7 +467,7 @@
     line-height: 18px;
     letter-spacing: 0em;
     text-align: center;
-    color:#00FF66;
+    color: #00FF66;
 }
 
 .group .percentage {
@@ -475,5 +481,5 @@
     line-height: 18px;
     letter-spacing: 0em;
     text-align: center;
-    color:#fff;   
+    color: #fff;
 }

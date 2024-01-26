@@ -49,7 +49,7 @@
     height: 100%;
     display: grid;
     grid-template-columns: 50% 50%;
-    gap:10rem;
+    gap: 10rem;
 }
 
 .text {

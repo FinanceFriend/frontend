@@ -76,7 +76,7 @@
       display: flex;
       align-items: center;
       padding-left: 15%;
-      
+
   }
 
   .introDataContainer {
@@ -111,7 +111,7 @@
       font-size: 4rem;
       font-weight: 800;
       margin: 0;
-      
+
   }
 
   .introDataSubTitle {
@@ -120,13 +120,13 @@
       margin: 0;
   }
 
-  .lessonsContainer{
-    display: flex;
-    justify-content: center
+  .lessonsContainer {
+      display: flex;
+      justify-content: center
   }
 
-  .lessonsWrapper{
-    width: 60%;
-    display: flex;
-    flex-direction: column;
+  .lessonsWrapper {
+      width: 60%;
+      display: flex;
+      flex-direction: column;
   }

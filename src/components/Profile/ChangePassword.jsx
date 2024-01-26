@@ -22,7 +22,6 @@ const ChangePassword = ({ currentUsername }) => {
 
       const response = await updateUserInfo(currentUsername, userData);
 
-      console.log("Registration successful:", response);
       if (response.success) {
         setError("Password successfully changed");
       }

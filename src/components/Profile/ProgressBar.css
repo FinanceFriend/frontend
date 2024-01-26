@@ -8,6 +8,7 @@
 }
 
 .progress {
-  fill: #4caf50; /* Change color as needed */
+  fill: #4caf50;
+  /* Change color as needed */
   transition: d 0.3s ease-in-out;
 }

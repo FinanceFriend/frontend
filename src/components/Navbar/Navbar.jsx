@@ -1,31 +1,33 @@
 import Link from "next/link";
 import { useAuth } from "@/context/AuthProvider";
 import "./Navbar.css";
-import { useRouter } from 'next/router';
-
+import { useRouter } from "next/router";
 
 function Navbar() {
-  const { logout } = useAuth(); 
+  const { logout } = useAuth();
   const router = useRouter();
 
   const handleLogout = () => {
     logout();
-    router.push('/'); 
+    router.push("/");
   };
   return (
     <>
       <nav>
-      
-        <div id="logo" style={{cursor: "pointer"}}> 
-          <Link href="/dashboard" passHref legacyBehavior><img src="/favicon.ico" alt="Icon" /></Link>
-          <Link href="/dashboard" passHref legacyBehavior><h3>FinanceFriends</h3></Link>          
+        <div id="logo" style={{ cursor: "pointer" }}>
+          <Link href="/dashboard" passHref legacyBehavior>
+            <img src="/favicon.ico" alt="Icon" />
+          </Link>
+          <Link href="/dashboard" passHref legacyBehavior>
+            <h3>FinanceFriends</h3>
+          </Link>
         </div>
-       
+
         <div id="color">
           <ul id="navbar">
             <li>
               <Link href="/dashboard" legacyBehavior>
-              <a>DASHBOARD</a>
+                <a>DASHBOARD</a>
               </Link>
             </li>
             <li>
@@ -39,7 +41,7 @@ function Navbar() {
               </Link>
             </li>
             <li id="logout">
-              <div onClick={handleLogout} style={{cursor: "pointer"}}>
+              <div onClick={handleLogout} style={{ cursor: "pointer" }}>
                 <a>LOG OUT</a>
               </div>
             </li>

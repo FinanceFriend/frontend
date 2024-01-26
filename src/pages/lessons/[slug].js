@@ -58,7 +58,6 @@ function LessonsComponent() {
       if (router.isReady && slug) {
         const land = landData.find((item) => item.id === slug);
         if (land) {
-          console.log(currentUserStats);
           setCurrentLesson(currentUserStats.progress[land?.id]?.lessonId);
           setCurrentMinilesson(
             currentUserStats.progress[land?.id]?.minilessonId
@@ -81,7 +80,6 @@ function LessonsComponent() {
   const loadChatData = async (username, locationId) => {
     try {
       let messages = await getChatData(username, locationId);
-      console.log(messages);
 
       messages = messages.reverse();
 
@@ -94,7 +92,6 @@ function LessonsComponent() {
   const loadLessonNames = async (name) => {
     try {
       const lessonNames = await getLessonsNames(name);
-      console.log("BLABLA", lessonNames);
       setLessonNames(lessonNames);
     } catch (error) {
       console.error("Error geting chat data:", error);
@@ -112,8 +109,6 @@ function LessonsComponent() {
         land,
         currentUser
       );
-
-      console.log("LESSONMSG", lessonMessage);
 
       setCurrentLesson(lessonMessage.nextIds.lessonId);
       setCurrentMinilesson(lessonMessage.nextIds.minilessonId);
@@ -147,15 +142,12 @@ function LessonsComponent() {
         currentUser
       );
 
-      console.log("LESSONMSG", welcomeMessage);
-
       let newMessage = {
         sender: "AI",
         content: welcomeMessage.message,
       };
 
-      console.log(chatData);
-      setChatData((prevChatData) => [newMessage, ...prevChatData]); 
+      setChatData((prevChatData) => [newMessage, ...prevChatData]);
       setTyping(false);
     } catch (error) {
       console.error("Error fetching lesson message:", error);
@@ -182,7 +174,7 @@ function LessonsComponent() {
       };
 
       setChatData((currentChatData) => [newUserMessage, ...currentChatData]);
-      setInputValue(""); 
+      setInputValue("");
 
       let response = "";
       if (land?.id != 5) {
@@ -224,7 +216,7 @@ function LessonsComponent() {
           <div className="chatContainer">
             <div className="chatHeader">
               <p className="chatHeaderText">Current location: {land?.name}</p>
-              {(land?.id == 5) && (
+              {land?.id == 5 && (
                 <div className="selectContainer">
                   <InputLabel>Response Format</InputLabel>
                   <Select value={type} label="Type" onChange={handleTypeChange}>
@@ -284,14 +276,13 @@ function LessonsComponent() {
           </div>
           {error && <div className="error">{error}</div>}
         </div>
-        {(land?.id != 5) && (
-
-        <LessonsListComponent
-          lessonNames={lessonNames}
-          land={land}
-          currentLesson={currentLesson}
-          currentMinilesson={currentMinilesson}
-        />
+        {land?.id != 5 && (
+          <LessonsListComponent
+            lessonNames={lessonNames}
+            land={land}
+            currentLesson={currentLesson}
+            currentMinilesson={currentMinilesson}
+          />
         )}
       </div>
     </>

@@ -184,16 +184,15 @@ export default function LanguageSelect({ value, onChange }) {
     { label: "Zhuang" },
     { label: "Zulu" },
   ];
-  
 
   return (
     <Autocomplete
       id="language-select-demo"
       sx={{ width: 247 }}
       options={languages}
-      value={value} 
+      value={value}
       onChange={(event, newValue) => {
-        onChange({ name: 'preferredLanguage', value: newValue }); 
+        onChange({ name: "preferredLanguage", value: newValue });
       }}
       autoHighlight
       getOptionLabel={(option) => option.label}

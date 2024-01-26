@@ -27,14 +27,12 @@ export default function ChangeUsernameModal() {
           <div onClick={toggleModal} className="overlay"></div>
           <div className="modal-content">
             <h2>Reset progress</h2>
-            <p className="reset-txt">Are you sure you want to reset your progress?</p>
+            <p className="reset-txt">
+              Are you sure you want to reset your progress?
+            </p>
             <div className="btn-yes-no">
-                <button className="yesbtn btn-modal">
-                    YES
-                </button>
-                <button className="nobtn btn-modal">
-                    NO
-                </button>
+              <button className="yesbtn btn-modal">YES</button>
+              <button className="nobtn btn-modal">NO</button>
             </div>
             <button className="close-modal" onClick={toggleModal}>
               CLOSE

@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import "./Popup.css";
 import { updateUserInfo } from "@/api/userService";
-import { useAuth } from '@/context/AuthProvider';
+import { useAuth } from "@/context/AuthProvider";
 const ChangeUsername = ({ currentUsername }) => {
   const [newUsername, setNewUsername] = useState("");
   const [error, setError] = useState("");
 
-  const { login } = useAuth(); 
+  const { login } = useAuth();
 
   const handleUpdateUsername = async () => {
     try {
@@ -21,10 +21,9 @@ const ChangeUsername = ({ currentUsername }) => {
 
       const response = await updateUserInfo(currentUsername, userData);
 
-      console.log("Registration successful:", response);
-      if(response.success){
-        login(newUsername); 
-        setError("Username successfully changed")
+      if (response.success) {
+        login(newUsername);
+        setError("Username successfully changed");
       }
     } catch (error) {
       setError(error + "! Please try again.");

@@ -11,7 +11,7 @@ export default function CountrySelect({ value, onChange }) {
       options={countries}
       value={value}
       onChange={(event, newValue) => {
-        onChange({ name: "countryOfOrigin", value: newValue }); 
+        onChange({ name: "countryOfOrigin", value: newValue });
       }}
       autoHighlight
       getOptionLabel={(option) => option.label}
@@ -37,7 +37,7 @@ export default function CountrySelect({ value, onChange }) {
           label="Country of Origin"
           inputProps={{
             ...params.inputProps,
-            autoComplete: "new-password", 
+            autoComplete: "new-password",
           }}
         />
       )}
