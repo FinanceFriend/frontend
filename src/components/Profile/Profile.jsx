@@ -86,7 +86,14 @@ const UserProfileStats = () => {
               <li>
                 <ResetProgressModal />
               </li>
-              <li>Contact us</li>
+              <li>
+                <a
+                  href="mailto:financefriends0@gmail.com"
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  Contact us
+                </a>
+              </li>
             </ul>
           </div>
         </div>
