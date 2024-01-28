@@ -36,6 +36,8 @@ function LessonsComponent() {
   const [currentMinilesson, setCurrentMinilesson] = useState(0);
   let progress = 0;
 
+  const [welcomeMessageLoaded, setWelcomeMessageLoaded] = useState(false);
+
   const [landBackgroundImage, setLandBackgroundImage] = useState({});
 
   const [loading, setTyping] = useState(false);
@@ -69,11 +71,17 @@ function LessonsComponent() {
         loadChatData(currentUser.username, slug);
         if (land?.id != 5) {
           loadLessonNames(land.name);
-          loadWelcomeMessage();
         }
       }
     }
   }, [currentUser, currentUserStats, landData, router, slug]);
+
+  useEffect(() => {
+    if (currentUser && land && currentUserStats && !welcomeMessageLoaded) {
+      loadWelcomeMessage();
+      setWelcomeMessageLoaded(true); 
+    }
+  }, [currentUser, land, currentUserStats]);
 
   const loadChatData = async (username, locationId) => {
     try {
