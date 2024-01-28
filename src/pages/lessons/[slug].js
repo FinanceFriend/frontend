@@ -256,8 +256,10 @@ function LessonsComponent() {
                 ))}
               </div>
               <p
-                className="chatButton nextButton"
-                onClick={() => loadLessonMessage()}
+                className={`chatButton nextButton ${loading ? "disabled" : ""}`}
+                onClick={() => {
+                  !loading && loadLessonMessage();
+                }}
               >
                 Next
               </p>

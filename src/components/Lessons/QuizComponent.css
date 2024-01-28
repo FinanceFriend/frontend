@@ -87,3 +87,11 @@
 .inputMessage.incorrect {
     background-color: var(--yellow);
 }
+
+.disabledFinish {
+    background-color: var(--yellow);
+}
+
+.disabledFinish:hover {
+    background-color: var(--yellow);
+}

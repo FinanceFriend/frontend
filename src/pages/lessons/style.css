@@ -117,3 +117,8 @@
     padding: 5px;
     border-radius: 0.6875rem;
 }
+
+.disabled {
+    background-color: grey;
+    cursor: not-allowed;
+}

@@ -13,6 +13,8 @@ function QuizComponent({ quiz, user, land }) {
   const [score, setScore] = useState(0);
   const [evaluationResults, setEvaluationResults] = useState({});
 
+  const [loading, setLoading] = useState(false);
+
   const handleResponse = (questionIndex, response) => {
     setSelectedOptions({
       ...selectedOptions,
@@ -28,6 +30,7 @@ function QuizComponent({ quiz, user, land }) {
   };
 
   const evaluateQuiz = async () => {
+    setLoading(true);
     let localScore = 0;
     const evaluationPromises = [];
 
@@ -76,6 +79,8 @@ function QuizComponent({ quiz, user, land }) {
       correctAnswers: finalScore,
       incorrectAnswers: 5 - finalScore,
     });
+
+    setLoading(false);
   };
 
   const getButtonStyle = (questionIndex, option) => {
@@ -175,8 +180,14 @@ function QuizComponent({ quiz, user, land }) {
 
       {!quizCompleted ? (
         <div className="quizBtnContainer choiceBtns">
-          <button className="quizBtn finishBtn" onClick={evaluateQuiz}>
-            <p>FINISH QUIZ!</p>
+          <button
+            className={`quizBtn finishBtn ${loading ? "disabledFinish" : ""}`}
+            onClick={() => {
+              !loading && evaluateQuiz();
+            }}
+            disabled={loading}
+          >
+            <p>{loading ? "Evaluating Answers..." : "FINISH QUIZ!"}</p>
           </button>
         </div>
       ) : (
