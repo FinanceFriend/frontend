@@ -274,8 +274,12 @@ function LessonsComponent() {
                   onChange={handleInputChange}
                 />
                 <p
-                  className="chatButton submitButton"
-                  onClick={handleSearchClick}
+                  className={`chatButton submitButton ${
+                    loading ? "disabled" : ""
+                  }`}
+                  onClick={() => {
+                    !loading && handleSearchClick();
+                  }}
                 >
                   Submit
                 </p>
