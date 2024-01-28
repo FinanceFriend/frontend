@@ -63,12 +63,15 @@
 .friendName {
     font-size: 5rem;
     font-weight: 400;
+    text-transform: uppercase;
 }
 
 .friendTitle {
     font-size: 4rem;
     font-style: normal;
     font-weight: 400;
+    text-transform: uppercase;
+
 }
 
 .friendmoduleName {

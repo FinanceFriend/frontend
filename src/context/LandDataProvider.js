@@ -5,8 +5,8 @@ const landData = [
   {
     id: "0",
     side: "left",
-    friendName: "CAL",
-    friendType: "THE CALCULATOR",
+    friendName: "Cal",
+    friendType: "The Calculator",
     moduleName: "financial mathematics",
     moduleDecriptionKids:
       "Hey there, little mathematicians! I'm Calc the Cheerful Calculator, and I'm super excited to take you on an amazing adventure in \"Numberland.\" We'll have loads of fun playing games with numbers, learning how to add up our pocket money, and even figure out the best ways to save for those awesome toys we've been dreaming about!",
@@ -20,8 +20,8 @@ const landData = [
   {
     id: "1",
     side: "right",
-    friendName: "OLIVIA",
-    friendType: "THE OWL",
+    friendName: "Olivia",
+    friendType: "The Owl",
     moduleName: "saving",
     moduleDecriptionKids:
       "Hello, my savvy savers! I'm Hootie the Wise Saving Owl, and I can't wait to share the secrets of \"Savings Treehouse\" with you. We're going to learn all about saving money, finding fun ways to watch our piggy banks get fuller, and dreaming about all the cool things we can do with our savings!",
@@ -35,8 +35,8 @@ const landData = [
   {
     id: "2",
     side: "left",
-    friendName: "TIMMY",
-    friendType: "THE TURTLE",
+    friendName: "Timmy",
+    friendType: "The Turtle",
     moduleName: "taxes",
     moduleDecriptionKids:
       "Hello, young explorers! I'm Timmy the Tax-Smart Turtle, and I'm here to take you on an exciting journey through \"Taxtown.\" Together, we'll learn about the mysterious world of taxes in a super fun and easy way. We'll discover why our families pay taxes, and how they help build parks, schools, and so much more!",
@@ -50,8 +50,8 @@ const landData = [
   {
     id: "3",
     side: "right",
-    friendName: "FIONA",
-    friendType: "THE FOX",
+    friendName: "Fiona",
+    friendType: "The Fox",
     moduleName: "investing",
     moduleDecriptionKids:
       "Hi, future money maestros! I'm Finn the Friendly Fox, and I'm here in \"Investment Woods\" to show you how to make your money do amazing tricks! We're going to learn all about investments, watch money grow, and have a blast understanding the smart ways to use our savings.",
@@ -65,8 +65,8 @@ const landData = [
   {
     id: "4",
     side: "left",
-    friendName: "BART",
-    friendType: "THE BEAVER",
+    friendName: "Bart",
+    friendType: "The Beaver",
     moduleName: "financial mathematics",
     moduleDecriptionKids:
       "Hey there, friends! I'm Bucky the Build-It Beaver, and I'm super excited to help you understand the world of loans here at \"Loan Lake.\" We'll learn about borrowing money for important things and discover how to plan for our big dreams and future projects!",
@@ -80,11 +80,11 @@ const landData = [
   {
     id: "5",
     side: "right",
-    friendName: "CLEO",
-    friendType: "THE CHAMELEON",
+    friendName: "Cleo",
+    friendType: "The Chameleon",
     moduleName: "freestyle",
     moduleDecriptionKids:
-      "Hello, creative minds! I'm Chroma the Colorful Chameleon from \"Imagination Jungle.\" Let's have a blast exploring all the different and fun ways we can think about money. From setting up a lemonade stand to saving for something special, we'll use our creativity to make our financial dreams come true!",
+      "Hello, creative minds! I'm Cleo the Colorful Chameleon from \"Imagination Jungle.\" Let's have a blast exploring all the different and fun ways we can think about money. From setting up a lemonade stand to saving for something special, we'll use our creativity to make our financial dreams come true!",
     moduleDescriptionParents:
       "For Parents: Chroma's module is designed to inspire creative thinking about finance, covering topics like entrepreneurship, ethical spending, and philanthropy. It encourages children to view money as a tool for creativity, personal expression, and making a positive impact in the world.",
     friendImage: "/friends/friend5.png",
