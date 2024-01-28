@@ -55,7 +55,7 @@ function LessonsComponent() {
     } else if (currentUser !== null) {
       refreshProfileStats();
     }
-  }, [currentUser, router]); 
+  }, [currentUser, router]);
 
   useEffect(() => {
     if (currentUser && router.isReady && slug) {
@@ -79,7 +79,7 @@ function LessonsComponent() {
   useEffect(() => {
     if (currentUser && land && currentUserStats && !welcomeMessageLoaded) {
       loadWelcomeMessage();
-      setWelcomeMessageLoaded(true); 
+      setWelcomeMessageLoaded(true);
     }
   }, [currentUser, land, currentUserStats]);
 

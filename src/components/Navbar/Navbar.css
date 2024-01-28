@@ -9,17 +9,24 @@ nav {
   background: #ffc700;
   height: 4.0625rem;
   /* 65px converted to rem */
+  width: 80%;
+}
+
+.navWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffc700;
 }
 
 #logo {
   background: #ffc700;
-  width: 15.625rem;
+  width: 100%;
   /* 250px converted to rem */
   height: 2.8125rem;
   /* 45px converted to rem */
   top: 0.6875rem;
   /* 11px converted to rem */
-  padding-left: 12.5rem;
   /* 200px converted to rem */
   border: 0.125rem;
   /* 2px converted to rem */
@@ -50,7 +57,7 @@ nav {
 
 #logo img {
   background: #ffc700;
-  width: 2.8488rem;
+  width: 50px;
   /* 45.57px converted to rem */
   height: 2.8125rem;
   /* 45px converted to rem */
@@ -61,15 +68,14 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-right: 12.5rem;
   /* 200px converted to rem */
-  width: 35.3125rem;
+  width: 100%;
   /* 565px converted to rem */
   height: 1.1875rem;
   /* 19px converted to rem */
 }
 
-#navbar li {
+#navbar .navbarElement {
   background: #ffc700;
   list-style: none;
   padding: 0 1.25rem;
@@ -85,13 +91,20 @@ nav {
   position: relative;
 }
 
-#navbar li a {
+#navbar .navbarElement a {
   background: #ffc700;
   text-decoration: none;
   color: #2000a0;
 }
 
 #navbar #logout a {
+  text-wrap: nowrap;
   text-decoration: none;
   color: #c40000;
+}
+
+@media screen and (max-width: 1000px) {
+  nav {
+    width: 95%;
+  }
 }

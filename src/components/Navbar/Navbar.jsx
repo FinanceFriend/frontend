@@ -13,6 +13,7 @@ function Navbar() {
   };
   return (
     <>
+    <div className="navWrapper">
       <nav>
         <div id="logo" style={{ cursor: "pointer" }}>
           <Link href="/dashboard" passHref legacyBehavior>
@@ -24,30 +25,31 @@ function Navbar() {
         </div>
 
         <div id="color">
-          <ul id="navbar">
-            <li>
+          <div id="navbar">
+            <div className="navbarElement">
               <Link href="/dashboard" legacyBehavior>
                 <a>DASHBOARD</a>
               </Link>
-            </li>
-            <li>
+            </div>
+            <div className="navbarElement">
               <Link href="/leaderboard" legacyBehavior>
                 <a>LEADERBOARD</a>
               </Link>
-            </li>
-            <li>
+            </div>
+            <div className="navbarElement">
               <Link href="/profile" legacyBehavior>
                 <a>PROFILE</a>
               </Link>
-            </li>
-            <li id="logout">
+            </div>
+            <div id="logout" className="navbarElement logout">
               <div onClick={handleLogout} style={{ cursor: "pointer" }}>
                 <a>LOG OUT</a>
               </div>
-            </li>
-          </ul>
+            </div>
+          </div>
         </div>
       </nav>
+      </div>
     </>
   );
 }
