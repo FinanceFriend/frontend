@@ -10,6 +10,7 @@
   }
 
   .homepageTitleContainer {
+      height: 30rem;
       background: url(/bg/bg-homepage.png);
       display: flex;
       justify-content: center;
@@ -129,4 +130,14 @@
       width: 60%;
       display: flex;
       flex-direction: column;
+  }
+
+  @media screen and (max-width: 1000px) {
+      .logo {
+          width: 20rem;
+      }
+
+      .homePageTitle {
+          font-size: 5rem;
+      }
   }

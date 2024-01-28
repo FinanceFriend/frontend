@@ -16,7 +16,7 @@ function HomePage() {
   return (
     <div>
       <div className="homepageTitleContainer">
-        <img src="/icons/logo.png" alt="logo" />
+        <img src="/icons/logo.png" alt="logo" className="logo"/>
         <div>
           <h1 className="homePageTitle">FinanceFriends</h1>
           <div className="buttonContainer">

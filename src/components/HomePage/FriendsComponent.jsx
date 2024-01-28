@@ -4,7 +4,7 @@ function FriendsComponent({ land }) {
   return (
     <div className={`friendsContainer ${land.side}`}>
       <div className="friendsWrapper">
-        <div className="friendsGrid">
+        <div className={`friendsGrid ${land.side}`}>
           {land.side === "left" && (
             <div className="friendsFlex">
               <div className={`friendsFlex2 ${land.side}`}>
