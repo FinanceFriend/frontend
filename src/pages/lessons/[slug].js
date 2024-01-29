@@ -77,7 +77,7 @@ function LessonsComponent() {
   }, [currentUser, currentUserStats, landData, router, slug]);
 
   useEffect(() => {
-    if (currentUser && land && currentUserStats && !welcomeMessageLoaded) {
+    if (currentUser && land && land?.id != 5 && currentUserStats && !welcomeMessageLoaded) {
       loadWelcomeMessage();
       setWelcomeMessageLoaded(true);
     }
