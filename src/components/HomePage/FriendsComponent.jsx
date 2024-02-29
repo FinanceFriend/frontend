@@ -18,7 +18,7 @@ function FriendsComponent({ land }) {
           )}
           <div className="friendsFlex">
             <div>
-              <div style={{ display: "flex", alignItems: "baseline" }}>
+              <div className="friendContainer" style={{ display: "flex", alignItems: "baseline" }}>
                 <p className="friendName text">{land.friendName}</p>
                 <p className="friendTitle text">{land.friendType}</p>
               </div>

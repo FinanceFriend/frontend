@@ -66,7 +66,7 @@ function HomePage() {
           </div>
         </div>
       </div>
-      <p className="homePageTitle" style={{ marginLeft: "8%" }}>
+      <p className="homePageTitle meetFriendsTitle" style={{ marginLeft: "8%" }}>
         MEET THE FRIENDS:
       </p>
       <div>

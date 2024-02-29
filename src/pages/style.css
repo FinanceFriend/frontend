@@ -55,7 +55,7 @@
 
   .buttonContainer {
       display: flex;
-      justify-content: space-evenly
+      justify-content: space-evenly;
   }
 
   .introContainer {
@@ -133,11 +133,99 @@
   }
 
   @media screen and (max-width: 1000px) {
-      .logo {
-          width: 20rem;
-      }
+    .logo {
+        width: 20rem;
+    }
 
-      .homePageTitle {
-          font-size: 5rem;
-      }
-  }
+    .homePageTitle {
+        font-size: 5rem;
+    }
+}
+
+  @media screen and (max-width: 1482px) {
+
+    .homepageTitleContainer {
+        flex-direction: column;
+    }
+
+    .homePageTitle {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .introContainer{
+        display: none;
+    }
+
+    .logo{
+        width: 23rem;
+    }
+
+    .meetFriendsTitle {
+        margin-top: 1rem;
+    }
+
+    .loginButton{
+        width: 10rem;
+        height: 4rem;
+    }
+
+    .registerButton{
+        width: 10rem;
+        height: 4rem;
+    }
+
+    .homepageTitleContainer{
+        height: 36rem;
+    }
+
+}
+
+  @media screen and (max-width: 768px) {
+
+    .homepageTitleContainer {
+        flex-direction: column;
+    }
+
+    .logo{
+        margin-top: 0rem;
+        width: 15rem;
+    }
+
+    .homePageTitle {
+        display: flex;
+        justify-content: center;
+        margin-top: 0.5rem;
+    }
+
+    .introContainer{
+        display: none;
+    }
+
+    .buttonContainer{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .loginButton{
+        margin-top: 2rem;
+        width: 10rem;
+        height: 4rem;
+    }
+
+    .registerButton{
+        width: 10rem;
+        height: 4rem;
+    }
+
+    .meetFriendsTitle {
+        margin-top: 4rem;
+        font-size: 3.8rem;
+    }
+
+    .friendText{
+        display: none;
+    }
+    
+    
+}

@@ -95,6 +95,27 @@
     max-height: 100%; 
 }
 
+@media screen and (max-width: 1482px) {
+
+    .friendsContainer.left{
+        background: none;
+        background-color: #FFC700;
+    }
+
+    .friendsContainer.right{
+        background: none;
+        background-color: #2000A0;
+    }
+
+    .friendText{
+        display: none;
+    }
+
+    .friendmoduleName{
+        display: none;
+    }
+}
+
 @media screen and (max-width: 1000px) {
     .friendsGrid.left {
         width: 95%;
@@ -111,3 +132,28 @@
         gap: 1rem;    }
 
   }
+
+  @media screen and (max-width: 768px) {
+    .friendsGrid.left{
+        grid-template-columns: 50%;
+    }
+
+    .friendsGrid.right{
+        grid-template-columns: 50%;
+        grid-auto-flow: row;
+    }
+
+    .friendContainer.left{
+        flex-direction: column;
+        background-color: #FFC700;
+    }
+    .friendmoduleName{
+        display: none;
+    }
+    
+}
+
+
+
+
+  
