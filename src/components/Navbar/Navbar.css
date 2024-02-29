@@ -108,3 +108,38 @@ nav {
     width: 95%;
   }
 }
+
+@media screen and (max-width: 774px) {
+
+  nav {
+    flex-wrap: wrap;
+    height: 5.8rem;
+    justify-content: center;
+  }
+
+  #logo{
+    margin: 0.5rem 0;
+  }
+  
+  #navbar{
+    margin: 0.5rem 0;
+    justify-content: center;
+  }
+
+}
+
+@media screen and (max-width: 550px) {
+
+  .navbarElement a{
+    font-size: 0.7rem;
+  }
+
+}
+
+@media screen and (max-width: 375px) {
+
+  .navbarElement a{
+    font-size: 0.5rem;
+  }
+
+}
